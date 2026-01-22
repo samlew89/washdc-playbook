@@ -130,32 +130,7 @@
             font-size: 12px;
         }
 
-        /* Priority section - always visible */
-        .priority-section {
-            background: #fff;
-            border-radius: 16px;
-            margin-bottom: 20px;
-            border: 1px solid #eee;
-            border-left: 4px solid #5e25fd;
-        }
-        .priority-section .section-header {
-            padding: 15px 20px;
-            font-weight: 600;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #f8f5ff;
-            border-bottom: 1px solid #f0e6ff;
-        }
-        .priority-badge {
-            background: #5e25fd;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-        }
-
+        
         /* Filters */
         .filters {
             padding: 15px 20px;
@@ -191,7 +166,11 @@
         .filter-group input[type="text"] { min-width: 200px; }
 
         /* Venue list */
-        .venue-list { padding: 0; }
+        .venue-list {
+            padding: 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
 
         .venue-card {
             padding: 15px 20px;
@@ -422,16 +401,16 @@
             </div>
         </details>
 
-        <!-- Priority Venues (Always Visible) -->
-        <div class="priority-section">
-            <div class="section-header">
+        <!-- Priority Venues -->
+        <details class="section" id="prioritySection">
+            <summary>
                 <span>Priority Venues (Score 85+)</span>
-                <span class="priority-badge" id="priorityCount">-</span>
-            </div>
+                <span class="section-count" id="priorityCount">-</span>
+            </summary>
             <div class="venue-list" id="priorityList">
                 <div class="loading">Loading venues...</div>
             </div>
-        </div>
+        </details>
 
         <!-- Dupont Circle Section -->
         <details class="section" id="dupontSection">

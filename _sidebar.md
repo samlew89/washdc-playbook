@@ -1,15 +1,16 @@
 * **Overview**
-  * [Overview](overview.md)
+  * [Summary & Goals](overview.md)
 
 * **Dashboard**
   * [Lead List & Pipeline](README.md)
-  * [Interactive Density Map](density-map.html ':ignore')
+  * [Venue Map](density-map.html ':ignore')
   * [Venue List](venue-list.html ':ignore')
 
 * **Operations**
   * [Operating System](operating-system.md)
 
 * **Programs**
+  * [Deployer Bootcamp](deployer-bootcamp.md)
   * [Ambassador Program](ambassador-program.md)
   * [QR Pamphlet System](qr-pamphlet-system.md)
 
