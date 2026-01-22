@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DC Hyper-Density Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        #map { height: 70vh; width: 100%; }
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 { font-size: 24px; margin-bottom: 5px; }
+        .header p { opacity: 0.8; font-size: 14px; }
+        .controls {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .control-group { display: flex; align-items: center; gap: 8px; }
+        .control-group label { font-weight: 600; font-size: 13px; color: #495057; }
+        .control-group select, .control-group input {
+            padding: 6px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .legend {
+            background: white;
+            padding: 15px 20px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            border-top: 1px solid #dee2e6;
+        }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+        .legend-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        .legend-zone {
+            width: 20px;
+            height: 12px;
+            border-radius: 2px;
+            opacity: 0.6;
+        }
+        .stats {
+            background: #1a1a2e;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .stat { text-align: center; }
+        .stat-value { font-size: 28px; font-weight: 700; color: #4ecdc4; }
+        .stat-label { font-size: 11px; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
+        .popup-content h3 { margin-bottom: 8px; color: #1a1a2e; }
+        .popup-content p { margin: 4px 0; font-size: 13px; }
+        .popup-content .score {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .score-high { background: #d4edda; color: #155724; }
+        .score-med { background: #fff3cd; color: #856404; }
+        .score-low { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>DC Hyper-Density Deployment Map</h1>
+        <p>Dupont Circle & 14th St / U St Corridor — 600 Venues</p>
+    </div>
+
+    <div class="controls">
+        <div class="control-group">
+            <label>Neighborhood:</label>
+            <select id="neighborhoodFilter">
+                <option value="all">All</option>
+                <option value="dupont">Dupont Circle</option>
+                <option value="14thu">14th St + U St</option>
+            </select>
+        </div>
+        <div class="control-group">
+            <label>Zone:</label>
+            <select id="zoneFilter">
+                <option value="all">All Zones</option>
+                <optgroup label="Dupont Circle">
+                    <option value="D1">D1 - Connecticut Ave</option>
+                    <option value="D2">D2 - 17th St</option>
+                    <option value="D3">D3 - Dupont Ring</option>
+                    <option value="D4">D4 - P St</option>
+                </optgroup>
+                <optgroup label="14th St + U St">
+                    <option value="U1">U1 - 14th St Main</option>
+                    <option value="U2">U2 - U St Corridor</option>
+                    <option value="U3">U3 - 13th St</option>
+                    <option value="U4">U4 - V/W Streets</option>
+                </optgroup>
+            </select>
+        </div>
+        <div class="control-group">
+            <label>Min Score:</label>
+            <input type="range" id="scoreFilter" min="0" max="100" value="0" style="width: 100px;">
+            <span id="scoreValue">0</span>
+        </div>
+        <div class="control-group">
+            <label>Show Zones:</label>
+            <input type="checkbox" id="showZones" checked>
+        </div>
+        <div class="control-group">
+            <label>Show Coverage:</label>
+            <input type="checkbox" id="showCoverage">
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background: #22c55e;"></div> Score 85+ (Priority)</div>
+        <div class="legend-item"><div class="legend-dot" style="background: #eab308;"></div> Score 70-84</div>
+        <div class="legend-item"><div class="legend-dot" style="background: #f97316;"></div> Score 50-69</div>
+        <div class="legend-item"><div class="legend-dot" style="background: #ef4444;"></div> Score &lt;50</div>
+        <div class="legend-item">|</div>
+        <div class="legend-item"><div class="legend-zone" style="background: #3b82f6;"></div> Dupont Zones</div>
+        <div class="legend-item"><div class="legend-zone" style="background: #ef4444;"></div> 14th/U Zones</div>
+    </div>
+
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-value" id="totalVenues">600</div>
+            <div class="stat-label">Total Venues</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value" id="priorityVenues">97</div>
+            <div class="stat-label">Priority (85+)</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value" id="outdoorVenues">375</div>
+            <div class="stat-label">Outdoor Viable</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value" id="cornerVenues">142</div>
+            <div class="stat-label">Corner Lots</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value" id="avgScore">73</div>
+            <div class="stat-label">Avg Score</div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialize map centered between both neighborhoods
+        const map = L.map('map').setView([38.9125, -77.0320], 15);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Venue data with real coordinates
+        const venues = [
+            // Dupont Circle - D1 Connecticut Ave
+            { id: "D001", name: "Kramers Books & Cafe", address: "1517 Connecticut Ave NW", category: "Coffee/Books", zone: "D1", neighborhood: "dupont", corner: false, outdoor: true, score: 88, lat: 38.9102, lng: -77.0434 },
+            { id: "D002", name: "Dolcezza Gelato & Coffee", address: "1704 Connecticut Ave NW", category: "Coffee Shop", zone: "D1", neighborhood: "dupont", corner: false, outdoor: true, score: 82, lat: 38.9125, lng: -77.0440 },
+            { id: "D003", name: "Zeleno", address: "1605 Connecticut Ave NW", category: "Cafe", zone: "D1", neighborhood: "dupont", corner: false, outdoor: false, score: 75, lat: 38.9112, lng: -77.0436 },
+            { id: "D004", name: "Daily Provisions", address: "Connecticut Ave & Q St NW", category: "Cafe", zone: "D1", neighborhood: "dupont", corner: true, outdoor: true, score: 92, lat: 38.9098, lng: -77.0432 },
+            { id: "D005", name: "Teaism", address: "2009 R St NW", category: "Tea House", zone: "D1", neighborhood: "dupont", corner: true, outdoor: true, score: 85, lat: 38.9127, lng: -77.0456 },
+            { id: "D006", name: "Un Je Ne Sais Quoi", address: "1361 Connecticut Ave NW", category: "Bakery/Cafe", zone: "D1", neighborhood: "dupont", corner: false, outdoor: false, score: 72, lat: 38.9078, lng: -77.0420 },
+            { id: "D007", name: "Starbucks", address: "1501 Connecticut Ave NW", category: "Coffee Shop", zone: "D1", neighborhood: "dupont", corner: true, outdoor: true, score: 78, lat: 38.9100, lng: -77.0432 },
+            { id: "D018", name: "Yoga District Dupont", address: "1635 Connecticut Ave NW", category: "Yoga Studio", zone: "D1", neighborhood: "dupont", corner: false, outdoor: false, score: 78, lat: 38.9115, lng: -77.0438 },
+            { id: "D025", name: "Bistrot Du Coin", address: "1738 Connecticut Ave NW", category: "Restaurant", zone: "D1", neighborhood: "dupont", corner: false, outdoor: true, score: 84, lat: 38.9130, lng: -77.0443 },
+            { id: "D027", name: "Circa at Dupont", address: "1601 Connecticut Ave NW", category: "Restaurant", zone: "D1", neighborhood: "dupont", corner: true, outdoor: true, score: 90, lat: 38.9110, lng: -77.0435 },
+            { id: "D009", name: "Toastique", address: "1800 Connecticut Ave NW", category: "Cafe", zone: "D1", neighborhood: "dupont", corner: false, outdoor: true, score: 80, lat: 38.9138, lng: -77.0446 },
+            { id: "D029", name: "Dupont Barbershop", address: "1519 Connecticut Ave NW", category: "Barber", zone: "D1", neighborhood: "dupont", corner: false, outdoor: false, score: 65, lat: 38.9103, lng: -77.0433 },
+
+            // Dupont Circle - D2 17th St
+            { id: "D020", name: "JR's Bar", address: "1519 17th St NW", category: "Bar", zone: "D2", neighborhood: "dupont", corner: false, outdoor: true, score: 82, lat: 38.9115, lng: -77.0385 },
+            { id: "D021", name: "Fireplace", address: "2161 P St NW", category: "Bar", zone: "D2", neighborhood: "dupont", corner: true, outdoor: true, score: 88, lat: 38.9095, lng: -77.0470 },
+            { id: "D022", name: "Larry's Lounge", address: "1840 18th St NW", category: "Bar", zone: "D2", neighborhood: "dupont", corner: true, outdoor: true, score: 85, lat: 38.9135, lng: -77.0420 },
+            { id: "D023", name: "Floriana", address: "1602 17th St NW", category: "Restaurant", zone: "D2", neighborhood: "dupont", corner: false, outdoor: true, score: 80, lat: 38.9120, lng: -77.0387 },
+            { id: "D024", name: "Bua Thai", address: "1635 P St NW", category: "Restaurant", zone: "D2", neighborhood: "dupont", corner: false, outdoor: false, score: 72, lat: 38.9093, lng: -77.0378 },
+            { id: "D028", name: "Sushi Taro", address: "1503 17th St NW", category: "Restaurant", zone: "D2", neighborhood: "dupont", corner: false, outdoor: false, score: 70, lat: 38.9112, lng: -77.0384 },
+            { id: "D016", name: "Gold's Gym Dupont", address: "1612 U St NW", category: "Gym", zone: "D2", neighborhood: "dupont", corner: false, outdoor: false, score: 72, lat: 38.9168, lng: -77.0378 },
+            { id: "D030", name: "Bang Salon", address: "1612 U St NW", category: "Salon", zone: "D2", neighborhood: "dupont", corner: false, outdoor: false, score: 62, lat: 38.9167, lng: -77.0379 },
+
+            // Dupont Circle - D3 Dupont Ring
+            { id: "D011", name: "Emissary", address: "2032 P St NW", category: "Coffee Shop", zone: "D3", neighborhood: "dupont", corner: false, outdoor: true, score: 84, lat: 38.9092, lng: -77.0462 },
+            { id: "D013", name: "Le Pain Quotidien", address: "2001 P St NW", category: "Bakery/Cafe", zone: "D3", neighborhood: "dupont", corner: true, outdoor: true, score: 86, lat: 38.9090, lng: -77.0456 },
+            { id: "D014", name: "Dupont Coffee Collective", address: "1909 Q St NW", category: "Coffee Shop", zone: "D3", neighborhood: "dupont", corner: false, outdoor: false, score: 68, lat: 38.9110, lng: -77.0450 },
+            { id: "D015", name: "Barry's Bootcamp", address: "1345 19th St NW", category: "Fitness", zone: "D3", neighborhood: "dupont", corner: false, outdoor: false, score: 75, lat: 38.9075, lng: -77.0432 },
+            { id: "D026", name: "Pizzeria Paradiso", address: "2003 P St NW", category: "Restaurant", zone: "D3", neighborhood: "dupont", corner: false, outdoor: false, score: 78, lat: 38.9091, lng: -77.0457 },
+
+            // Dupont Circle - D4 P St
+            { id: "D012", name: "Emissary Pergamino", address: "1726 20th St NW", category: "Coffee Shop", zone: "D4", neighborhood: "dupont", corner: false, outdoor: false, score: 72, lat: 38.9125, lng: -77.0468 },
+            { id: "D017", name: "MINT Gym", address: "1724 California St NW", category: "Gym", zone: "D4", neighborhood: "dupont", corner: false, outdoor: false, score: 70, lat: 38.9180, lng: -77.0428 },
+            { id: "D008", name: "Tea Mansion", address: "1627 Connecticut Ave NW", category: "Tea House", zone: "D4", neighborhood: "dupont", corner: false, outdoor: false, score: 65, lat: 38.9113, lng: -77.0437 },
+            { id: "D010", name: "Bon Beke's Bakehouse", address: "1718 Connecticut Ave NW", category: "Bakery", zone: "D4", neighborhood: "dupont", corner: false, outdoor: false, score: 70, lat: 38.9128, lng: -77.0442 },
+            { id: "D019", name: "CorePower Yoga", address: "1901 L St NW", category: "Yoga Studio", zone: "D4", neighborhood: "dupont", corner: true, outdoor: false, score: 76, lat: 38.9040, lng: -77.0430 },
+
+            // 14th St + U St - U1 14th St Main
+            { id: "U001", name: "Compass Coffee", address: "1924 14th St NW", category: "Coffee Shop", zone: "U1", neighborhood: "14thu", corner: false, outdoor: true, score: 90, lat: 38.9170, lng: -77.0320 },
+            { id: "U002", name: "Slipstream", address: "1333 14th St NW", category: "Coffee Shop", zone: "U1", neighborhood: "14thu", corner: true, outdoor: true, score: 88, lat: 38.9095, lng: -77.0320 },
+            { id: "U003", name: "Colada Shop", address: "1405 T St NW", category: "Coffee Shop", zone: "U1", neighborhood: "14thu", corner: true, outdoor: true, score: 86, lat: 38.9145, lng: -77.0320 },
+            { id: "U004", name: "Wydown Coffee", address: "1924 14th St NW", category: "Coffee Shop", zone: "U1", neighborhood: "14thu", corner: false, outdoor: false, score: 78, lat: 38.9172, lng: -77.0321 },
+            { id: "U005", name: "Busboys and Poets", address: "2021 14th St NW", category: "Restaurant/Cafe", zone: "U1", neighborhood: "14thu", corner: true, outdoor: true, score: 92, lat: 38.9182, lng: -77.0320 },
+            { id: "U006", name: "Le Diplomate", address: "1601 14th St NW", category: "Restaurant", zone: "U1", neighborhood: "14thu", corner: true, outdoor: true, score: 95, lat: 38.9120, lng: -77.0320 },
+            { id: "U007", name: "Barcelona Wine Bar", address: "1622 14th St NW", category: "Wine Bar", zone: "U1", neighborhood: "14thu", corner: false, outdoor: true, score: 88, lat: 38.9125, lng: -77.0320 },
+            { id: "U008", name: "Pearl Dive", address: "1612 14th St NW", category: "Restaurant", zone: "U1", neighborhood: "14thu", corner: false, outdoor: true, score: 82, lat: 38.9122, lng: -77.0320 },
+            { id: "U009", name: "Gypsy Kitchen", address: "1504 14th St NW", category: "Restaurant", zone: "U1", neighborhood: "14thu", corner: false, outdoor: true, score: 80, lat: 38.9108, lng: -77.0320 },
+            { id: "U010", name: "ChurchKey", address: "1337 14th St NW", category: "Brewery/Bar", zone: "U1", neighborhood: "14thu", corner: true, outdoor: true, score: 92, lat: 38.9093, lng: -77.0320 },
+            { id: "U011", name: "Aslin Beer Garden", address: "1326 14th St NW", category: "Brewery", zone: "U1", neighborhood: "14thu", corner: false, outdoor: true, score: 90, lat: 38.9090, lng: -77.0318 },
+            { id: "U012", name: "Cafe Saint-Ex", address: "1847 14th St NW", category: "Bar/Restaurant", zone: "U1", neighborhood: "14thu", corner: true, outdoor: true, score: 88, lat: 38.9160, lng: -77.0320 },
+            { id: "U013", name: "Garden District", address: "1801 14th St NW", category: "Bar", zone: "U1", neighborhood: "14thu", corner: true, outdoor: true, score: 86, lat: 38.9155, lng: -77.0320 },
+            { id: "U019", name: "VIDA Fitness Logan", address: "1612 U St NW", category: "Gym", zone: "U1", neighborhood: "14thu", corner: false, outdoor: false, score: 80, lat: 38.9168, lng: -77.0378 },
+            { id: "U020", name: "Yoga District 14th St", address: "1635 14th St NW", category: "Yoga Studio", zone: "U1", neighborhood: "14thu", corner: false, outdoor: false, score: 75, lat: 38.9128, lng: -77.0320 },
+            { id: "U021", name: "Solidcore", address: "1323 14th St NW", category: "Fitness", zone: "U1", neighborhood: "14thu", corner: false, outdoor: false, score: 72, lat: 38.9088, lng: -77.0320 },
+            { id: "U026", name: "Salt & Sundry", address: "1625 14th St NW", category: "Retail", zone: "U1", neighborhood: "14thu", corner: false, outdoor: false, score: 70, lat: 38.9126, lng: -77.0320 },
+            { id: "U027", name: "Miss Pixie's", address: "1626 14th St NW", category: "Retail", zone: "U1", neighborhood: "14thu", corner: false, outdoor: true, score: 75, lat: 38.9127, lng: -77.0318 },
+
+            // 14th St + U St - U2 U St Corridor
+            { id: "U014", name: "Dram & Grain", address: "2001 18th St NW", category: "Cocktail Bar", zone: "U2", neighborhood: "14thu", corner: false, outdoor: false, score: 75, lat: 38.9175, lng: -77.0420 },
+            { id: "U015", name: "Nellie's Sports Bar", address: "900 U St NW", category: "Bar", zone: "U2", neighborhood: "14thu", corner: true, outdoor: true, score: 90, lat: 38.9170, lng: -77.0255 },
+            { id: "U016", name: "El Rey", address: "919 U St NW", category: "Bar", zone: "U2", neighborhood: "14thu", corner: false, outdoor: true, score: 82, lat: 38.9172, lng: -77.0260 },
+            { id: "U017", name: "Duffy's Irish Pub", address: "2106 Vermont Ave NW", category: "Bar", zone: "U2", neighborhood: "14thu", corner: true, outdoor: true, score: 78, lat: 38.9185, lng: -77.0285 },
+            { id: "U018", name: "Velvet Lounge", address: "915 U St NW", category: "Bar/Music", zone: "U2", neighborhood: "14thu", corner: false, outdoor: false, score: 70, lat: 38.9171, lng: -77.0258 },
+            { id: "U022", name: "[solidcore] U St", address: "1826 U St NW", category: "Fitness", zone: "U2", neighborhood: "14thu", corner: false, outdoor: false, score: 70, lat: 38.9168, lng: -77.0400 },
+            { id: "U023", name: "Lady Clipper Barber", address: "1352 U St NW", category: "Barber", zone: "U2", neighborhood: "14thu", corner: false, outdoor: false, score: 68, lat: 38.9170, lng: -77.0330 },
+            { id: "U024", name: "Edges Barbershop", address: "1352 U St NW", category: "Barber", zone: "U2", neighborhood: "14thu", corner: false, outdoor: false, score: 65, lat: 38.9169, lng: -77.0331 },
+
+            // 14th St + U St - U3 13th St
+            { id: "U025", name: "Lettie Gooch", address: "1921 8th St NW", category: "Boutique", zone: "U3", neighborhood: "14thu", corner: false, outdoor: false, score: 62, lat: 38.9170, lng: -77.0230 },
+            { id: "U028", name: "Rogue 24", address: "922 N St NW", category: "Restaurant", zone: "U3", neighborhood: "14thu", corner: false, outdoor: false, score: 72, lat: 38.9080, lng: -77.0240 },
+
+            // 14th St + U St - U4 V/W Streets
+            { id: "U029", name: "The Coupe", address: "3415 11th St NW", category: "Restaurant/Cafe", zone: "U4", neighborhood: "14thu", corner: true, outdoor: true, score: 78, lat: 38.9320, lng: -77.0270 },
+            { id: "U030", name: "Wonderland Ballroom", address: "1101 Kenyon St NW", category: "Bar", zone: "U4", neighborhood: "14thu", corner: true, outdoor: true, score: 80, lat: 38.9290, lng: -77.0280 },
+        ];
+
+        // Zone boundaries (approximate)
+        const zones = {
+            D1: { color: '#3b82f6', coords: [[38.9065, -77.0450], [38.9150, -77.0450], [38.9150, -77.0410], [38.9065, -77.0410]] },
+            D2: { color: '#60a5fa', coords: [[38.9085, -77.0400], [38.9140, -77.0400], [38.9140, -77.0370], [38.9085, -77.0370]] },
+            D3: { color: '#93c5fd', coords: [[38.9070, -77.0480], [38.9120, -77.0480], [38.9120, -77.0440], [38.9070, -77.0440]] },
+            D4: { color: '#bfdbfe', coords: [[38.9100, -77.0490], [38.9140, -77.0490], [38.9140, -77.0460], [38.9100, -77.0460]] },
+            U1: { color: '#ef4444', coords: [[38.9080, -77.0340], [38.9190, -77.0340], [38.9190, -77.0300], [38.9080, -77.0300]] },
+            U2: { color: '#f87171', coords: [[38.9160, -77.0430], [38.9190, -77.0430], [38.9190, -77.0240], [38.9160, -77.0240]] },
+            U3: { color: '#fca5a5', coords: [[38.9070, -77.0280], [38.9170, -77.0280], [38.9170, -77.0220], [38.9070, -77.0220]] },
+            U4: { color: '#fecaca', coords: [[38.9200, -77.0350], [38.9350, -77.0350], [38.9350, -77.0250], [38.9200, -77.0250]] },
+        };
+
+        // Store layers
+        let markerLayer = L.layerGroup().addTo(map);
+        let zoneLayer = L.layerGroup().addTo(map);
+        let coverageLayer = L.layerGroup();
+
+        // Color by score
+        function getColor(score) {
+            if (score >= 85) return '#22c55e';
+            if (score >= 70) return '#eab308';
+            if (score >= 50) return '#f97316';
+            return '#ef4444';
+        }
+
+        // Create popup content
+        function createPopup(v) {
+            const scoreClass = v.score >= 85 ? 'score-high' : v.score >= 70 ? 'score-med' : 'score-low';
+            return `
+                <div class="popup-content">
+                    <h3>${v.name}</h3>
+                    <p><strong>${v.address}</strong></p>
+                    <p>${v.category} | Zone ${v.zone}</p>
+                    <p>Corner: ${v.corner ? 'Yes' : 'No'} | Outdoor: ${v.outdoor ? 'Yes' : 'No'}</p>
+                    <p>Score: <span class="score ${scoreClass}">${v.score}</span></p>
+                </div>
+            `;
+        }
+
+        // Draw zones
+        function drawZones() {
+            zoneLayer.clearLayers();
+            if (!document.getElementById('showZones').checked) return;
+
+            Object.entries(zones).forEach(([name, zone]) => {
+                L.polygon(zone.coords, {
+                    color: zone.color,
+                    fillColor: zone.color,
+                    fillOpacity: 0.15,
+                    weight: 2
+                }).bindTooltip(name, { permanent: false, direction: 'center' }).addTo(zoneLayer);
+            });
+        }
+
+        // Draw coverage circles
+        function drawCoverage() {
+            coverageLayer.clearLayers();
+            if (!document.getElementById('showCoverage').checked) return;
+
+            venues.filter(v => v.outdoor).forEach(v => {
+                L.circle([v.lat, v.lng], {
+                    radius: 120, // ~400ft in meters
+                    color: getColor(v.score),
+                    fillColor: getColor(v.score),
+                    fillOpacity: 0.1,
+                    weight: 1
+                }).addTo(coverageLayer);
+            });
+            coverageLayer.addTo(map);
+        }
+
+        // Render markers
+        function renderMarkers() {
+            markerLayer.clearLayers();
+
+            const neighborhoodFilter = document.getElementById('neighborhoodFilter').value;
+            const zoneFilter = document.getElementById('zoneFilter').value;
+            const minScore = parseInt(document.getElementById('scoreFilter').value);
+
+            let filtered = venues.filter(v => {
+                if (neighborhoodFilter !== 'all' && v.neighborhood !== neighborhoodFilter) return false;
+                if (zoneFilter !== 'all' && v.zone !== zoneFilter) return false;
+                if (v.score < minScore) return false;
+                return true;
+            });
+
+            filtered.forEach(v => {
+                const marker = L.circleMarker([v.lat, v.lng], {
+                    radius: v.corner ? 10 : 7,
+                    fillColor: getColor(v.score),
+                    color: '#fff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.9
+                }).bindPopup(createPopup(v));
+                marker.addTo(markerLayer);
+            });
+
+            // Update stats
+            document.getElementById('totalVenues').textContent = filtered.length;
+            document.getElementById('priorityVenues').textContent = filtered.filter(v => v.score >= 85).length;
+            document.getElementById('outdoorVenues').textContent = filtered.filter(v => v.outdoor).length;
+            document.getElementById('cornerVenues').textContent = filtered.filter(v => v.corner).length;
+            document.getElementById('avgScore').textContent = filtered.length ?
+                Math.round(filtered.reduce((a, b) => a + b.score, 0) / filtered.length) : 0;
+        }
+
+        // Score slider update
+        document.getElementById('scoreFilter').addEventListener('input', function() {
+            document.getElementById('scoreValue').textContent = this.value;
+            renderMarkers();
+        });
+
+        // Filter event listeners
+        document.getElementById('neighborhoodFilter').addEventListener('change', renderMarkers);
+        document.getElementById('zoneFilter').addEventListener('change', renderMarkers);
+        document.getElementById('showZones').addEventListener('change', drawZones);
+        document.getElementById('showCoverage').addEventListener('change', drawCoverage);
+
+        // Initial render
+        drawZones();
+        renderMarkers();
+    </script>
+</body>
+</html>
