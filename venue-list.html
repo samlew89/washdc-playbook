@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DC Venue Pipeline</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fff;
+            color: #333;
+        }
+
+        .header {
+            background: #fff;
+            color: #000;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .header h1 { font-size: 32px; margin-bottom: 8px; font-weight: 900; }
+        .header p { color: #7d7d7d; font-size: 15px; }
+
+        .stats {
+            background: #f7f7f7;
+            color: #000;
+            padding: 20px;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            border-bottom: 1px solid #eee;
+        }
+        .stat { text-align: center; }
+        .stat-value { font-size: 28px; font-weight: 700; color: #5e25fd; }
+        .stat-label { font-size: 11px; color: #7d7d7d; text-transform: uppercase; letter-spacing: 1px; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        /* Scoring Explainer */
+        .scoring-explainer {
+            background: #fff;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+        }
+        .scoring-explainer summary {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .scoring-explainer summary:hover { background: #f8f9fa; }
+        .scoring-explainer[open] summary { border-bottom: 1px solid #eee; }
+        .scoring-content {
+            padding: 20px;
+        }
+        .scoring-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .scoring-table th, .scoring-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .scoring-table th {
+            background: #f7f7f7;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            color: #7d7d7d;
+        }
+        .scoring-table td { font-size: 14px; }
+        .scoring-table tr:last-child td { border-bottom: none; }
+        .scoring-table a { color: #5e25fd; text-decoration: none; }
+        .scoring-table a:hover { text-decoration: underline; }
+
+        .tier-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .tier-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .tier-critical { background: #f0e6ff; color: #5e25fd; }
+        .tier-high { background: #e0f2fe; color: #036afd; }
+        .tier-medium { background: #fef9c3; color: #854d0e; }
+        .tier-low { background: #fed7aa; color: #9a3412; }
+        .tier-deprioritize { background: #f7f7f7; color: #7d7d7d; }
+
+        /* Section styling */
+        .section {
+            background: #fff;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            overflow: hidden;
+        }
+        .section summary {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f7f7f7;
+        }
+        .section summary:hover { background: #f0f0f0; }
+        .section[open] summary { border-bottom: 1px solid #eee; }
+        .section-count {
+            background: #5e25fd;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        /* Priority section - always visible */
+        .priority-section {
+            background: #fff;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            border-left: 4px solid #5e25fd;
+        }
+        .priority-section .section-header {
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8f5ff;
+            border-bottom: 1px solid #f0e6ff;
+        }
+        .priority-badge {
+            background: #5e25fd;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        /* Filters */
+        .filters {
+            padding: 15px 20px;
+            background: #f7f7f7;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .filter-group label {
+            font-weight: 600;
+            font-size: 13px;
+            color: #7d7d7d;
+        }
+        .filter-group select, .filter-group input[type="text"] {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 13px;
+            min-width: 150px;
+            font-family: 'Figtree', sans-serif;
+        }
+        .filter-group select:focus, .filter-group input[type="text"]:focus {
+            outline: none;
+            border-color: #5e25fd;
+        }
+        .filter-group input[type="text"] { min-width: 200px; }
+
+        /* Venue list */
+        .venue-list { padding: 0; }
+
+        .venue-card {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 15px;
+            align-items: center;
+        }
+        .venue-card:last-child { border-bottom: none; }
+        .venue-card:hover { background: #fafafa; }
+
+        .venue-info h3 {
+            font-size: 15px;
+            margin-bottom: 4px;
+            color: #000;
+            font-weight: 600;
+        }
+        .venue-meta {
+            font-size: 13px;
+            color: #666;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .venue-meta span { display: flex; align-items: center; gap: 4px; }
+
+        .venue-score {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .score-badge {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            color: white;
+        }
+        .score-critical { background: #5e25fd; }
+        .score-high { background: #036afd; }
+        .score-medium { background: #f97316; }
+        .score-low { background: #ef4444; }
+        .score-deprioritize { background: #acacac; }
+
+        .score-tier {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Expandable score breakdown */
+        .venue-details {
+            padding: 0 20px 15px 20px;
+            background: #f7f7f7;
+            display: none;
+        }
+        .venue-card.expanded + .venue-details { display: block; }
+
+        .breakdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .breakdown-item {
+            background: #fff;
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .breakdown-label {
+            font-size: 11px;
+            color: #7d7d7d;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .breakdown-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000;
+        }
+        .viability-stars { color: #5e25fd; }
+        .corner-yes { color: #5e25fd; }
+        .corner-no { color: #acacac; }
+
+        /* Show more button */
+        .show-more {
+            padding: 15px 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+        .show-more button {
+            background: #5e25fd;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Figtree', sans-serif;
+            transition: background 0.2s;
+        }
+        .show-more button:hover { background: #4a1dcc; }
+        .show-more button:disabled {
+            background: #acacac;
+            cursor: not-allowed;
+        }
+
+        /* Empty state */
+        .empty-state {
+            padding: 40px 20px;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Loading state */
+        .loading {
+            padding: 40px 20px;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats { gap: 15px; }
+            .stat-value { font-size: 22px; }
+            .filters { flex-direction: column; align-items: stretch; }
+            .filter-group { flex-direction: column; align-items: stretch; }
+            .filter-group select, .filter-group input[type="text"] { min-width: auto; width: 100%; }
+            .venue-card { grid-template-columns: 1fr; }
+            .venue-score { flex-direction: row; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>DC Venue Pipeline</h1>
+        <p>Dupont Circle + 14th St / U St Corridor</p>
+    </div>
+
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-value" id="totalVenues">-</div>
+            <div class="stat-label">Total Venues</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value" id="priorityVenues">-</div>
+            <div class="stat-label">Priority (85+)</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value" id="outdoorVenues">-</div>
+            <div class="stat-label">Outdoor Viable</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value" id="cornerVenues">-</div>
+            <div class="stat-label">Corner Lots</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value" id="avgScore">-</div>
+            <div class="stat-label">Avg Score</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Scoring Explainer -->
+        <details class="scoring-explainer">
+            <summary>How Scoring Works</summary>
+            <div class="scoring-content">
+                <p style="margin-bottom: 15px; color: #666;">Each venue is scored 0-100 based on deployment viability. Higher scores = faster coverage + better ROI.</p>
+
+                <table class="scoring-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Points</th>
+                            <th>Key Factors</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Outdoor Mounting Viability</strong></td>
+                            <td>30</td>
+                            <td>Mount location, height, owner control</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Permissioning Speed</strong></td>
+                            <td>25</td>
+                            <td>Decision-maker access, approval layers</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Location & Line-of-Sight</strong></td>
+                            <td>20</td>
+                            <td>Corner lot, street-facing, cluster potential</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Foot Traffic & Dwell Time</strong></td>
+                            <td>15</td>
+                            <td>Peak traffic, outdoor seating</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Operational Reliability</strong></td>
+                            <td>10</td>
+                            <td>Power, internet, access hours</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin-bottom: 10px;">Score Tiers</h4>
+                <div class="tier-badges">
+                    <span class="tier-badge tier-critical">85-100 CRITICAL</span>
+                    <span class="tier-badge tier-high">70-84 HIGH</span>
+                    <span class="tier-badge tier-medium">55-69 MEDIUM</span>
+                    <span class="tier-badge tier-low">40-54 LOW</span>
+                    <span class="tier-badge tier-deprioritize">0-39 DEPRIORITIZE</span>
+                </div>
+
+                <p style="margin-top: 15px; font-size: 13px;">
+                    <a href="venue-scoring-rubric.md" target="_blank" style="color: #5e25fd; text-decoration: none; font-weight: 500;">View full scoring rubric &rarr;</a>
+                </p>
+            </div>
+        </details>
+
+        <!-- Priority Venues (Always Visible) -->
+        <div class="priority-section">
+            <div class="section-header">
+                <span>Priority Venues (Score 85+)</span>
+                <span class="priority-badge" id="priorityCount">-</span>
+            </div>
+            <div class="venue-list" id="priorityList">
+                <div class="loading">Loading venues...</div>
+            </div>
+        </div>
+
+        <!-- Dupont Circle Section -->
+        <details class="section" id="dupontSection">
+            <summary>
+                <span>Dupont Circle</span>
+                <span class="section-count" id="dupontCount">-</span>
+            </summary>
+            <div class="filters">
+                <div class="filter-group">
+                    <label>Search:</label>
+                    <input type="text" id="dupontSearch" placeholder="Name or address...">
+                </div>
+                <div class="filter-group">
+                    <label>Zone:</label>
+                    <select id="dupontZone">
+                        <option value="all">All Zones</option>
+                        <option value="D1">Dupont - Connecticut Ave</option>
+                        <option value="D2">Dupont - 17th St Strip</option>
+                        <option value="D3">Dupont - Dupont Ring</option>
+                        <option value="D4">Dupont - P St / 20th</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Category:</label>
+                    <select id="dupontCategory">
+                        <option value="all">All Categories</option>
+                    </select>
+                </div>
+            </div>
+            <div class="venue-list" id="dupontList">
+                <div class="loading">Loading venues...</div>
+            </div>
+            <div class="show-more" id="dupontShowMore" style="display: none;">
+                <button onclick="showMoreDupont()">Show More</button>
+            </div>
+        </details>
+
+        <!-- 14th St + U St Section -->
+        <details class="section" id="14thuSection">
+            <summary>
+                <span>14th St + U St Corridor</span>
+                <span class="section-count" id="14thuCount">-</span>
+            </summary>
+            <div class="filters">
+                <div class="filter-group">
+                    <label>Search:</label>
+                    <input type="text" id="14thuSearch" placeholder="Name or address...">
+                </div>
+                <div class="filter-group">
+                    <label>Zone:</label>
+                    <select id="14thuZone">
+                        <option value="all">All Zones</option>
+                        <option value="U1">14th/U - 14th St Main</option>
+                        <option value="U2">14th/U - U St Corridor</option>
+                        <option value="U3">14th/U - Shaw / 9th St</option>
+                        <option value="U4">14th/U - V/W / Columbia Hts</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Category:</label>
+                    <select id="14thuCategory">
+                        <option value="all">All Categories</option>
+                    </select>
+                </div>
+            </div>
+            <div class="venue-list" id="14thuList">
+                <div class="loading">Loading venues...</div>
+            </div>
+            <div class="show-more" id="14thuShowMore" style="display: none;">
+                <button onclick="showMore14thu()">Show More</button>
+            </div>
+        </details>
+
+        <!-- Data Sources -->
+        <details class="section">
+            <summary>
+                <span>Data Sources</span>
+                <span class="section-count">9</span>
+            </summary>
+            <div style="padding: 20px;">
+                <table class="scoring-table">
+                    <thead>
+                        <tr>
+                            <th>Source</th>
+                            <th>URL</th>
+                            <th>Data Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dupont Circle BID</td>
+                            <td><a href="https://dupontcirclebid.org/visit/dining" target="_blank">dupontcirclebid.org</a></td>
+                            <td>Restaurants, cafes, retail</td>
+                        </tr>
+                        <tr>
+                            <td>Dupont Main Streets</td>
+                            <td><a href="https://www.dupontcirclemainstreets.org/" target="_blank">dupontcirclemainstreets.org</a></td>
+                            <td>Complete business directory</td>
+                        </tr>
+                        <tr>
+                            <td>Shaw Main Streets</td>
+                            <td><a href="https://www.shawmainstreets.org/" target="_blank">shawmainstreets.org</a></td>
+                            <td>Shaw business listings</td>
+                        </tr>
+                        <tr>
+                            <td>Washington.org</td>
+                            <td><a href="https://washington.org/dc-neighborhoods/dupont-circle" target="_blank">washington.org</a></td>
+                            <td>Neighborhood guides</td>
+                        </tr>
+                        <tr>
+                            <td>OpenTable</td>
+                            <td><a href="https://www.opentable.com/landmark/restaurants-near-dupont-circle" target="_blank">opentable.com</a></td>
+                            <td>Restaurant data</td>
+                        </tr>
+                        <tr>
+                            <td>Yelp</td>
+                            <td><a href="https://www.yelp.com/search?cflt=restaurants&find_loc=Dupont+Circle" target="_blank">yelp.com</a></td>
+                            <td>Business details, ratings</td>
+                        </tr>
+                        <tr>
+                            <td>The Infatuation DC</td>
+                            <td><a href="https://www.theinfatuation.com/washington-dc" target="_blank">theinfatuation.com</a></td>
+                            <td>Curated restaurant lists</td>
+                        </tr>
+                        <tr>
+                            <td>Foursquare</td>
+                            <td><a href="https://foursquare.com" target="_blank">foursquare.com</a></td>
+                            <td>Venue locations, categories</td>
+                        </tr>
+                        <tr>
+                            <td>Google Maps</td>
+                            <td><a href="https://maps.google.com" target="_blank">maps.google.com</a></td>
+                            <td>Address verification, coordinates</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </details>
+    </div>
+
+    <script>
+        // Zone name mapping
+        const ZONE_NAMES = {
+            'D1': 'Dupont - Connecticut Ave',
+            'D2': 'Dupont - 17th St Strip',
+            'D3': 'Dupont - Dupont Ring',
+            'D4': 'Dupont - P St / 20th',
+            'U1': '14th/U - 14th St Main',
+            'U2': '14th/U - U St Corridor',
+            'U3': '14th/U - Shaw / 9th St',
+            'U4': '14th/U - V/W / Columbia Hts'
+        };
+
+        // Data storage
+        let dupontVenues = [];
+        let thu14Venues = [];
+        let allVenues = [];
+
+        // Pagination state
+        let dupontOffset = 0;
+        let thu14Offset = 0;
+        const PAGE_SIZE = 50;
+
+        // Filtered data
+        let filteredDupont = [];
+        let filtered14thu = [];
+
+        // Parse CSV
+        function parseCSV(text) {
+            const lines = text.trim().split('\n');
+            const headers = lines[0].split(',');
+            return lines.slice(1).map(line => {
+                const values = line.split(',');
+                const obj = {};
+                headers.forEach((h, i) => {
+                    obj[h.trim()] = values[i] ? values[i].trim() : '';
+                });
+                // Parse numeric fields
+                obj.Score = parseInt(obj.Score) || 0;
+                obj.Indoor = parseInt(obj.Indoor) || 0;
+                obj.Outdoor = parseInt(obj.Outdoor) || 0;
+                obj.Lat = parseFloat(obj.Lat) || 0;
+                obj.Lng = parseFloat(obj.Lng) || 0;
+                obj.Corner = obj.Corner === 'Yes';
+                return obj;
+            });
+        }
+
+        // Get score tier
+        function getScoreTier(score) {
+            if (score >= 85) return { class: 'score-critical', label: 'Critical' };
+            if (score >= 70) return { class: 'score-high', label: 'High' };
+            if (score >= 55) return { class: 'score-medium', label: 'Medium' };
+            if (score >= 40) return { class: 'score-low', label: 'Low' };
+            return { class: 'score-deprioritize', label: 'Deprioritize' };
+        }
+
+        // Render stars for viability
+        function renderStars(count) {
+            return '★'.repeat(count) + '☆'.repeat(5 - count);
+        }
+
+        // Render venue card
+        function renderVenueCard(venue, showDetails = false) {
+            const tier = getScoreTier(venue.Score);
+            const zoneName = ZONE_NAMES[venue.Pod] || venue.Pod;
+
+            return `
+                <div class="venue-card" onclick="toggleDetails(this)">
+                    <div class="venue-info">
+                        <h3>${venue.Name}</h3>
+                        <div class="venue-meta">
+                            <span>${venue.Address}</span>
+                            <span>${venue.Category}</span>
+                            <span>${zoneName}</span>
+                            ${venue.Corner ? '<span style="color: #22c55e;">Corner Lot</span>' : ''}
+                        </div>
+                    </div>
+                    <div class="venue-score">
+                        <div class="score-badge ${tier.class}">${venue.Score}</div>
+                        <div class="score-tier">${tier.label}</div>
+                    </div>
+                </div>
+                <div class="venue-details">
+                    <div class="breakdown-grid">
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Total Score</div>
+                            <div class="breakdown-value">${venue.Score}/100</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Indoor Viability</div>
+                            <div class="breakdown-value viability-stars">${renderStars(venue.Indoor)}</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Outdoor Viability</div>
+                            <div class="breakdown-value viability-stars">${renderStars(venue.Outdoor)}</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Corner Lot</div>
+                            <div class="breakdown-value ${venue.Corner ? 'corner-yes' : 'corner-no'}">${venue.Corner ? 'Yes' : 'No'}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Toggle venue details
+        function toggleDetails(card) {
+            card.classList.toggle('expanded');
+        }
+
+        // Update stats
+        function updateStats() {
+            const total = allVenues.length;
+            const priority = allVenues.filter(v => v.Score >= 85).length;
+            const outdoor = allVenues.filter(v => v.Outdoor >= 4).length;
+            const corner = allVenues.filter(v => v.Corner).length;
+            const avg = total > 0 ? Math.round(allVenues.reduce((a, b) => a + b.Score, 0) / total) : 0;
+
+            document.getElementById('totalVenues').textContent = total;
+            document.getElementById('priorityVenues').textContent = priority;
+            document.getElementById('outdoorVenues').textContent = outdoor;
+            document.getElementById('cornerVenues').textContent = corner;
+            document.getElementById('avgScore').textContent = avg;
+        }
+
+        // Render priority list
+        function renderPriorityList() {
+            const priorityVenues = allVenues
+                .filter(v => v.Score >= 85)
+                .sort((a, b) => b.Score - a.Score)
+                .slice(0, 50);
+
+            document.getElementById('priorityCount').textContent = priorityVenues.length;
+
+            const list = document.getElementById('priorityList');
+            if (priorityVenues.length === 0) {
+                list.innerHTML = '<div class="empty-state">No priority venues found</div>';
+                return;
+            }
+
+            list.innerHTML = priorityVenues.map(v => renderVenueCard(v)).join('');
+        }
+
+        // Get unique categories
+        function getCategories(venues) {
+            const cats = [...new Set(venues.map(v => v.Category))].sort();
+            return cats;
+        }
+
+        // Populate category dropdowns
+        function populateCategories() {
+            const dupontCats = getCategories(dupontVenues);
+            const thu14Cats = getCategories(thu14Venues);
+
+            const dupontSelect = document.getElementById('dupontCategory');
+            dupontCats.forEach(cat => {
+                const opt = document.createElement('option');
+                opt.value = cat;
+                opt.textContent = cat;
+                dupontSelect.appendChild(opt);
+            });
+
+            const thu14Select = document.getElementById('14thuCategory');
+            thu14Cats.forEach(cat => {
+                const opt = document.createElement('option');
+                opt.value = cat;
+                opt.textContent = cat;
+                thu14Select.appendChild(opt);
+            });
+        }
+
+        // Filter Dupont venues
+        function filterDupont() {
+            const search = document.getElementById('dupontSearch').value.toLowerCase();
+            const zone = document.getElementById('dupontZone').value;
+            const category = document.getElementById('dupontCategory').value;
+
+            filteredDupont = dupontVenues.filter(v => {
+                if (search && !v.Name.toLowerCase().includes(search) && !v.Address.toLowerCase().includes(search)) return false;
+                if (zone !== 'all' && v.Pod !== zone) return false;
+                if (category !== 'all' && v.Category !== category) return false;
+                return true;
+            }).sort((a, b) => b.Score - a.Score);
+
+            dupontOffset = 0;
+            renderDupontList();
+        }
+
+        // Render Dupont list
+        function renderDupontList() {
+            const list = document.getElementById('dupontList');
+            const shown = filteredDupont.slice(0, dupontOffset + PAGE_SIZE);
+
+            document.getElementById('dupontCount').textContent = filteredDupont.length;
+
+            if (shown.length === 0) {
+                list.innerHTML = '<div class="empty-state">No venues match your filters</div>';
+                document.getElementById('dupontShowMore').style.display = 'none';
+                return;
+            }
+
+            list.innerHTML = shown.map(v => renderVenueCard(v)).join('');
+
+            const showMoreDiv = document.getElementById('dupontShowMore');
+            if (shown.length < filteredDupont.length) {
+                showMoreDiv.style.display = 'block';
+                showMoreDiv.querySelector('button').textContent = `Show More (${shown.length} of ${filteredDupont.length})`;
+            } else {
+                showMoreDiv.style.display = 'none';
+            }
+        }
+
+        // Show more Dupont
+        function showMoreDupont() {
+            dupontOffset += PAGE_SIZE;
+            renderDupontList();
+        }
+
+        // Filter 14th/U venues
+        function filter14thu() {
+            const search = document.getElementById('14thuSearch').value.toLowerCase();
+            const zone = document.getElementById('14thuZone').value;
+            const category = document.getElementById('14thuCategory').value;
+
+            filtered14thu = thu14Venues.filter(v => {
+                if (search && !v.Name.toLowerCase().includes(search) && !v.Address.toLowerCase().includes(search)) return false;
+                if (zone !== 'all' && v.Pod !== zone) return false;
+                if (category !== 'all' && v.Category !== category) return false;
+                return true;
+            }).sort((a, b) => b.Score - a.Score);
+
+            thu14Offset = 0;
+            render14thuList();
+        }
+
+        // Render 14th/U list
+        function render14thuList() {
+            const list = document.getElementById('14thuList');
+            const shown = filtered14thu.slice(0, thu14Offset + PAGE_SIZE);
+
+            document.getElementById('14thuCount').textContent = filtered14thu.length;
+
+            if (shown.length === 0) {
+                list.innerHTML = '<div class="empty-state">No venues match your filters</div>';
+                document.getElementById('14thuShowMore').style.display = 'none';
+                return;
+            }
+
+            list.innerHTML = shown.map(v => renderVenueCard(v)).join('');
+
+            const showMoreDiv = document.getElementById('14thuShowMore');
+            if (shown.length < filtered14thu.length) {
+                showMoreDiv.style.display = 'block';
+                showMoreDiv.querySelector('button').textContent = `Show More (${shown.length} of ${filtered14thu.length})`;
+            } else {
+                showMoreDiv.style.display = 'none';
+            }
+        }
+
+        // Show more 14th/U
+        function showMore14thu() {
+            thu14Offset += PAGE_SIZE;
+            render14thuList();
+        }
+
+        // Load data
+        async function loadData() {
+            try {
+                const [dupontRes, thu14Res] = await Promise.all([
+                    fetch('dupont-leads.csv'),
+                    fetch('14thu-leads.csv')
+                ]);
+
+                const dupontText = await dupontRes.text();
+                const thu14Text = await thu14Res.text();
+
+                dupontVenues = parseCSV(dupontText);
+                thu14Venues = parseCSV(thu14Text);
+                allVenues = [...dupontVenues, ...thu14Venues];
+
+                // Initialize filtered data
+                filteredDupont = [...dupontVenues].sort((a, b) => b.Score - a.Score);
+                filtered14thu = [...thu14Venues].sort((a, b) => b.Score - a.Score);
+
+                // Update UI
+                updateStats();
+                renderPriorityList();
+                populateCategories();
+                renderDupontList();
+                render14thuList();
+
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('priorityList').innerHTML = '<div class="empty-state">Error loading venue data</div>';
+                document.getElementById('dupontList').innerHTML = '<div class="empty-state">Error loading venue data</div>';
+                document.getElementById('14thuList').innerHTML = '<div class="empty-state">Error loading venue data</div>';
+            }
+        }
+
+        // Event listeners
+        document.getElementById('dupontSearch').addEventListener('input', filterDupont);
+        document.getElementById('dupontZone').addEventListener('change', filterDupont);
+        document.getElementById('dupontCategory').addEventListener('change', filterDupont);
+
+        document.getElementById('14thuSearch').addEventListener('input', filter14thu);
+        document.getElementById('14thuZone').addEventListener('change', filter14thu);
+        document.getElementById('14thuCategory').addEventListener('change', filter14thu);
+
+        // Initialize
+        loadData();
+    </script>
+</body>
+</html>

@@ -4,70 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DC Hyper-Density Map</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        body { font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
         #map { height: 70vh; width: 100%; }
         .header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-            padding: 20px;
+            background: #fff;
+            color: #000;
+            padding: 30px 20px;
             text-align: center;
+            border-bottom: 1px solid #eee;
         }
-        .header h1 { font-size: 24px; margin-bottom: 5px; }
-        .header p { opacity: 0.8; font-size: 14px; }
+        .header h1 { font-size: 32px; margin-bottom: 8px; font-weight: 900; }
+        .header p { color: #7d7d7d; font-size: 15px; }
         .controls {
-            background: #f8f9fa;
+            background: #f7f7f7;
             padding: 15px 20px;
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
             align-items: center;
-            border-bottom: 1px solid #dee2e6;
+            border-bottom: 1px solid #eee;
         }
         .control-group { display: flex; align-items: center; gap: 8px; }
-        .control-group label { font-weight: 600; font-size: 13px; color: #495057; }
+        .control-group label { font-weight: 600; font-size: 13px; color: #7d7d7d; }
         .control-group select, .control-group input {
             padding: 6px 12px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
             font-size: 13px;
+            font-family: 'Figtree', sans-serif;
+        }
+        .control-group select:focus, .control-group input:focus {
+            outline: none;
+            border-color: #5e25fd;
         }
         .legend {
-            background: white;
+            background: #fff;
             padding: 15px 20px;
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
-            border-top: 1px solid #dee2e6;
+            border-top: 1px solid #eee;
         }
-        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #7d7d7d; }
         .legend-dot {
             width: 16px;
             height: 16px;
             border-radius: 50%;
             border: 2px solid white;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
         .legend-zone {
             width: 20px;
             height: 12px;
-            border-radius: 2px;
+            border-radius: 4px;
             opacity: 0.6;
         }
         .stats {
-            background: #1a1a2e;
-            color: white;
-            padding: 15px 20px;
+            background: #f7f7f7;
+            color: #000;
+            padding: 20px;
             display: flex;
             gap: 30px;
             flex-wrap: wrap;
+            justify-content: center;
         }
         .stat { text-align: center; }
-        .stat-value { font-size: 28px; font-weight: 700; color: #4ecdc4; }
-        .stat-label { font-size: 11px; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
-        .popup-content h3 { margin-bottom: 8px; color: #1a1a2e; }
+        .stat-value { font-size: 28px; font-weight: 700; color: #5e25fd; }
+        .stat-label { font-size: 11px; color: #7d7d7d; text-transform: uppercase; letter-spacing: 1px; }
+        .popup-content h3 { margin-bottom: 8px; color: #000; font-weight: 700; }
         .popup-content p { margin: 4px 0; font-size: 13px; }
         .popup-content .score {
             display: inline-block;
@@ -76,9 +86,9 @@
             font-weight: 600;
             font-size: 12px;
         }
-        .score-high { background: #d4edda; color: #155724; }
-        .score-med { background: #fff3cd; color: #856404; }
-        .score-low { background: #f8d7da; color: #721c24; }
+        .score-high { background: #f0e6ff; color: #5e25fd; }
+        .score-med { background: #e0f2fe; color: #036afd; }
+        .score-low { background: #fee2e2; color: #dc2626; }
     </style>
 </head>
 <body>
@@ -132,13 +142,13 @@
     <div id="map"></div>
 
     <div class="legend">
-        <div class="legend-item"><div class="legend-dot" style="background: #22c55e;"></div> Score 85+ (Priority)</div>
-        <div class="legend-item"><div class="legend-dot" style="background: #eab308;"></div> Score 70-84</div>
+        <div class="legend-item"><div class="legend-dot" style="background: #5e25fd;"></div> Score 85+ (Priority)</div>
+        <div class="legend-item"><div class="legend-dot" style="background: #036afd;"></div> Score 70-84</div>
         <div class="legend-item"><div class="legend-dot" style="background: #f97316;"></div> Score 50-69</div>
         <div class="legend-item"><div class="legend-dot" style="background: #ef4444;"></div> Score &lt;50</div>
         <div class="legend-item">|</div>
-        <div class="legend-item"><div class="legend-zone" style="background: #3b82f6;"></div> Dupont Zones</div>
-        <div class="legend-item"><div class="legend-zone" style="background: #ef4444;"></div> 14th/U Zones</div>
+        <div class="legend-item"><div class="legend-zone" style="background: #5e25fd;"></div> Dupont Zones</div>
+        <div class="legend-item"><div class="legend-zone" style="background: #036afd;"></div> 14th/U Zones</div>
     </div>
 
     <div class="stats">
@@ -255,14 +265,14 @@
 
         // Zone boundaries (approximate)
         const zones = {
-            D1: { color: '#3b82f6', coords: [[38.9065, -77.0450], [38.9150, -77.0450], [38.9150, -77.0410], [38.9065, -77.0410]] },
-            D2: { color: '#60a5fa', coords: [[38.9085, -77.0400], [38.9140, -77.0400], [38.9140, -77.0370], [38.9085, -77.0370]] },
-            D3: { color: '#93c5fd', coords: [[38.9070, -77.0480], [38.9120, -77.0480], [38.9120, -77.0440], [38.9070, -77.0440]] },
-            D4: { color: '#bfdbfe', coords: [[38.9100, -77.0490], [38.9140, -77.0490], [38.9140, -77.0460], [38.9100, -77.0460]] },
-            U1: { color: '#ef4444', coords: [[38.9080, -77.0340], [38.9190, -77.0340], [38.9190, -77.0300], [38.9080, -77.0300]] },
-            U2: { color: '#f87171', coords: [[38.9160, -77.0430], [38.9190, -77.0430], [38.9190, -77.0240], [38.9160, -77.0240]] },
-            U3: { color: '#fca5a5', coords: [[38.9070, -77.0280], [38.9170, -77.0280], [38.9170, -77.0220], [38.9070, -77.0220]] },
-            U4: { color: '#fecaca', coords: [[38.9200, -77.0350], [38.9350, -77.0350], [38.9350, -77.0250], [38.9200, -77.0250]] },
+            D1: { color: '#5e25fd', coords: [[38.9065, -77.0450], [38.9150, -77.0450], [38.9150, -77.0410], [38.9065, -77.0410]] },
+            D2: { color: '#7c4dff', coords: [[38.9085, -77.0400], [38.9140, -77.0400], [38.9140, -77.0370], [38.9085, -77.0370]] },
+            D3: { color: '#9e7bff', coords: [[38.9070, -77.0480], [38.9120, -77.0480], [38.9120, -77.0440], [38.9070, -77.0440]] },
+            D4: { color: '#c4acff', coords: [[38.9100, -77.0490], [38.9140, -77.0490], [38.9140, -77.0460], [38.9100, -77.0460]] },
+            U1: { color: '#036afd', coords: [[38.9080, -77.0340], [38.9190, -77.0340], [38.9190, -77.0300], [38.9080, -77.0300]] },
+            U2: { color: '#3d8bfd', coords: [[38.9160, -77.0430], [38.9190, -77.0430], [38.9190, -77.0240], [38.9160, -77.0240]] },
+            U3: { color: '#6ea8fe', coords: [[38.9070, -77.0280], [38.9170, -77.0280], [38.9170, -77.0220], [38.9070, -77.0220]] },
+            U4: { color: '#9ec5fe', coords: [[38.9200, -77.0350], [38.9350, -77.0350], [38.9350, -77.0250], [38.9200, -77.0250]] },
         };
 
         // Store layers
@@ -272,8 +282,8 @@
 
         // Color by score
         function getColor(score) {
-            if (score >= 85) return '#22c55e';
-            if (score >= 70) return '#eab308';
+            if (score >= 85) return '#5e25fd';
+            if (score >= 70) return '#036afd';
             if (score >= 50) return '#f97316';
             return '#ef4444';
         }
