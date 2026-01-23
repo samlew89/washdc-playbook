@@ -11,7 +11,10 @@
       "Bash(git commit:*)",
       "Bash(python3:*)",
       "WebFetch(domain:www.helium.com)",
-      "Bash(lsof:*)"
+      "Bash(lsof:*)",
+      "Bash(git push:*)",
+      "Bash(git remote add:*)",
+      "Bash(git branch:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
