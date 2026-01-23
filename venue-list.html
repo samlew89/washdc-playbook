@@ -298,22 +298,23 @@
                 font-size: 13px;
             }
 
-            /* Stats grid on mobile */
+            /* Stats grid on mobile - 5 items in a row */
             .stats {
-                gap: 12px;
-                padding: 16px;
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+                padding: 12px 16px;
+                display: flex;
+                justify-content: space-between;
             }
             .stat {
+                flex: 1;
                 min-width: 0;
             }
             .stat-value {
-                font-size: 20px;
+                font-size: 18px;
             }
             .stat-label {
-                font-size: 9px;
-                letter-spacing: 0.5px;
+                font-size: 8px;
+                letter-spacing: 0.3px;
             }
 
             /* Container padding */
@@ -435,17 +436,16 @@
                 font-size: 20px;
             }
 
-            /* Stats - 2 column on very small */
+            /* Stats - keep 5 in a row but smaller */
             .stats {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-                padding: 12px;
-            }
-            .stat:nth-child(5) {
-                grid-column: span 2;
+                gap: 4px;
+                padding: 10px 12px;
             }
             .stat-value {
-                font-size: 18px;
+                font-size: 16px;
+            }
+            .stat-label {
+                font-size: 7px;
             }
 
             .container {

@@ -8,7 +8,6 @@ Washington DC is a focused pilot to prove that Helium can produce overlapping, c
 
 **1) Select and concentrate in two hyper-dense corridors**
 - Lock the two neighborhoods (Dupont Circle and the 14th St NW + U St NW corridor)
-- Define clear sub-zones ("pods") and install targets per pod to create overlap quickly
 
 **2) Build a prioritized venue pipeline, not a generic lead list**
 - Generate venue targets with addresses, category, install feasibility, and outdoor potential
