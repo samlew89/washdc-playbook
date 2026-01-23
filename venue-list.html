@@ -108,7 +108,6 @@
             border-radius: 16px;
             margin-bottom: 20px;
             border: 1px solid #eee;
-            overflow: hidden;
         }
         .section summary {
             padding: 15px 20px;
@@ -140,6 +139,9 @@
             flex-wrap: wrap;
             align-items: center;
             border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
         .filter-group {
             display: flex;
@@ -168,8 +170,6 @@
         /* Venue list */
         .venue-list {
             padding: 0;
-            max-height: 400px;
-            overflow-y: auto;
         }
 
         .venue-card {
@@ -182,6 +182,14 @@
         }
         .venue-card:last-child { border-bottom: none; }
         .venue-card:hover { background: #fafafa; }
+        .venue-info h3 a {
+            color: #000;
+            text-decoration: none;
+        }
+        .venue-info h3 a:hover {
+            color: #5e25fd;
+            text-decoration: underline;
+        }
 
         .venue-info h3 {
             font-size: 15px;
@@ -228,41 +236,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* Expandable score breakdown */
-        .venue-details {
-            padding: 0 20px 15px 20px;
-            background: #f7f7f7;
-            display: none;
-        }
-        .venue-card.expanded + .venue-details { display: block; }
-
-        .breakdown-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 10px;
-        }
-        .breakdown-item {
-            background: #fff;
-            padding: 12px;
-            border-radius: 12px;
-            text-align: center;
-        }
-        .breakdown-label {
-            font-size: 11px;
-            color: #7d7d7d;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-        }
-        .breakdown-value {
-            font-size: 18px;
-            font-weight: 700;
-            color: #000;
-        }
-        .viability-stars { color: #5e25fd; }
-        .corner-yes { color: #5e25fd; }
-        .corner-no { color: #acacac; }
-
+        
         /* Show more button */
         .show-more {
             padding: 15px 20px;
@@ -401,11 +375,11 @@
             </div>
         </details>
 
-        <!-- Priority Venues -->
+        <!-- Priority Venues (subset of total) -->
         <details class="section" id="prioritySection">
             <summary>
                 <span>Priority Venues (Score 85+)</span>
-                <span class="section-count" id="priorityCount">-</span>
+                <span class="section-count" id="priorityCount">- <small style="font-weight:400;opacity:0.8;">subset</small></span>
             </summary>
             <div class="venue-list" id="priorityList">
                 <div class="loading">Loading venues...</div>
@@ -608,20 +582,17 @@
             return { class: 'score-deprioritize', label: 'Deprioritize' };
         }
 
-        // Render stars for viability
-        function renderStars(count) {
-            return '★'.repeat(count) + '☆'.repeat(5 - count);
-        }
-
         // Render venue card
         function renderVenueCard(venue, showDetails = false) {
             const tier = getScoreTier(venue.Score);
             const zoneName = ZONE_NAMES[venue.Pod] || venue.Pod;
+            const searchQuery = encodeURIComponent(`${venue.Name} ${venue.Address} Washington DC`);
+            const searchUrl = `https://www.google.com/search?q=${searchQuery}`;
 
             return `
-                <div class="venue-card" onclick="toggleDetails(this)">
+                <div class="venue-card">
                     <div class="venue-info">
-                        <h3>${venue.Name}</h3>
+                        <h3><a href="${searchUrl}" target="_blank" rel="noopener">${venue.Name}</a></h3>
                         <div class="venue-meta">
                             <span>${venue.Address}</span>
                             <span>${venue.Category}</span>
@@ -634,32 +605,7 @@
                         <div class="score-tier">${tier.label}</div>
                     </div>
                 </div>
-                <div class="venue-details">
-                    <div class="breakdown-grid">
-                        <div class="breakdown-item">
-                            <div class="breakdown-label">Total Score</div>
-                            <div class="breakdown-value">${venue.Score}/100</div>
-                        </div>
-                        <div class="breakdown-item">
-                            <div class="breakdown-label">Indoor Viability</div>
-                            <div class="breakdown-value viability-stars">${renderStars(venue.Indoor)}</div>
-                        </div>
-                        <div class="breakdown-item">
-                            <div class="breakdown-label">Outdoor Viability</div>
-                            <div class="breakdown-value viability-stars">${renderStars(venue.Outdoor)}</div>
-                        </div>
-                        <div class="breakdown-item">
-                            <div class="breakdown-label">Corner Lot</div>
-                            <div class="breakdown-value ${venue.Corner ? 'corner-yes' : 'corner-no'}">${venue.Corner ? 'Yes' : 'No'}</div>
-                        </div>
-                    </div>
-                </div>
             `;
-        }
-
-        // Toggle venue details
-        function toggleDetails(card) {
-            card.classList.toggle('expanded');
         }
 
         // Update stats
@@ -681,10 +627,9 @@
         function renderPriorityList() {
             const priorityVenues = allVenues
                 .filter(v => v.Score >= 85)
-                .sort((a, b) => b.Score - a.Score)
-                .slice(0, 50);
+                .sort((a, b) => b.Score - a.Score);
 
-            document.getElementById('priorityCount').textContent = priorityVenues.length;
+            document.getElementById('priorityCount').innerHTML = `${priorityVenues.length} <small style="font-weight:400;opacity:0.8;">subset</small>`;
 
             const list = document.getElementById('priorityList');
             if (priorityVenues.length === 0) {

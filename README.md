@@ -1,13 +1,5 @@
 # Lead List & Pipeline
 
-## Venue Map
-
-<iframe src="density-map.html" width="100%" height="600" frameborder="0" style="border-radius: 8px; border: 1px solid #ddd;"></iframe>
-
-**[Open Full Map](density-map.html ':ignore')**
-
----
-
 ## Venue Pipeline
 
 <iframe src="venue-list.html" width="100%" height="800" frameborder="0" style="border-radius: 8px; border: 1px solid #ddd;"></iframe>
@@ -16,10 +8,24 @@
 
 ---
 
-## Hardware Estimate (Based on Lead List)
+## Venue Map
 
-| Scenario | Indoor Units | Outdoor Units | Total |
-|----------|--------------|---------------|-------|
-| LOW (25% close rate) | 150 | 40 | 190 |
-| MEDIUM (40% close rate) | 240 | 65 | 305 |
-| HIGH (60% close rate) | 360 | 95 | 455 |
+<iframe src="density-map.html" width="100%" height="600" frameborder="0" style="border-radius: 8px; border: 1px solid #ddd;"></iframe>
+
+**[Open Full Map](density-map.html ':ignore')**
+
+---
+
+## Potential Hardware Requirement (Max Build-Out)
+
+Based on the current lead list, assuming every venue gets deployed:
+
+| Scope | Indoor Units | Outdoor Units | Total Units |
+|-------|--------------|---------------|-------------|
+| **All Venues** | 600 | 252 | **852** |
+| **Priority Only (85+)** | 97 | 78 | **175** |
+
+**Notes:**
+- Indoor units = 1 per venue (all 600 venues)
+- Outdoor units = venues where outdoor viability score >= 4 (252 venues)
+- Priority = venues with deployment score >= 85

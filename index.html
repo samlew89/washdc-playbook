@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DC Hyper-Density Deployment</title>
+  <title>DC Playbook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,10 +23,36 @@
     .sidebar-nav {
       font-family: var(--base-font-family);
     }
-    .app-name {
-      font-weight: 700;
-      color: #000;
+
+    /* Custom sidebar brand header */
+    .app-name-link {
+      display: none !important;
     }
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 20px 15px 20px;
+      border-bottom: 2px solid #5e25fd;
+      margin-bottom: 15px;
+    }
+    .sidebar-brand img {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+    }
+    .sidebar-brand-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #000;
+      line-height: 1.2;
+    }
+
+    /* Adjust sidebar nav to account for custom header */
+    .sidebar > h1 {
+      display: none;
+    }
+
     .markdown-section {
       font-family: var(--base-font-family);
     }
@@ -72,12 +98,19 @@
       background-color: #1a1a2e;
       border-radius: 12px;
     }
-    .search input {
-      font-family: var(--base-font-family);
-      border-radius: 8px;
-    }
-    .search .matching-post {
-      border-radius: 8px;
+
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .sidebar-brand {
+        padding: 15px 15px 12px 15px;
+      }
+      .sidebar-brand img {
+        width: 28px;
+        height: 28px;
+      }
+      .sidebar-brand-title {
+        font-size: 20px;
+      }
     }
   </style>
 </head>
@@ -85,23 +118,42 @@
   <div id="app"></div>
   <script>
     window.$docsify = {
-      name: 'Washington DC Playbook',
+      name: '',
       repo: '',
       loadSidebar: true,
-      subMaxLevel: 2,
-      search: {
-        placeholder: 'Search docs...',
-        noData: 'No results',
-        depth: 3
-      },
+      subMaxLevel: 0,
       auto2top: true,
       coverpage: false,
       themeColor: '#5e25fd',
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-markdown.min.js"></script>
+  <script>
+    // Add custom branded header to sidebar
+    document.addEventListener('DOMContentLoaded', function() {
+      function addSidebarBrand() {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar && !document.querySelector('.sidebar-brand')) {
+          const brand = document.createElement('div');
+          brand.className = 'sidebar-brand';
+          brand.innerHTML = `
+            <img src="assets/logo.svg" alt="Helium Logo">
+            <span class="sidebar-brand-title">DC Playbook</span>
+          `;
+          sidebar.insertBefore(brand, sidebar.firstChild);
+        }
+      }
+
+      // Try immediately and also observe for sidebar creation
+      addSidebarBrand();
+      const observer = new MutationObserver(addSidebarBrand);
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      // Cleanup observer after sidebar is ready
+      setTimeout(() => observer.disconnect(), 3000);
+    });
+  </script>
 </body>
 </html>
