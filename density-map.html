@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>DC Venue Map</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -367,21 +367,162 @@
             font-weight: 700;
         }
 
-        /* Responsive */
+        /* ========================================
+           MOBILE STYLES (max-width: 768px)
+           ======================================== */
         @media (max-width: 768px) {
+            /* Header */
             .header {
-                padding: 16px;
+                padding: 12px 16px;
+                gap: 10px;
             }
             .header-left h1 {
-                font-size: 20px;
+                font-size: 18px;
+                margin-bottom: 2px;
             }
+            .header-left p {
+                font-size: 12px;
+            }
+            .venue-count {
+                padding: 8px 14px;
+                font-size: 12px;
+                border-radius: 8px;
+            }
+            .venue-count span {
+                font-size: 16px;
+            }
+
+            /* Controls - horizontal scroll wrapper */
             .controls {
-                padding: 12px 16px;
+                padding: 10px 16px;
+                gap: 12px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                flex-wrap: nowrap;
             }
+            .control-group {
+                flex-shrink: 0;
+                gap: 6px;
+            }
+            .control-group label {
+                font-size: 11px;
+                white-space: nowrap;
+            }
+            .control-group select {
+                padding: 6px 10px;
+                font-size: 12px;
+                min-width: 100px;
+            }
+            .slider-container {
+                gap: 8px;
+            }
+            .slider-container input[type="range"] {
+                width: 80px;
+            }
+            .slider-value {
+                padding: 3px 8px;
+                font-size: 12px;
+                min-width: 30px;
+            }
+            .toggle-group input[type="checkbox"] {
+                width: 16px;
+                height: 16px;
+            }
+
+            /* Map height */
+            #map {
+                height: calc(100vh - 110px);
+            }
+
+            /* Legend - collapsible on mobile */
             .legend {
-                bottom: 16px;
-                left: 16px;
+                bottom: 12px;
+                left: 12px;
+                padding: 10px 12px;
+                border-radius: 8px;
+                font-size: 10px;
+            }
+            .legend h4 {
+                font-size: 9px;
+                margin-bottom: 6px;
+            }
+            .legend-item {
+                gap: 6px;
+                margin-bottom: 4px;
+            }
+            .legend-dot {
+                width: 10px;
+                height: 10px;
+            }
+
+            /* Popup adjustments for mobile */
+            .leaflet-popup-content {
+                min-width: 200px;
+                max-width: calc(100vw - 60px);
+            }
+            .venue-popup {
                 padding: 12px;
+            }
+            .venue-popup h3 {
+                font-size: 14px;
+            }
+            .venue-popup-score {
+                padding: 4px 8px;
+                font-size: 12px;
+            }
+            .venue-popup-row {
+                font-size: 12px;
+            }
+            .venue-popup-badge {
+                font-size: 10px;
+            }
+
+            /* Tooltip - hide on mobile (touch devices) */
+            .leaflet-tooltip {
+                display: none !important;
+            }
+        }
+
+        /* ========================================
+           SMALL MOBILE STYLES (max-width: 480px)
+           ======================================== */
+        @media (max-width: 480px) {
+            .header {
+                padding: 10px 12px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-left h1 {
+                font-size: 16px;
+            }
+            .venue-count {
+                align-self: flex-start;
+            }
+
+            .controls {
+                padding: 8px 12px;
+                gap: 10px;
+            }
+            .control-group select {
+                min-width: 90px;
+                padding: 5px 8px;
+            }
+            .slider-container input[type="range"] {
+                width: 60px;
+            }
+
+            #map {
+                height: calc(100vh - 130px);
+            }
+
+            .legend {
+                bottom: 8px;
+                left: 8px;
+                padding: 8px 10px;
+            }
+
+            .leaflet-popup-content {
+                min-width: 180px;
             }
         }
     </style>
@@ -401,7 +542,7 @@
         <div class="control-group">
             <label>Neighborhood</label>
             <select id="neighborhoodFilter">
-                <option value="all">All Neighborhoods</option>
+                <option value="all">All</option>
                 <option value="dupont">Dupont Circle</option>
                 <option value="14thu">14th St + U St</option>
             </select>
@@ -431,11 +572,11 @@
         </div>
         <div class="control-group toggle-group">
             <input type="checkbox" id="showZones">
-            <label>Show Zones</label>
+            <label>Zones</label>
         </div>
         <div class="control-group toggle-group">
             <input type="checkbox" id="outdoorOnly">
-            <label>Outdoor Viable Only</label>
+            <label>Outdoor Only</label>
         </div>
     </div>
 
@@ -455,7 +596,8 @@
         // Initialize map with cleaner style
         const map = L.map('map', {
             zoomControl: true,
-            scrollWheelZoom: true
+            scrollWheelZoom: true,
+            tap: true
         }).setView([38.9125, -77.0350], 14);
 
         // Carto Positron - clean modern basemap

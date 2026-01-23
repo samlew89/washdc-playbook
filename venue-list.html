@@ -63,6 +63,13 @@
         .scoring-content {
             padding: 20px;
         }
+
+        /* Table wrapper for horizontal scroll on mobile */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         .scoring-table {
             width: 100%;
             border-collapse: collapse;
@@ -276,15 +283,200 @@
             color: #666;
         }
 
-        /* Responsive */
+        /* ========================================
+           MOBILE STYLES (max-width: 768px)
+           ======================================== */
         @media (max-width: 768px) {
-            .stats { gap: 15px; }
-            .stat-value { font-size: 22px; }
-            .filters { flex-direction: column; align-items: stretch; }
-            .filter-group { flex-direction: column; align-items: stretch; }
-            .filter-group select, .filter-group input[type="text"] { min-width: auto; width: 100%; }
-            .venue-card { grid-template-columns: 1fr; }
-            .venue-score { flex-direction: row; }
+            /* Header scaling */
+            .header {
+                padding: 20px 16px;
+            }
+            .header h1 {
+                font-size: 24px;
+            }
+            .header p {
+                font-size: 13px;
+            }
+
+            /* Stats grid on mobile */
+            .stats {
+                gap: 12px;
+                padding: 16px;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .stat {
+                min-width: 0;
+            }
+            .stat-value {
+                font-size: 20px;
+            }
+            .stat-label {
+                font-size: 9px;
+                letter-spacing: 0.5px;
+            }
+
+            /* Container padding */
+            .container {
+                padding: 12px;
+            }
+
+            /* Section summary */
+            .section summary {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+            .section-count {
+                padding: 3px 10px;
+                font-size: 11px;
+            }
+
+            /* Filters - stack vertically */
+            .filters {
+                padding: 12px 16px;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+            .filter-group {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 4px;
+            }
+            .filter-group label {
+                font-size: 12px;
+            }
+            .filter-group select,
+            .filter-group input[type="text"] {
+                min-width: auto;
+                width: 100%;
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+
+            /* Venue cards - full width stacking */
+            .venue-card {
+                grid-template-columns: 1fr;
+                padding: 12px 16px;
+                gap: 10px;
+            }
+            .venue-info h3 {
+                font-size: 14px;
+            }
+            .venue-meta {
+                font-size: 12px;
+                gap: 8px;
+            }
+            .venue-score {
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 10px;
+            }
+            .score-badge {
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+            }
+            .score-tier {
+                font-size: 11px;
+            }
+
+            /* Scoring explainer */
+            .scoring-explainer summary {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+            .scoring-content {
+                padding: 16px;
+            }
+
+            /* Tables - horizontal scroll */
+            .table-wrapper {
+                margin: 0 -16px;
+                padding: 0 16px;
+            }
+            .scoring-table {
+                min-width: 450px;
+                font-size: 12px;
+            }
+            .scoring-table th,
+            .scoring-table td {
+                padding: 8px 10px;
+                white-space: nowrap;
+            }
+
+            /* Tier badges */
+            .tier-badges {
+                gap: 6px;
+            }
+            .tier-badge {
+                padding: 4px 8px;
+                font-size: 10px;
+            }
+
+            /* Show more button */
+            .show-more {
+                padding: 12px 16px;
+            }
+            .show-more button {
+                width: 100%;
+                padding: 12px 20px;
+            }
+        }
+
+        /* ========================================
+           SMALL MOBILE STYLES (max-width: 480px)
+           ======================================== */
+        @media (max-width: 480px) {
+            .header {
+                padding: 16px 12px;
+            }
+            .header h1 {
+                font-size: 20px;
+            }
+
+            /* Stats - 2 column on very small */
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                padding: 12px;
+            }
+            .stat:nth-child(5) {
+                grid-column: span 2;
+            }
+            .stat-value {
+                font-size: 18px;
+            }
+
+            .container {
+                padding: 8px;
+            }
+
+            .section summary {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+
+            .filters {
+                padding: 10px 12px;
+            }
+
+            .venue-card {
+                padding: 10px 12px;
+            }
+            .venue-info h3 {
+                font-size: 13px;
+            }
+            .venue-meta {
+                font-size: 11px;
+            }
+
+            .scoring-content {
+                padding: 12px;
+            }
+            .scoring-table {
+                font-size: 11px;
+            }
         }
     </style>
 </head>
@@ -322,46 +514,48 @@
         <details class="scoring-explainer">
             <summary>How Scoring Works</summary>
             <div class="scoring-content">
-                <p style="margin-bottom: 15px; color: #666;">Each venue is scored 0-100 based on deployment viability. Higher scores = faster coverage + better ROI.</p>
+                <p style="margin-bottom: 15px; color: #666; font-size: 14px;">Each venue is scored 0-100 based on deployment viability. Higher scores = faster coverage + better ROI.</p>
 
-                <table class="scoring-table">
-                    <thead>
-                        <tr>
-                            <th>Category</th>
-                            <th>Points</th>
-                            <th>Key Factors</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Outdoor Mounting Viability</strong></td>
-                            <td>30</td>
-                            <td>Mount location, height, owner control</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Permissioning Speed</strong></td>
-                            <td>25</td>
-                            <td>Decision-maker access, approval layers</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Location & Line-of-Sight</strong></td>
-                            <td>20</td>
-                            <td>Corner lot, street-facing, cluster potential</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Foot Traffic & Dwell Time</strong></td>
-                            <td>15</td>
-                            <td>Peak traffic, outdoor seating</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Operational Reliability</strong></td>
-                            <td>10</td>
-                            <td>Power, internet, access hours</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-wrapper">
+                    <table class="scoring-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Points</th>
+                                <th>Key Factors</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Outdoor Mounting Viability</strong></td>
+                                <td>30</td>
+                                <td>Mount location, height, owner control</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Permissioning Speed</strong></td>
+                                <td>25</td>
+                                <td>Decision-maker access, approval layers</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Location & Line-of-Sight</strong></td>
+                                <td>20</td>
+                                <td>Corner lot, street-facing, cluster potential</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Foot Traffic & Dwell Time</strong></td>
+                                <td>15</td>
+                                <td>Peak traffic, outdoor seating</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Operational Reliability</strong></td>
+                                <td>10</td>
+                                <td>Power, internet, access hours</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                <h4 style="margin-bottom: 10px;">Score Tiers</h4>
+                <h4 style="margin-bottom: 10px; font-size: 14px;">Score Tiers</h4>
                 <div class="tier-badges">
                     <span class="tier-badge tier-critical">85-100 CRITICAL</span>
                     <span class="tier-badge tier-high">70-84 HIGH</span>
@@ -466,62 +660,64 @@
                 <span class="section-count">9</span>
             </summary>
             <div style="padding: 20px;">
-                <table class="scoring-table">
-                    <thead>
-                        <tr>
-                            <th>Source</th>
-                            <th>URL</th>
-                            <th>Data Type</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Dupont Circle BID</td>
-                            <td><a href="https://dupontcirclebid.org/visit/dining" target="_blank">dupontcirclebid.org</a></td>
-                            <td>Restaurants, cafes, retail</td>
-                        </tr>
-                        <tr>
-                            <td>Dupont Main Streets</td>
-                            <td><a href="https://www.dupontcirclemainstreets.org/" target="_blank">dupontcirclemainstreets.org</a></td>
-                            <td>Complete business directory</td>
-                        </tr>
-                        <tr>
-                            <td>Shaw Main Streets</td>
-                            <td><a href="https://www.shawmainstreets.org/" target="_blank">shawmainstreets.org</a></td>
-                            <td>Shaw business listings</td>
-                        </tr>
-                        <tr>
-                            <td>Washington.org</td>
-                            <td><a href="https://washington.org/dc-neighborhoods/dupont-circle" target="_blank">washington.org</a></td>
-                            <td>Neighborhood guides</td>
-                        </tr>
-                        <tr>
-                            <td>OpenTable</td>
-                            <td><a href="https://www.opentable.com/landmark/restaurants-near-dupont-circle" target="_blank">opentable.com</a></td>
-                            <td>Restaurant data</td>
-                        </tr>
-                        <tr>
-                            <td>Yelp</td>
-                            <td><a href="https://www.yelp.com/search?cflt=restaurants&find_loc=Dupont+Circle" target="_blank">yelp.com</a></td>
-                            <td>Business details, ratings</td>
-                        </tr>
-                        <tr>
-                            <td>The Infatuation DC</td>
-                            <td><a href="https://www.theinfatuation.com/washington-dc" target="_blank">theinfatuation.com</a></td>
-                            <td>Curated restaurant lists</td>
-                        </tr>
-                        <tr>
-                            <td>Foursquare</td>
-                            <td><a href="https://foursquare.com" target="_blank">foursquare.com</a></td>
-                            <td>Venue locations, categories</td>
-                        </tr>
-                        <tr>
-                            <td>Google Maps</td>
-                            <td><a href="https://maps.google.com" target="_blank">maps.google.com</a></td>
-                            <td>Address verification, coordinates</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-wrapper">
+                    <table class="scoring-table">
+                        <thead>
+                            <tr>
+                                <th>Source</th>
+                                <th>URL</th>
+                                <th>Data Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dupont Circle BID</td>
+                                <td><a href="https://dupontcirclebid.org/visit/dining" target="_blank">dupontcirclebid.org</a></td>
+                                <td>Restaurants, cafes, retail</td>
+                            </tr>
+                            <tr>
+                                <td>Dupont Main Streets</td>
+                                <td><a href="https://www.dupontcirclemainstreets.org/" target="_blank">dupontcirclemainstreets.org</a></td>
+                                <td>Complete business directory</td>
+                            </tr>
+                            <tr>
+                                <td>Shaw Main Streets</td>
+                                <td><a href="https://www.shawmainstreets.org/" target="_blank">shawmainstreets.org</a></td>
+                                <td>Shaw business listings</td>
+                            </tr>
+                            <tr>
+                                <td>Washington.org</td>
+                                <td><a href="https://washington.org/dc-neighborhoods/dupont-circle" target="_blank">washington.org</a></td>
+                                <td>Neighborhood guides</td>
+                            </tr>
+                            <tr>
+                                <td>OpenTable</td>
+                                <td><a href="https://www.opentable.com/landmark/restaurants-near-dupont-circle" target="_blank">opentable.com</a></td>
+                                <td>Restaurant data</td>
+                            </tr>
+                            <tr>
+                                <td>Yelp</td>
+                                <td><a href="https://www.yelp.com/search?cflt=restaurants&find_loc=Dupont+Circle" target="_blank">yelp.com</a></td>
+                                <td>Business details, ratings</td>
+                            </tr>
+                            <tr>
+                                <td>The Infatuation DC</td>
+                                <td><a href="https://www.theinfatuation.com/washington-dc" target="_blank">theinfatuation.com</a></td>
+                                <td>Curated restaurant lists</td>
+                            </tr>
+                            <tr>
+                                <td>Foursquare</td>
+                                <td><a href="https://foursquare.com" target="_blank">foursquare.com</a></td>
+                                <td>Venue locations, categories</td>
+                            </tr>
+                            <tr>
+                                <td>Google Maps</td>
+                                <td><a href="https://maps.google.com" target="_blank">maps.google.com</a></td>
+                                <td>Address verification, coordinates</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </details>
     </div>
