@@ -15,13 +15,34 @@ The dashboard should prioritize:
 
 ## Completed Work (Jan 2026)
 
+### Deployment & Hosting
+- [x] Pushed to GitHub: https://github.com/samlew89/washdc-playbook
+- [x] Deployed to Vercel (auto-deploys on push)
+- [x] Added robots.txt to block crawlers
+- [x] Added noindex/nofollow meta tags to all HTML pages
+- [x] Set default homepage to Summary & Goals (Docsify `homepage` config)
+
+### Mobile Responsive Design
+- [x] **index.html**: Hamburger menu + slide-in sidebar drawer
+- [x] **index.html**: Overlay backdrop, closes on tap outside or link tap
+- [x] **index.html**: Scaled typography for mobile (h1, h2, h3)
+- [x] **index.html**: Tables auto-wrapped for horizontal scroll
+- [x] **venue-list.html**: Stats display as even 5-across row
+- [x] **venue-list.html**: Filters stack vertically, full-width inputs
+- [x] **venue-list.html**: Venue cards stack naturally (score inline)
+- [x] **density-map.html**: Controls bar horizontally scrollable
+- [x] **density-map.html**: Compact legend, hidden tooltips on touch
+- [x] **density-map.html**: Popups constrained to viewport
+
 ### Overview Page
 - [x] Added Summary & Goals section with executive summary
 - [x] Added Network BU Plan (4 pillars)
 - [x] Added KPIs section
 - [x] Removed Quick Links (redundant with sidebar)
+- [x] Simplified BU Plan item 1 (single bullet)
 
 ### Lead List & Pipeline Page
+- [x] Renamed from README.md to lead-list.md
 - [x] Venue Pipeline with 4 collapsible sections (all closed by default)
   - Priority Venues (97 venues, score 85+) - marked as "subset"
   - Dupont Circle (300 venues)
@@ -53,6 +74,7 @@ The dashboard should prioritize:
 
 ### Programs
 - [x] Added Deployer Bootcamp page (from PDF content)
+- [x] Ambassador Program trimmed to Parts 1-2 only (Commission Structure + Qualification Checklist)
 
 ---
 
@@ -74,6 +96,10 @@ The dashboard should prioritize:
 - Leaflet.markercluster 1.4.1 - Marker clustering
 - Carto Positron tiles - Basemap (free, no API key)
 
+### Mobile Breakpoints
+- 768px - Tablet/mobile transition
+- 480px - Small mobile adjustments
+
 ### Pod/Zone Codes
 ```
 D1 = Dupont - Connecticut Ave
@@ -94,7 +120,6 @@ U4 = 14th/U - V/W / Columbia Heights
 - [ ] Export filtered venue lists to CSV
 - [ ] Add "Copy to clipboard" for venue addresses
 - [ ] Dark mode support
-- [ ] Mobile-responsive venue list improvements
 - [ ] Integration with deployment tracking system
 
 ---
