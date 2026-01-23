@@ -2,7 +2,7 @@
   * [Summary & Goals](overview.md)
 
 * **Dashboard**
-  * [Lead List & Pipeline](README.md)
+  * [Lead List & Pipeline](lead-list.md)
   * [Venue Map](density-map.html ':ignore')
   * [Venue List](venue-list.html ':ignore')
 
