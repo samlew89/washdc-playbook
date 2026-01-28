@@ -1,27 +1,48 @@
-# DC Helium Ambassador — Paid + Commission
+# Helium Ambassador (Washington DC)
 
 **Location:** Washington, DC (Dupont Circle & 14th St/U St corridors)
 **Type:** Part-time contract, flexible hours
-**Compensation:** $1,000/month base + commission per install ($60-150+ per hotspot)
+**Compensation:** $1,000/month base + commission per install ($40-60 per hotspot)
 
 ---
 
-## The Opportunity
+## Description
 
-We're looking for a hustler to help grow the Helium Network in DC. Your job: get local businesses to host Helium Hotspots — small wireless devices that provide coverage and earn crypto rewards for the host.
+We're looking for a results-driven operator and connector to help us grow the Helium Network in the Washington, DC area and maximize our impact. Your core responsibility will be driving Helium Hotspot deployments by approaching and educating local businesses, property owners, and other commercial partners (deployments create wireless coverage to benefit undercovered areas). This is a high-impact, field-based role best suited for someone with strong skills around concise communication, adapting to new technology, and building a pipeline. If you're excited about the intersection of social impact, wireless, and crypto, read on!
 
-This is a field-based, commission-heavy role. You'll be walking into coffee shops, coworking spaces, breweries, and gyms to pitch a simple value prop: better service for their customers, passive income, and helping build out Washington D.C. connectivity.
+You will be the go-to contact for local deployment efforts — identifying high-potential hosts, guiding prospects through onboarding, and converting host interest into live Helium infrastructure. This is a short term contract position with the potential to grow into something more.
 
 **Ideal for:** Students, recent grads, or anyone with hustle who wants flexible hours and uncapped earning potential.
 
 ---
 
-## What You'll Do
+## Requirements
 
-- **Source hosts:** Identify and approach businesses in target neighborhoods (Dupont Circle, 14th St, U St)
-- **Pitch & educate:** Explain the Helium Network and why hosting a hotspot is a no-brainer for local businesses
-- **Guide installs:** Take prospects from first conversation to installation, serving as a liaison to our local deployer network
-- **Hit your targets:** Stay active and meet monthly install goals
+### Drive Helium Hotspot Deployments
+
+- Work with the team to target various neighborhoods and build a pipeline of hosts and site partners. You'll educate local small businesses, property owners, and other commercial partners to deploy new Helium Hotspot installations.
+- Own the full funnel — from outreach and education to onboarding and deployment follow-through.
+- Work closely with builders and technical operators to ensure quality installations.
+- Leverage existing channels (e.g., chambers of commerce, real estate networks, MSPs) to source scalable opportunities.
+
+### Educate The Community
+
+- Evangelize Helium and the social impact of decentralized wireless across local events and community organizations.
+- Educate non-technical stakeholders in business associations, chambers of commerce, and municipalities on the benefits of providing coverage.
+- Create ongoing feedback loops with local partners and report blockers, trends, or suggestions.
+
+---
+
+## Who You Are
+
+- Based in DC with knowledge of Dupont Circle and/or 14th St/U St areas
+- Comfortable walking into businesses and starting conversations
+- Motivated by outcomes and a history of exceeding expectations
+- A clear communicator with street-level knowledge of DC neighborhoods
+- Experience working with small businesses or local organizations is a plus
+- Crypto-native or curious — you don't need to be technical, but a passion for innovative technology is essential
+
+**No experience required** — just hustle and communication skills. Sales, marketing, or hospitality background is a plus but not necessary.
 
 ---
 
@@ -30,29 +51,19 @@ This is a field-based, commission-heavy role. You'll be walking into coffee shop
 **Base:** $1,000/month (requires minimum 5 installs/month)
 
 **Commission per install:**
-| Install Type | Base | With Bonuses |
-|--------------|------|--------------|
-| Indoor hotspot | $60 | Up to $135+ |
-| Outdoor hotspot | $40 | Up to $100+ |
 
-**Bonus multipliers:**
-- Priority zone installs: 1.5x
-- High-value anchor locations: 2.0x
-- Speed bonus (install within 48hrs): +$15
+| Install Type | Commission |
+|--------------|------------|
+| Indoor hotspot | $60 |
+| Outdoor hotspot | $40 |
 
-**Realistic earnings:** An active ambassador closing 8-10 installs/month in priority zones can earn **$1,500-2,000+/month** part-time.
+**Realistic earnings:** An active ambassador closing 8-10 installs/month can earn **$1,500-1,600+/month** part-time.
 
 ---
 
-## Who You Are
+## Benefits
 
-- Based in DC with knowledge of Dupont Circle and/or 14th St/U St areas
-- Comfortable walking into businesses and starting conversations
-- Motivated by results — you like seeing direct payoff for your effort
-- Reliable and organized — you can manage a pipeline and follow through
-- Curious about crypto, wireless tech, or decentralized networks (no technical background required)
-
-**No experience required** — just hustle and communication skills. Sales, marketing, or hospitality background is a plus but not necessary.
+You'll be at the frontlines of the Helium Network's most exciting growth market — working on novel wireless infrastructure, shaping the next wave of connectivity, and helping build the future of how we connect. If this sounds like you, we want to hear from you!
 
 ---
 
@@ -64,7 +75,3 @@ Send a short email to [EMAIL] with:
 3. Your availability (hours/week you can commit)
 
 No resume required. We'll set up a quick call to see if it's a fit.
-
----
-
-*Help build the future of wireless in DC — and get paid well doing it.*
