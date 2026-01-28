@@ -10,7 +10,7 @@
 
 We're looking for a hustler to help grow the Helium Network in DC. Your job: get local businesses to host Helium Hotspots — small wireless devices that provide coverage and earn crypto rewards for the host.
 
-This is a field-based, commission-heavy role. You'll be walking into coffee shops, coworking spaces, breweries, and gyms to pitch a simple value prop: free hardware, passive income, zero effort for them. The more installs you close, the more you earn.
+This is a field-based, commission-heavy role. You'll be walking into coffee shops, coworking spaces, breweries, and gyms to pitch a simple value prop: better service for their customers, passive income, and helping build out Washington D.C. connectivity.
 
 **Ideal for:** Students, recent grads, or anyone with hustle who wants flexible hours and uncapped earning potential.
 
@@ -20,7 +20,7 @@ This is a field-based, commission-heavy role. You'll be walking into coffee shop
 
 - **Source hosts:** Identify and approach businesses in target neighborhoods (Dupont Circle, 14th St, U St)
 - **Pitch & educate:** Explain the Helium Network and why hosting a hotspot is a no-brainer for local businesses
-- **Close installs:** Guide prospects from first conversation to signed agreement to live deployment
+- **Guide installs:** Take prospects from first conversation to installation, serving as a liaison to our local deployer network
 - **Hit your targets:** Stay active and meet monthly install goals
 
 ---
