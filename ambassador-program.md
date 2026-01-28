@@ -61,8 +61,6 @@ $1,000/month base salary for active ambassadors (minimum 5 installs/month to qua
 
 # Part 2: Job Description
 
-> **Note:** The full public-facing job posting is in `ambassador-job-posting.md`. This section summarizes the role for internal reference.
-
 ## Role Summary
 
 **Title:** Helium Ambassador (Washington DC)
