@@ -14,7 +14,8 @@
       "Bash(lsof:*)",
       "Bash(git push:*)",
       "Bash(git remote add:*)",
-      "Bash(git branch:*)"
+      "Bash(git branch:*)",
+      "Bash(gh repo view:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

@@ -74,15 +74,29 @@ The dashboard should prioritize:
 
 ### Programs
 - [x] Added Deployer Bootcamp page (from PDF content)
-- [x] Ambassador Program trimmed to Parts 1-2 only (Commission Structure + Qualification Checklist)
+- [x] Ambassador Program trimmed to Parts 1-2 only (Commission Structure + Job Description)
+- [x] Ambassador job posting formatted to match official Helium Foundation template
+- [x] Job posting adapted for Washington D.C. (experience requirement: 1+ years or equivalent hustle)
+
+### Venue Data Cleanup (Jan 2026)
+- [x] Used Yelp API to check all 600 venues for permanent closures
+- [x] Removed 20 permanently closed venues
+- [x] Removed 44 duplicate venues (same name+address in both files)
+- [x] New totals: dupont-leads.csv (290), 14thu-leads.csv (246), Total: 536 venues
+- [x] Scripts saved for future re-verification:
+  - `check_closed_venues.py` - Check venues against Yelp API
+  - `clean_venue_lists.py` - Remove closed venues by ID
+  - `venue_check_results.json` - Full results from Yelp check
+  - `venue_cleanup_log.json` - Record of removals
 
 ---
 
 ## Technical Notes
 
 ### Data Files
-- `dupont-leads.csv` - 300 Dupont venues
-- `14thu-leads.csv` - 300 14th St/U St venues
+- `dupont-leads.csv` - 290 Dupont venues (after cleanup)
+- `14thu-leads.csv` - 246 14th St/U St venues (after cleanup)
+- Total: 536 venues (originally 600, removed 20 closed + 44 duplicates)
 - Both CSVs have columns: ID, Name, Address, Category, Pod, Indoor, Outdoor, Score, Corner, Lat, Lng
 
 ### Key Thresholds
@@ -121,6 +135,27 @@ U4 = 14th/U - V/W / Columbia Heights
 - [ ] Add "Copy to clipboard" for venue addresses
 - [ ] Dark mode support
 - [ ] Integration with deployment tracking system
+
+---
+
+## Deployment
+
+**Live Site:** Auto-deploys via Vercel on every push to main.
+
+**To deploy changes:**
+```bash
+git add .
+git commit -m "Your commit message"
+git push origin main
+```
+
+Vercel will automatically build and deploy within ~1 minute. No manual steps needed.
+
+**To trigger a redeploy without changes:**
+```bash
+git commit --allow-empty -m "Trigger redeploy"
+git push origin main
+```
 
 ---
 
