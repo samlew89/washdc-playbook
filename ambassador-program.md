@@ -20,9 +20,8 @@
 
 | Install Type | Commission |
 |--------------|------------|
-| Indoor hotspot installed + verified | $50 |
-| Outdoor hotspot installed + verified | $75 |
-| Combo (indoor + outdoor same venue) | $100 |
+| Indoor hotspot installed + verified | $75 |
+| Outdoor hotspot installed + verified | $50 |
 
 **Pros:** Easy to understand, easy to track
 **Cons:** No incentive for density or high-value venues
@@ -33,12 +32,12 @@
 
 **Best for:** Motivating high performers, scaling effort
 
-| Monthly Installs | Indoor Rate | Outdoor Rate | Combo Rate |
-|------------------|-------------|--------------|------------|
-| 1-5 installs | $40 | $60 | $80 |
-| 6-15 installs | $50 | $75 | $100 |
-| 16-30 installs | $60 | $90 | $120 |
-| 31+ installs | $75 | $100 | $150 |
+| Monthly Installs | Indoor Rate | Outdoor Rate |
+|------------------|-------------|--------------|
+| 1-5 installs | $60 | $40 |
+| 6-15 installs | $75 | $50 |
+| 16-30 installs | $90 | $60 |
+| 31+ installs | $100 | $75 |
 
 **Tier resets monthly.** Ambassadors climb tiers as they close more installs.
 
@@ -47,53 +46,55 @@
 
 ---
 
-## Option C: Density Bonus (RECOMMENDED)
+## Option C: Salary + Density Bonus (RECOMMENDED)
 
-**Best for:** Achieving hyper-density goals in target zones
+**Best for:** Achieving hyper-density goals in target zones while providing income stability
+
+### Monthly Base Salary
+
+$1,000/month base salary for active ambassadors (minimum 5 installs/month to qualify)
 
 ### Base Commission
 
 | Install Type | Base Commission |
 |--------------|-----------------|
-| Indoor hotspot | $40 |
-| Outdoor hotspot | $60 |
-| Combo (same venue) | $80 |
+| Indoor hotspot | $60 |
+| Outdoor hotspot | $40 |
 
 ### Density Multipliers
 
 | Condition | Multiplier | Example Payout |
 |-----------|------------|----------------|
-| **Priority Zone** (D1, D2, U1, U2) | 1.5x | Indoor: $60 |
-| **Anchor Node** (corner + outdoor + 75+ score) | 2.0x | Combo: $160 |
+| **Priority Zone** (D1, D2, U1, U2) | 1.5x | Indoor: $90 |
+| **Anchor Node** (corner + 75+ score) | 2.0x | Indoor: $120 |
 | **Cluster Bonus** (3+ installs within 300ft) | +$25 per install | Extra $75 for 3-unit cluster |
 | **Speed Bonus** (install within 48hrs of lead) | +$15 | |
-| **Tier 1 Venue** (coffee, cowork, brewery, gym) | 1.25x | Indoor: $50 |
+| **Tier 1 Venue** (coffee, cowork, brewery, gym) | 1.25x | Indoor: $75 |
 
 ### Density Bonus Examples
 
 **Example 1: Standard indoor install in secondary zone**
-- Base: $40
+- Base: $60
 - No multipliers
-- **Total: $40**
+- **Total: $60**
 
-**Example 2: Outdoor install at corner coffee shop in D1 zone**
-- Base outdoor: $60
+**Example 2: Indoor install at corner coffee shop in D1 zone**
+- Base indoor: $60
 - Priority Zone (D1): 1.5x = $90
 - Tier 1 venue: 1.25x = $112.50
 - **Total: $112.50**
 
-**Example 3: Combo install at anchor node (corner brewery, 85 score)**
-- Base combo: $80
-- Anchor Node: 2.0x = $160
-- Priority Zone (U1): already included in Anchor
+**Example 3: Indoor install at anchor node (corner brewery, 85 score)**
+- Base indoor: $60
+- Anchor Node: 2.0x = $120
 - Speed Bonus (installed in 36hrs): +$15
-- **Total: $175**
+- **Total: $135**
 
 **Example 4: Cluster of 3 indoor installs on same block**
-- 3x Indoor base: $40 × 3 = $120
-- Priority Zone (D2): 1.5x = $180
+- 3x Indoor base: $60 × 3 = $180
+- Priority Zone (D2): 1.5x = $270
 - Cluster Bonus: +$25 × 3 = $75
-- **Total: $255**
+- **Total: $345**
 
 ---
 
@@ -101,13 +102,13 @@
 
 | Scenario | Option A | Option B (Tier 2) | Option C |
 |----------|----------|-------------------|----------|
-| 1 indoor, secondary zone | $50 | $50 | $40 |
-| 1 indoor, priority zone | $50 | $50 | $60 |
-| 1 outdoor, corner, priority zone | $75 | $75 | $90-112 |
-| Combo at anchor node | $100 | $100 | $160-175 |
-| 3-unit cluster, priority zone | $150 | $150 | $255 |
+| 1 indoor, secondary zone | $50 | $50 | $60 |
+| 1 indoor, priority zone | $50 | $50 | $90 |
+| 1 indoor, anchor node | $50 | $50 | $120-135 |
+| 3-unit indoor cluster, priority zone | $150 | $150 | $345 |
+| Monthly (5 installs, priority zone) | $250 | $250 | $1,000 salary + $450 commission |
 
-**Recommendation: Option C** — Directly incentivizes the density clustering we need.
+**Recommendation: Option C** — Provides income stability while directly incentivizing the density clustering we need.
 
 ---
 

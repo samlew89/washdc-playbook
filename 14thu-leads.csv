@@ -13,7 +13,6 @@ U1-011,The Gibson,2009 14th St NW,Bar,U1,5,2,88,No,38.9180,-77.0320
 U1-012,Black Cat,1811 14th St NW,Music,U1,5,2,88,Yes,38.9158,-77.0320
 U1-013,Pearl Dive,1612 14th St NW,Restaurant,U1,4,4,88,No,38.9122,-77.0320
 U1-014,Gypsy Kitchen,1504 14th St NW,Restaurant,U1,4,5,87,No,38.9108,-77.0320
-U1-015,Logan Tavern,1423 P St NW,Restaurant,U1,4,5,86,Yes,38.9095,-77.0330
 U1-016,Teds Bulletin,1818 14th St NW,Restaurant,U1,4,4,85,No,38.9158,-77.0320
 U1-017,The Coupe,1415 T St NW,Restaurant,U1,4,5,85,Yes,38.9145,-77.0325
 U1-018,Solidcore 14th,1323 14th St NW,Fitness,U1,4,2,85,No,38.9088,-77.0320
@@ -40,7 +39,6 @@ U1-038,CAVA 14th,1425 14th St NW,Restaurant,U1,4,3,76,No,38.9100,-77.0320
 U1-039,Chaia,1331 14th St NW,Restaurant,U1,4,4,80,No,38.9092,-77.0320
 U1-040,Timber Pizza,809 Upshur St NW,Restaurant,U1,4,4,82,No,38.9420,-77.0248
 U1-041,Call Your Mother,3301 Georgia Ave NW,Restaurant,U1,4,4,84,No,38.9340,-77.0235
-U1-042,Maketto,1351 H St NE,Restaurant,U1,5,4,86,No,38.9002,-76.9892
 U1-043,Elle,3221 Mt Pleasant St NW,Restaurant,U1,4,4,80,No,38.9305,-77.0360
 U1-044,Maydan,1346 Florida Ave NW,Restaurant,U1,5,4,90,No,38.9175,-77.0320
 U1-045,Bad Saint,3226 11th St NW,Restaurant,U1,5,2,88,No,38.9315,-77.0270
@@ -56,7 +54,6 @@ U1-054,Momofuku,1090 I St NW,Restaurant,U1,5,3,84,No,38.9018,-77.0268
 U1-055,China Chilcano,418 7th St NW,Restaurant,U1,4,3,80,No,38.8955,-77.0215
 U1-056,Centrolina,974 Palmer Alley NW,Restaurant,U1,5,4,86,No,38.9015,-77.0255
 U1-057,Unconventional Diner,1207 9th St NW,Restaurant,U1,4,3,78,No,38.9035,-77.0240
-U1-058,Masseria,1340 4th St NE,Restaurant,U1,5,3,84,No,38.9095,-76.9980
 U1-059,Beau Thai,1700 14th St NW,Restaurant,U1,4,3,76,No,38.9145,-77.0320
 U1-060,Tico,1926 14th St NW,Restaurant,U1,4,4,82,No,38.9172,-77.0320
 U1-061,Policy,1904 14th St NW,Restaurant,U1,4,4,80,No,38.9168,-77.0320
@@ -65,32 +62,15 @@ U1-063,Cork,1720 14th St NW,Wine Bar,U1,4,4,80,No,38.9145,-77.0320
 U1-064,El Centro,1819 14th St NW,Restaurant,U1,4,5,84,No,38.9158,-77.0320
 U1-065,El Chucho,3313 11th St NW,Restaurant,U1,4,4,78,No,38.9325,-77.0270
 U1-066,Purple Patch,3155 Mt Pleasant St NW,Restaurant,U1,4,3,74,No,38.9295,-77.0358
-U1-067,Doi Moi,1800 14th St NW,Restaurant,U1,4,4,84,No,38.9155,-77.0320
-U1-068,Estadio,1520 14th St NW,Restaurant,U1,4,4,86,No,38.9108,-77.0320
-U1-069,Etto,1541 14th St NW,Restaurant,U1,4,4,82,No,38.9112,-77.0320
-U1-070,Bar Pilar,1833 14th St NW,Bar,U1,4,3,78,No,38.9160,-77.0320
 U1-071,Cafe Cino,2421 18th St NW,Coffee,U1,3,3,72,No,38.9203,-77.0430
-U1-072,Tryst,2459 18th St NW,Coffee,U1,4,4,82,No,38.9208,-77.0430
-U1-073,The Diner,2453 18th St NW,Restaurant,U1,4,4,78,No,38.9207,-77.0430
-U1-074,Songbyrd,2477 18th St NW,Music,U1,4,3,76,No,38.9210,-77.0432
-U1-075,Smoke & Barrel,2471 18th St NW,Restaurant,U1,4,4,80,No,38.9209,-77.0431
-U1-076,Roofers Union,2446 18th St NW,Restaurant,U1,4,5,84,No,38.9205,-77.0429
 U1-077,Jack Rose,2007 18th St NW,Bar,U1,5,5,88,No,38.9175,-77.0420
-U1-078,Mintwood Place,1813 Columbia Rd NW,Restaurant,U1,4,4,82,No,38.9212,-77.0418
-U1-079,Perrys,1811 Columbia Rd NW,Restaurant,U1,4,5,84,No,38.9212,-77.0418
-U1-080,Federalist Pig,1654 Columbia Rd NW,Restaurant,U1,4,3,78,No,38.9200,-77.0405
-U1-081,Tail Up Goat,1827 Adams Mill Rd NW,Restaurant,U1,4,4,86,No,38.9220,-77.0440
-U1-082,Madams Organ,2461 18th St NW,Bar,U1,4,4,80,No,38.9210,-77.0430
 U1-083,Dans Cafe,2315 18th St NW,Bar,U1,3,2,68,No,38.9193,-77.0428
-U1-084,Bossa,2463 18th St NW,Restaurant,U1,4,4,78,No,38.9210,-77.0430
 U1-085,Shenanigans,2401 18th St NW,Bar,U1,4,3,72,No,38.9200,-77.0429
-U1-086,Pharmacy Bar,2337 18th St NW,Bar,U1,4,3,74,No,38.9195,-77.0428
 U1-087,Millies,1801 14th St NW,Restaurant,U1,4,4,80,No,38.9155,-77.0320
 U1-088,Oohs & Aahs,1005 U St NW,Restaurant,U1,3,2,72,No,38.9170,-77.0275
 U1-089,Bens Chili Bowl,1213 U St NW,Restaurant,U1,4,3,80,No,38.9170,-77.0295
 U1-090,Dukes Counter,3000 Connecticut Ave NW,Restaurant,U1,4,3,76,No,38.9265,-77.0505
 U1-091,Dovetail,1309 14th St NW,Restaurant,U1,4,4,82,No,38.9085,-77.0320
-U1-092,14th St Cafe,1401 14th St NW,Restaurant,U1,4,3,74,No,38.9098,-77.0320
 U1-093,Shake Shack 14th,1400 14th St NW,Restaurant,U1,4,4,80,No,38.9098,-77.0318
 U1-094,Trader Joes 14th,1914 14th St NW,Grocery,U1,5,2,72,No,38.9168,-77.0320
 U1-095,Whole Foods Logan,1440 P St NW,Grocery,U1,5,3,78,Yes,38.9095,-77.0335
@@ -123,9 +103,7 @@ U2-011,Drafting Table,1529 14th St NW,Bar,U2,4,4,78,No,38.9110,-77.0320
 U2-012,Velvet Lounge,915 U St NW,Bar,U2,4,2,70,No,38.9171,-77.0258
 U2-013,Dodge City,917 U St NW,Bar,U2,4,3,74,No,38.9171,-77.0259
 U2-014,Alice,2323 18th St NW,Bar,U2,4,3,76,No,38.9195,-77.0428
-U2-015,The Saloon,1205 U St NW,Bar,U2,4,3,76,No,38.9170,-77.0290
 U2-016,Sollys,1942 11th St NW,Bar,U2,3,2,70,No,38.9175,-77.0270
-U2-017,Dram & Grain,2001 18th St NW,Bar,U2,5,1,85,No,38.9175,-77.0420
 U2-018,Service Bar,926 N St NW,Bar,U2,4,3,78,No,38.9080,-77.0240
 U2-019,All Souls,725 T St NW,Bar,U2,4,3,76,No,38.9148,-77.0215
 U2-020,Lady Clipper,1352 U St NW,Barber,U2,4,1,70,No,38.9170,-77.0330
@@ -167,7 +145,6 @@ U2-055,Looking Glass,3634 Georgia Ave NW,Bar,U2,4,3,72,No,38.9375,-77.0235
 U2-056,Morelands Tavern,3422 Georgia Ave NW,Bar,U2,4,3,70,No,38.9355,-77.0235
 U2-057,Primrose,3000 12th St NE,Restaurant,U2,4,4,80,No,38.9295,-76.9915
 U2-058,Boundary Stone,116 Rhode Island Ave NW,Bar,U2,4,4,80,No,38.9165,-77.0175
-U2-059,Reliable Tavern,3655 Georgia Ave NW,Bar,U2,4,3,74,No,38.9378,-77.0235
 U2-060,Slims Diner,1403 U St NW,Restaurant,U2,3,2,68,No,38.9170,-77.0333
 U2-061,Chez Billy,1039 31st St NW,Restaurant,U2,4,4,82,No,38.9030,-77.0612
 U2-062,Urbana,2121 P St NW,Restaurant,U2,4,4,80,No,38.9090,-77.0468
@@ -182,12 +159,10 @@ U2-070,Teaism Penn,400 8th St NW,Restaurant,U2,4,3,76,No,38.8935,-77.0230
 U2-071,Matchbox,521 8th St SE,Restaurant,U2,4,4,78,No,38.8795,-76.9948
 U2-072,Ambar Shaw,1547 7th St NW,Restaurant,U2,4,4,82,No,38.9125,-77.0210
 U2-073,Shaws Tavern,520 Florida Ave NW,Bar,U2,4,4,78,No,38.9175,-77.0185
-U2-074,Right Proper,624 T St NW,Brewery,U2,5,4,86,No,38.9150,-77.0210
 U2-075,The Shay,1924 8th St NW,Restaurant,U2,4,4,80,No,38.9168,-77.0230
 U2-076,Espita,1250 9th St NW,Restaurant,U2,4,4,85,No,38.9055,-77.0240
 U2-077,Buttercream,1250 9th St NW,Bakery,U2,4,3,78,No,38.9055,-77.0240
 U2-078,All Purpose,1250 9th St NW,Restaurant,U2,4,4,86,No,38.9055,-77.0240
-U2-079,Seylou,926 N St NW,Bakery,U2,4,3,80,No,38.9080,-77.0240
 U2-080,Convivial,801 O St NW,Restaurant,U2,4,4,84,No,38.9065,-77.0235
 U2-081,Beau Thai Shaw,1550 7th St NW,Restaurant,U2,4,3,76,No,38.9125,-77.0210
 U2-082,Tiger Fork,922 N St NW,Restaurant,U2,4,3,78,No,38.9080,-77.0240
@@ -200,7 +175,6 @@ U3-003,Espita,1250 9th St NW,Restaurant,U3,4,4,85,No,38.9055,-77.0240
 U3-004,DC9,1940 9th St NW,Music,U3,5,2,85,No,38.9170,-77.0230
 U3-005,Compass Coffee 7th,1351 7th St NW,Coffee,U3,4,4,84,No,38.9085,-77.0210
 U3-006,City Tap House,901 9th St NW,Bar,U3,5,5,87,Yes,38.9005,-77.0240
-U3-007,Right Proper,624 T St NW,Brewery,U3,5,4,86,No,38.9150,-77.0210
 U3-008,Habesha Market,1401 9th St NW,Restaurant,U3,3,2,72,No,38.9092,-77.0235
 U3-009,Ambassador Ethiopian,1413 9th St NW,Restaurant,U3,4,2,74,No,38.9095,-77.0235
 U3-010,Dukem,1114 U St NW,Restaurant,U3,4,2,76,No,38.9170,-77.0282
@@ -208,56 +182,34 @@ U3-011,Etete,1942 9th St NW,Restaurant,U3,3,2,72,No,38.9172,-77.0230
 U3-012,Zenebech,608 T St NW,Restaurant,U3,3,2,70,No,38.9148,-77.0205
 U3-013,Keren,1780 Florida Ave NW,Restaurant,U3,3,2,68,No,38.9183,-77.0398
 U3-014,Ivy & Coney,1537 7th St NW,Bar,U3,4,4,78,No,38.9120,-77.0210
-U3-015,Anxo Cidery,711 Kennedy St NW,Brewery,U3,4,5,84,No,38.9635,-77.0260
 U3-016,Pop Fizz Bar,1309 5th St NE,Bar,U3,4,4,78,No,38.9088,-77.0028
 U3-017,Buttercream,1250 9th St NW,Bakery,U3,4,3,78,No,38.9055,-77.0240
-U3-018,Seylou,926 N St NW,Bakery,U3,4,3,80,No,38.9080,-77.0240
 U3-019,Convivial,801 O St NW,Restaurant,U3,4,4,84,No,38.9065,-77.0235
 U3-020,Tiger Fork,922 N St NW,Restaurant,U3,4,3,78,No,38.9080,-77.0240
 U3-021,A&D Bar,1314 9th St NW,Bar,U3,4,2,76,No,38.9058,-77.0240
 U3-022,1905 Bistro,1905 9th St NW,Restaurant,U3,4,4,80,No,38.9165,-77.0230
-U3-023,Lettie Gooch,1921 8th St NW,Retail,U3,3,2,62,No,38.9170,-77.0225
 U3-024,Rogue 24,922 N St NW,Restaurant,U3,4,2,72,No,38.9080,-77.0240
 U3-025,The Dabney,122 Blagden Alley,Restaurant,U3,5,4,90,No,38.9090,-77.0210
 U3-026,Columbia Room,124 Blagden Alley,Bar,U3,5,3,86,No,38.9090,-77.0210
-U3-027,The Passenger,1539 7th St NW,Bar,U3,4,2,78,No,38.9120,-77.0210
 U3-028,Doi Moi Shaw,1800 14th St NW,Restaurant,U3,4,4,84,No,38.9155,-77.0320
 U3-029,Momofuku DC,1090 I St NW,Restaurant,U3,5,3,84,No,38.9018,-77.0268
 U3-030,Unconventional,1207 9th St NW,Restaurant,U3,4,3,78,No,38.9035,-77.0240
-U3-031,Baby Wale,1124 9th St NW,Bar,U3,4,3,76,No,38.9020,-77.0240
-U3-032,Morris American,1020 7th St NW,Bar,U3,4,3,74,No,38.9005,-77.0210
-U3-033,Grand Cata,1550 7th St NW,Wine,U3,4,3,76,No,38.9125,-77.0210
 U3-034,The Fainting Goat,1330 U St NW,Restaurant,U3,4,4,82,No,38.9170,-77.0323
-U3-035,Compass Rose,1346 T St NW,Restaurant,U3,4,4,82,No,38.9145,-77.0320
 U3-036,Yellow,1346 T St NW,Restaurant,U3,4,4,80,No,38.9145,-77.0320
 U3-037,Hazel,808 V St NW,Restaurant,U3,4,4,82,No,38.9178,-77.0235
 U3-038,Shaws Tavern,520 Florida Ave NW,Bar,U3,4,4,78,No,38.9175,-77.0185
 U3-039,The Shay,1924 8th St NW,Restaurant,U3,4,4,80,No,38.9168,-77.0230
 U3-040,Beau Thai Shaw,1550 7th St NW,Restaurant,U3,4,3,76,No,38.9125,-77.0210
 U3-041,Ambar Shaw,1547 7th St NW,Restaurant,U3,4,4,82,No,38.9125,-77.0210
-U3-042,Maketto,1351 H St NE,Restaurant,U3,5,4,86,No,38.9002,-76.9892
 U3-043,Urban Grape,2000 S St NW,Wine,U3,4,2,74,No,38.9118,-77.0455
 U3-044,Calico,4105 Wisconsin Ave NW,Restaurant,U3,4,4,80,No,38.9405,-77.0760
-U3-045,Dukes Grocery,1513 17th St NW,Restaurant,U3,4,4,84,No,38.9114,-77.0385
 U3-046,Silver Spring Taphouse,8545 Fenton St,Bar,U3,4,4,78,No,38.9952,-77.0255
 U3-047,Franklin Hall,1348 Florida Ave NE,Bar,U3,4,5,82,No,38.9178,-76.9900
 U3-048,Wunder Garten,1101 1st St NE,Bar,U3,4,5,84,No,38.9065,-77.0075
-U3-049,Atlas Brew Works,2052 West Virginia Ave NE,Brewery,U3,5,5,88,No,38.9110,-76.9715
-U3-050,Red Bear,209 M St NE,Brewery,U3,5,5,86,No,38.9045,-77.0010
-U3-051,Bluejacket,300 Tingey St SE,Brewery,U3,5,5,90,No,38.8760,-76.9940
-U3-052,DC Brau,3178 Bladensburg Rd NE,Brewery,U3,5,4,84,No,38.9210,-76.9610
-U3-053,Other Half DC,1401 Okie St NE,Brewery,U3,5,5,88,No,38.9185,-76.9765
-U3-054,3 Stars Brewing,6400 Chillum Pl NW,Brewery,U3,4,4,78,No,38.9515,-77.0005
-U3-055,Hellbender,5788 2nd St NE,Brewery,U3,4,4,76,No,38.9580,-76.9990
-U3-056,Port City,3950 Wheeler Ave,Brewery,U3,5,5,86,No,38.8120,-77.0625
-U3-057,Denizens,1115 East West Hwy,Brewery,U3,4,4,80,No,38.9862,-77.0260
 U3-058,Aslin Herndon,257 Sunset Park Dr,Brewery,U3,5,5,88,No,38.9785,-77.3685
-U3-059,Caboose Commons,2918 Eskridge Rd,Brewery,U3,4,5,82,No,38.8785,-77.2185
-U3-060,Lost Rhino,21730 Red Rum Dr,Brewery,U3,4,5,80,No,38.9640,-77.4610
 U4-001,Wonderland Ballroom,1101 Kenyon St NW,Bar,U4,4,5,80,Yes,38.9290,-77.0280
 U4-002,The Coupe,3415 11th St NW,Restaurant,U4,4,5,78,No,38.9330,-77.0270
 U4-003,Vinoteca,1940 11th St NW,Wine Bar,U4,4,5,85,Yes,38.9175,-77.0270
-U4-004,Meridian Pint,3400 11th St NW,Bar,U4,4,4,82,No,38.9330,-77.0270
 U4-005,Room 11,3234 11th St NW,Wine Bar,U4,4,3,78,No,38.9315,-77.0270
 U4-006,Bad Saint,3226 11th St NW,Restaurant,U4,5,2,88,No,38.9315,-77.0270
 U4-007,Thip Khao,3462 14th St NW,Restaurant,U4,4,3,82,No,38.9365,-77.0320
@@ -287,15 +239,9 @@ U4-030,Qualia Coffee,3917 Georgia Ave NW,Coffee,U4,4,3,78,No,38.9395,-77.0235
 U4-031,Colony Club,3118 Georgia Ave NW,Bar,U4,4,3,74,No,38.9315,-77.0235
 U4-032,Looking Glass,3634 Georgia Ave NW,Bar,U4,4,3,72,No,38.9375,-77.0235
 U4-033,Morelands,3422 Georgia Ave NW,Bar,U4,4,3,70,No,38.9355,-77.0235
-U4-034,Reliable Tavern,3655 Georgia Ave NW,Bar,U4,4,3,74,No,38.9378,-77.0235
 U4-035,Midlands Beer,3333 Georgia Ave NW,Bar,U4,4,4,78,No,38.9345,-77.0235
 U4-036,Petworth Citizen,829 Upshur St NW,Bar,U4,4,4,80,No,38.9420,-77.0250
 U4-037,Slims Diner,1403 U St NW,Restaurant,U4,3,2,68,No,38.9170,-77.0333
 U4-038,Dukes Counter,3000 Connecticut Ave NW,Restaurant,U4,4,3,76,No,38.9265,-77.0505
-U4-039,Medium Rare,3500 Connecticut Ave NW,Restaurant,U4,4,3,76,No,38.9370,-77.0568
 U4-040,Open City Woodley,2331 Calvert St NW,Cafe,U4,4,4,80,No,38.9230,-77.0480
-U4-041,Tryst,2459 18th St NW,Coffee,U4,4,4,82,No,38.9208,-77.0430
-U4-042,Amsterdam Falafel,2425 18th St NW,Restaurant,U4,3,3,72,No,38.9205,-77.0430
-U4-043,Madams Organ,2461 18th St NW,Bar,U4,4,4,80,No,38.9210,-77.0430
-U4-044,Pharmacy Bar,2337 18th St NW,Bar,U4,4,3,74,No,38.9195,-77.0428
 U4-045,Jack Rose,2007 18th St NW,Bar,U4,5,5,88,No,38.9175,-77.0420

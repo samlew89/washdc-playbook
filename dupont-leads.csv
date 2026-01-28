@@ -64,7 +64,6 @@ D1-062,Beacon Hotel,1615 Rhode Island Ave NW,Hotel,D1,4,3,74,No,38.9108,-77.0382
 D1-063,Kimpton Mason & Rook,1430 Rhode Island Ave NW,Hotel,D1,5,4,84,No,38.9095,-77.0365
 D1-064,Lyle DC,1731 N St NW,Hotel,D1,4,4,82,No,38.9082,-77.0429
 D1-065,Hanks Oyster Bar,1624 Q St NW,Restaurant,D1,4,5,84,No,38.9105,-77.0380
-D1-066,Komi,1509 17th St NW,Restaurant,D1,4,2,78,No,38.9114,-77.0385
 D1-067,Little Serow,1511 17th St NW,Restaurant,D1,4,1,76,No,38.9114,-77.0385
 D1-068,The Palm,1225 19th St NW,Restaurant,D1,5,3,80,No,38.9050,-77.0430
 D1-069,Ruths Chris,1801 Connecticut Ave NW,Restaurant,D1,5,3,78,No,38.9138,-77.0446
@@ -77,7 +76,6 @@ D1-075,Iron Gate,1734 N St NW,Restaurant,D1,5,5,88,No,38.9083,-77.0430
 D1-076,Obelisk,2029 P St NW,Restaurant,D1,4,2,78,No,38.9092,-77.0460
 D1-077,Sushi Capitol,1527 Connecticut Ave NW,Restaurant,D1,3,2,68,No,38.9104,-77.0434
 D1-078,Cafe Citron,1343 Connecticut Ave NW,Bar,D1,4,3,74,No,38.9076,-77.0420
-D1-079,Sign of the Whale,1825 M St NW,Bar,D1,4,3,72,No,38.9045,-77.0420
 D1-080,Public Bar,1214 18th St NW,Bar,D1,4,3,70,No,38.9048,-77.0420
 D1-081,Science Club,1136 19th St NW,Bar,D1,4,2,68,No,38.9038,-77.0432
 D1-082,Mad Hatter,1319 Connecticut Ave NW,Bar,D1,4,2,66,No,38.9073,-77.0419
@@ -109,7 +107,6 @@ D2-012,Number Nine,1435 P St NW,Bar,D2,4,3,78,No,38.9095,-77.0335
 D2-013,Cobalt,1639 R St NW,Bar,D2,4,4,80,No,38.9125,-77.0378
 D2-014,Pitchers,2317 18th St NW,Bar,D2,4,4,78,No,38.9195,-77.0430
 D2-015,Windows Cafe,1841 17th St NW,Cafe,D2,3,3,72,No,38.9135,-77.0390
-D2-016,Soho Tea & Coffee,2150 P St NW,Coffee,D2,3,3,70,No,38.9095,-77.0468
 D2-017,Bua Thai,1635 P St NW,Restaurant,D2,4,2,72,No,38.9093,-77.0378
 D2-018,Agora,1527 17th St NW,Restaurant,D2,4,4,80,No,38.9116,-77.0386
 D2-019,Thai Chef,1712 Connecticut Ave NW,Restaurant,D2,3,2,68,No,38.9126,-77.0441
@@ -130,17 +127,14 @@ D2-033,Red Hen,1822 1st St NE,Restaurant,D2,4,4,84,No,38.9135,-77.0000
 D2-034,Masseria,1340 4th St NE,Restaurant,D2,5,3,82,No,38.9095,-76.9980
 D2-035,Roses Luxury,717 8th St SE,Restaurant,D2,5,4,88,No,38.8790,-76.9945
 D2-036,Mintwood Place,1813 Columbia Rd NW,Restaurant,D2,4,4,82,No,38.9212,-77.0418
-D2-037,Tail Up Goat,1827 Adams Mill Rd NW,Restaurant,D2,4,4,86,No,38.9220,-77.0440
 D2-038,Federalist Pig,1654 Columbia Rd NW,Restaurant,D2,4,3,78,No,38.9200,-77.0405
 D2-039,Amsterdam Falafel,2425 18th St NW,Restaurant,D2,3,3,72,No,38.9205,-77.0430
-D2-040,Julias Empanadas,1221 Connecticut Ave NW,Restaurant,D2,3,2,68,No,38.9062,-77.0418
 D2-041,El Tamarindo,1785 Florida Ave NW,Restaurant,D2,4,4,76,No,38.9185,-77.0400
 D2-042,Madams Organ,2461 18th St NW,Bar,D2,4,4,80,No,38.9210,-77.0430
 D2-043,Bossa,2463 18th St NW,Restaurant,D2,4,4,78,No,38.9210,-77.0430
 D2-044,Grand Cata,1550 7th St NW,Wine Bar,D2,4,3,76,No,38.9125,-77.0210
 D2-045,Doi Moi,1800 14th St NW,Restaurant,D2,4,4,82,No,38.9155,-77.0320
 D2-046,Estadio,1520 14th St NW,Restaurant,D2,4,4,84,No,38.9108,-77.0320
-D2-047,Compass Rose,1346 T St NW,Restaurant,D2,4,4,82,No,38.9145,-77.0320
 D2-048,Cork Wine Bar,1720 14th St NW,Wine Bar,D2,4,4,80,No,38.9145,-77.0320
 D2-049,Etto,1541 14th St NW,Restaurant,D2,4,4,82,No,38.9112,-77.0320
 D2-050,Blue Duck Tavern,1201 24th St NW,Restaurant,D2,5,3,84,No,38.9040,-77.0500
@@ -156,7 +150,6 @@ D2-059,Pinea,799 14th St NW,Restaurant,D2,4,3,76,No,38.8980,-77.0320
 D2-060,Old Ebbitt Grill,675 15th St NW,Restaurant,D2,5,3,84,No,38.8975,-77.0340
 D2-061,The Hamilton,600 14th St NW,Restaurant,D2,5,3,82,No,38.8968,-77.0320
 D2-062,J&G Steakhouse,515 15th St NW,Restaurant,D2,5,3,80,No,38.8962,-77.0340
-D2-063,Lincoln,1110 Vermont Ave NW,Restaurant,D2,4,3,78,No,38.9032,-77.0318
 D2-064,Kellari Taverna,1700 K St NW,Restaurant,D2,4,3,76,No,38.9025,-77.0385
 D2-065,Vidalia,1990 M St NW,Restaurant,D2,4,2,74,No,38.9045,-77.0455
 D2-066,Rasika West End,1190 New Hampshire Ave NW,Restaurant,D2,5,3,86,No,38.9035,-77.0410
@@ -234,7 +227,6 @@ D3-062,Baby Wale,1124 9th St NW,Bar,D3,4,3,76,No,38.9020,-77.0240
 D3-063,Columbia Room,124 Blagden Alley NW,Bar,D3,5,3,86,No,38.9090,-77.0210
 D3-064,Morris American,1020 7th St NW,Bar,D3,4,3,74,No,38.9005,-77.0210
 D3-065,Off the Record,800 16th St NW,Bar,D3,5,2,78,No,38.8995,-77.0362
-D3-066,POV,515 15th St NW,Bar,D3,5,5,88,No,38.8962,-77.0340
 D3-067,Quill,1200 16th St NW,Bar,D3,5,3,82,No,38.9050,-77.0365
 D3-068,Round Robin,1401 Pennsylvania Ave NW,Bar,D3,5,2,80,No,38.8950,-77.0310
 D3-069,Salon,3215 P St NW,Bar,D3,4,3,74,No,38.9052,-77.0652
@@ -263,8 +255,6 @@ D4-021,Baked & Wired,1052 Thomas Jefferson St NW,Cafe,D4,4,3,80,No,38.9030,-77.0
 D4-022,Georgetown Cupcake,3301 M St NW,Bakery,D4,4,2,74,No,38.9052,-77.0665
 D4-023,Olivia Macaron,1529 Wisconsin Ave NW,Bakery,D4,3,2,68,No,38.9070,-77.0642
 D4-024,Dog Tag Bakery,3206 Grace St NW,Bakery,D4,4,3,72,No,38.9045,-77.0655
-D4-025,A Baked Joint,440 K St NW,Bakery,D4,4,3,76,No,38.9020,-77.0170
-D4-026,Bullfrog Bagels,1341 H St NE,Bakery,D4,4,3,74,No,38.9002,-76.9890
 D4-027,Pluma by Bluebird,151 Q St NE,Bakery,D4,4,3,76,No,38.9105,-76.9965
 D4-028,Buttercream Bakeshop,1250 9th St NW,Bakery,D4,4,3,78,No,38.9055,-77.0240
 D4-029,Bread Furst,4434 Connecticut Ave NW,Bakery,D4,4,3,76,No,38.9445,-77.0665

@@ -1,0 +1,380 @@
+{
+  "closed_venues_removed": [
+    {
+      "id": "D1-066",
+      "name": "Komi",
+      "file": "dupont-leads.csv"
+    },
+    {
+      "id": "D1-079",
+      "name": "Sign of the Whale",
+      "file": "dupont-leads.csv"
+    },
+    {
+      "id": "D2-016",
+      "name": "Soho Tea & Coffee",
+      "file": "dupont-leads.csv"
+    },
+    {
+      "id": "D2-037",
+      "name": "Tail Up Goat",
+      "file": "dupont-leads.csv"
+    },
+    {
+      "id": "D2-040",
+      "name": "Julias Empanadas",
+      "file": "dupont-leads.csv"
+    },
+    {
+      "id": "D2-047",
+      "name": "Compass Rose",
+      "file": "dupont-leads.csv"
+    },
+    {
+      "id": "D2-063",
+      "name": "Lincoln",
+      "file": "dupont-leads.csv"
+    },
+    {
+      "id": "D3-066",
+      "name": "POV",
+      "file": "dupont-leads.csv"
+    },
+    {
+      "id": "D4-025",
+      "name": "A Baked Joint",
+      "file": "dupont-leads.csv"
+    },
+    {
+      "id": "D4-026",
+      "name": "Bullfrog Bagels",
+      "file": "dupont-leads.csv"
+    },
+    {
+      "id": "U1-015",
+      "name": "Logan Tavern",
+      "file": "14thu-leads.csv"
+    },
+    {
+      "id": "U1-070",
+      "name": "Bar Pilar",
+      "file": "14thu-leads.csv"
+    },
+    {
+      "id": "U1-081",
+      "name": "Tail Up Goat",
+      "file": "14thu-leads.csv"
+    },
+    {
+      "id": "U1-092",
+      "name": "14th St Cafe",
+      "file": "14thu-leads.csv"
+    },
+    {
+      "id": "U2-017",
+      "name": "Dram & Grain",
+      "file": "14thu-leads.csv"
+    },
+    {
+      "id": "U2-059",
+      "name": "Reliable Tavern",
+      "file": "14thu-leads.csv"
+    },
+    {
+      "id": "U3-023",
+      "name": "Lettie Gooch",
+      "file": "14thu-leads.csv"
+    },
+    {
+      "id": "U3-027",
+      "name": "The Passenger",
+      "file": "14thu-leads.csv"
+    },
+    {
+      "id": "U3-035",
+      "name": "Compass Rose",
+      "file": "14thu-leads.csv"
+    },
+    {
+      "id": "U4-034",
+      "name": "Reliable Tavern",
+      "file": "14thu-leads.csv"
+    }
+  ],
+  "duplicates_removed": [
+    {
+      "name": "Maketto",
+      "address": "1351 H St NE",
+      "dupont_id": "D4-031",
+      "thu14_id": "U1-042"
+    },
+    {
+      "name": "Masseria",
+      "address": "1340 4th St NE",
+      "dupont_id": "D2-034",
+      "thu14_id": "U1-058"
+    },
+    {
+      "name": "Doi Moi",
+      "address": "1800 14th St NW",
+      "dupont_id": "D2-045",
+      "thu14_id": "U1-067"
+    },
+    {
+      "name": "Estadio",
+      "address": "1520 14th St NW",
+      "dupont_id": "D2-046",
+      "thu14_id": "U1-068"
+    },
+    {
+      "name": "Etto",
+      "address": "1541 14th St NW",
+      "dupont_id": "D2-049",
+      "thu14_id": "U1-069"
+    },
+    {
+      "name": "Tryst",
+      "address": "2459 18th St NW",
+      "dupont_id": "D3-038",
+      "thu14_id": "U1-072"
+    },
+    {
+      "name": "The Diner",
+      "address": "2453 18th St NW",
+      "dupont_id": "D3-039",
+      "thu14_id": "U1-073"
+    },
+    {
+      "name": "Songbyrd",
+      "address": "2477 18th St NW",
+      "dupont_id": "D3-040",
+      "thu14_id": "U1-074"
+    },
+    {
+      "name": "Smoke & Barrel",
+      "address": "2471 18th St NW",
+      "dupont_id": "D3-043",
+      "thu14_id": "U1-075"
+    },
+    {
+      "name": "Roofers Union",
+      "address": "2446 18th St NW",
+      "dupont_id": "D3-046",
+      "thu14_id": "U1-076"
+    },
+    {
+      "name": "Mintwood Place",
+      "address": "1813 Columbia Rd NW",
+      "dupont_id": "D3-044",
+      "thu14_id": "U1-078"
+    },
+    {
+      "name": "Perrys",
+      "address": "1811 Columbia Rd NW",
+      "dupont_id": "D2-009",
+      "thu14_id": "U1-079"
+    },
+    {
+      "name": "Federalist Pig",
+      "address": "1654 Columbia Rd NW",
+      "dupont_id": "D2-038",
+      "thu14_id": "U1-080"
+    },
+    {
+      "name": "Madams Organ",
+      "address": "2461 18th St NW",
+      "dupont_id": "D2-042",
+      "thu14_id": "U1-082"
+    },
+    {
+      "name": "Bossa",
+      "address": "2463 18th St NW",
+      "dupont_id": "D2-043",
+      "thu14_id": "U1-084"
+    },
+    {
+      "name": "Pharmacy Bar",
+      "address": "2337 18th St NW",
+      "dupont_id": "D3-041",
+      "thu14_id": "U1-086"
+    },
+    {
+      "name": "The Saloon",
+      "address": "1205 U St NW",
+      "dupont_id": "D2-027",
+      "thu14_id": "U2-015"
+    },
+    {
+      "name": "Right Proper",
+      "address": "624 T St NW",
+      "dupont_id": "D2-029",
+      "thu14_id": "U2-074"
+    },
+    {
+      "name": "Seylou",
+      "address": "926 N St NW",
+      "dupont_id": "D4-030",
+      "thu14_id": "U2-079"
+    },
+    {
+      "name": "Right Proper",
+      "address": "624 T St NW",
+      "dupont_id": "D2-029",
+      "thu14_id": "U3-007"
+    },
+    {
+      "name": "Anxo Cidery",
+      "address": "711 Kennedy St NW",
+      "dupont_id": "D2-030",
+      "thu14_id": "U3-015"
+    },
+    {
+      "name": "Seylou",
+      "address": "926 N St NW",
+      "dupont_id": "D4-030",
+      "thu14_id": "U3-018"
+    },
+    {
+      "name": "Baby Wale",
+      "address": "1124 9th St NW",
+      "dupont_id": "D3-062",
+      "thu14_id": "U3-031"
+    },
+    {
+      "name": "Morris American",
+      "address": "1020 7th St NW",
+      "dupont_id": "D3-064",
+      "thu14_id": "U3-032"
+    },
+    {
+      "name": "Grand Cata",
+      "address": "1550 7th St NW",
+      "dupont_id": "D2-044",
+      "thu14_id": "U3-033"
+    },
+    {
+      "name": "Maketto",
+      "address": "1351 H St NE",
+      "dupont_id": "D4-031",
+      "thu14_id": "U3-042"
+    },
+    {
+      "name": "Dukes Grocery",
+      "address": "1513 17th St NW",
+      "dupont_id": "D2-004",
+      "thu14_id": "U3-045"
+    },
+    {
+      "name": "Atlas Brew Works",
+      "address": "2052 West Virginia Ave NE",
+      "dupont_id": "D4-034",
+      "thu14_id": "U3-049"
+    },
+    {
+      "name": "Red Bear",
+      "address": "209 M St NE",
+      "dupont_id": "D4-035",
+      "thu14_id": "U3-050"
+    },
+    {
+      "name": "Bluejacket",
+      "address": "300 Tingey St SE",
+      "dupont_id": "D4-036",
+      "thu14_id": "U3-051"
+    },
+    {
+      "name": "DC Brau",
+      "address": "3178 Bladensburg Rd NE",
+      "dupont_id": "D4-037",
+      "thu14_id": "U3-052"
+    },
+    {
+      "name": "Other Half DC",
+      "address": "1401 Okie St NE",
+      "dupont_id": "D4-038",
+      "thu14_id": "U3-053"
+    },
+    {
+      "name": "3 Stars Brewing",
+      "address": "6400 Chillum Pl NW",
+      "dupont_id": "D4-040",
+      "thu14_id": "U3-054"
+    },
+    {
+      "name": "Hellbender",
+      "address": "5788 2nd St NE",
+      "dupont_id": "D4-041",
+      "thu14_id": "U3-055"
+    },
+    {
+      "name": "Port City",
+      "address": "3950 Wheeler Ave",
+      "dupont_id": "D4-042",
+      "thu14_id": "U3-056"
+    },
+    {
+      "name": "Denizens",
+      "address": "1115 East West Hwy",
+      "dupont_id": "D4-039",
+      "thu14_id": "U3-057"
+    },
+    {
+      "name": "Caboose Commons",
+      "address": "2918 Eskridge Rd",
+      "dupont_id": "D4-043",
+      "thu14_id": "U3-059"
+    },
+    {
+      "name": "Lost Rhino",
+      "address": "21730 Red Rum Dr",
+      "dupont_id": "D4-044",
+      "thu14_id": "U3-060"
+    },
+    {
+      "name": "Meridian Pint",
+      "address": "3400 11th St NW",
+      "dupont_id": "D2-026",
+      "thu14_id": "U4-004"
+    },
+    {
+      "name": "Medium Rare",
+      "address": "3500 Connecticut Ave NW",
+      "dupont_id": "D3-036",
+      "thu14_id": "U4-039"
+    },
+    {
+      "name": "Tryst",
+      "address": "2459 18th St NW",
+      "dupont_id": "D3-038",
+      "thu14_id": "U4-041"
+    },
+    {
+      "name": "Amsterdam Falafel",
+      "address": "2425 18th St NW",
+      "dupont_id": "D3-024",
+      "thu14_id": "U4-042"
+    },
+    {
+      "name": "Madams Organ",
+      "address": "2461 18th St NW",
+      "dupont_id": "D2-042",
+      "thu14_id": "U4-043"
+    },
+    {
+      "name": "Pharmacy Bar",
+      "address": "2337 18th St NW",
+      "dupont_id": "D3-041",
+      "thu14_id": "U4-044"
+    }
+  ],
+  "summary": {
+    "original_dupont": 300,
+    "original_14thu": 300,
+    "original_total": 600,
+    "new_dupont": 290,
+    "new_14thu": 246,
+    "new_total": 536,
+    "closed_removed": 20,
+    "duplicates_removed": 44
+  }
+}
