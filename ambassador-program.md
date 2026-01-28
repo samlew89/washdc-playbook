@@ -4,12 +4,6 @@
 
 **Mission:** Recruit local ambassadors to source qualified venue installations in Dupont Circle and 14th St/U St corridors, paying commission only for verified, high-quality deployments.
 
-**Key Principles:**
-1. Pay for RESULTS, not leads
-2. Reward DENSITY, not sprawl
-3. Verify EVERYTHING before payment
-4. Clawback for fraud or failure
-
 ---
 
 # Part 1: Commission Structure Options
@@ -24,7 +18,7 @@
 | Outdoor hotspot installed + verified | $50 |
 
 **Pros:** Easy to understand, easy to track
-**Cons:** No incentive for density or high-value venues
+**Cons:** No incentive for high-value venues
 
 ---
 
@@ -46,9 +40,9 @@
 
 ---
 
-## Option C: Salary + Density Bonus (RECOMMENDED)
+## Option C: Salary + Commission (RECOMMENDED)
 
-**Best for:** Achieving hyper-density goals in target zones while providing income stability
+**Best for:** Providing income stability while rewarding performance
 
 ### Monthly Base Salary
 
@@ -61,105 +55,52 @@ $1,000/month base salary for active ambassadors (minimum 5 installs/month to qua
 | Indoor hotspot | $60 |
 | Outdoor hotspot | $40 |
 
-### Density Multipliers
-
-| Condition | Multiplier | Example Payout |
-|-----------|------------|----------------|
-| **Priority Zone** (D1, D2, U1, U2) | 1.5x | Indoor: $90 |
-| **Anchor Node** (corner + 75+ score) | 2.0x | Indoor: $120 |
-| **Cluster Bonus** (3+ installs within 300ft) | +$25 per install | Extra $75 for 3-unit cluster |
-| **Speed Bonus** (install within 48hrs of lead) | +$15 | |
-| **Tier 1 Venue** (coffee, cowork, brewery, gym) | 1.25x | Indoor: $75 |
-
-### Density Bonus Examples
-
-**Example 1: Standard indoor install in secondary zone**
-- Base: $60
-- No multipliers
-- **Total: $60**
-
-**Example 2: Indoor install at corner coffee shop in D1 zone**
-- Base indoor: $60
-- Priority Zone (D1): 1.5x = $90
-- Tier 1 venue: 1.25x = $112.50
-- **Total: $112.50**
-
-**Example 3: Indoor install at anchor node (corner brewery, 85 score)**
-- Base indoor: $60
-- Anchor Node: 2.0x = $120
-- Speed Bonus (installed in 36hrs): +$15
-- **Total: $135**
-
-**Example 4: Cluster of 3 indoor installs on same block**
-- 3x Indoor base: $60 × 3 = $180
-- Priority Zone (D2): 1.5x = $270
-- Cluster Bonus: +$25 × 3 = $75
-- **Total: $345**
+**Realistic earnings:** An active ambassador closing 8-10 installs/month can earn **$1,500-1,600+/month** part-time.
 
 ---
 
-## Commission Comparison Table
+# Part 2: Job Description
 
-| Scenario | Option A | Option B (Tier 2) | Option C |
-|----------|----------|-------------------|----------|
-| 1 indoor, secondary zone | $50 | $50 | $60 |
-| 1 indoor, priority zone | $50 | $50 | $90 |
-| 1 indoor, anchor node | $50 | $50 | $120-135 |
-| 3-unit indoor cluster, priority zone | $150 | $150 | $345 |
-| Monthly (5 installs, priority zone) | $250 | $250 | $1,000 salary + $450 commission |
+## The Opportunity
 
-**Recommendation: Option C** — Provides income stability while directly incentivizing the density clustering we need.
+We're looking for a hustler to help grow the Helium Network in DC. Your job: get local businesses to host Helium Hotspots — small wireless devices that provide coverage and earn crypto rewards for the host.
+
+This is a field-based, commission-heavy role. You'll be walking into coffee shops, coworking spaces, breweries, and gyms to pitch a simple value prop: free hardware, passive income, zero effort for them. The more installs you close, the more you earn.
+
+**Ideal for:** Students, recent grads, or anyone with hustle who wants flexible hours and uncapped earning potential.
 
 ---
 
-# Part 2: Qualification Checklist
+## What You'll Do
 
-## What Counts as a "Qualified Install"
-
-A lead becomes a qualified install ONLY when ALL of the following are true:
-
-### Stage 1: Lead Qualification (Before Install)
-
-| # | Requirement | How to Verify |
-|---|-------------|---------------|
-| Q1 | Venue is within target boundaries (Dupont or 14th/U micro-zones) | GPS coordinates match zone |
-| Q2 | Venue category is Tier 1, 2, or 3 (not excluded type) | Category confirmed |
-| Q3 | Decision-maker has given verbal or written consent | Consent form or recorded confirmation |
-| Q4 | Venue is not already in pipeline from another source | CRM check (no duplicate address) |
-| Q5 | Ambassador personally sourced the lead (not transferred) | Ambassador attestation |
-
-### Stage 2: Install Qualification (During Install)
-
-| # | Requirement | How to Verify |
-|---|-------------|---------------|
-| Q6 | Hardware physically installed at venue | Photo evidence |
-| Q7 | Hardware powered on and connected | Device online in Helium dashboard |
-| Q8 | Indoor unit placed per guidelines (near window, proper height) | Photo of placement |
-| Q9 | Outdoor unit mounted securely (if applicable) | Photo of mount |
-| Q10 | Host agreement signed | Digital or paper signature |
-
-### Stage 3: Verification (Post-Install)
-
-| # | Requirement | How to Verify |
-|---|-------------|---------------|
-| Q11 | Device online for 72+ consecutive hours | Helium dashboard uptime check |
-| Q12 | Business confirms installation via callback | Phone/text confirmation |
-| Q13 | No duplicate device at same address | Device ID + address cross-check |
-| Q14 | Install location matches claimed zone | GPS vs. claimed zone |
-
-**Commission triggers ONLY after Stage 3 verification passes (minimum 72 hours post-install).**
+- **Source hosts:** Identify and approach businesses in target neighborhoods (Dupont Circle, 14th St, U St)
+- **Pitch & educate:** Explain the Helium Network and why hosting a hotspot is a no-brainer for local businesses
+- **Close installs:** Guide prospects from first conversation to signed agreement to live deployment
+- **Hit your targets:** Stay active and meet monthly install goals
 
 ---
 
-## Excluded Venue Types (Never Qualify)
+## Who You Are
 
-| Exclusion | Reason |
-|-----------|--------|
-| Residential addresses | Not commercial deployment |
-| Ambassador's own home/business | Conflict of interest |
-| Family member's business | Conflict of interest |
-| Venues outside target neighborhoods | Not part of density strategy |
-| National chains requiring corporate approval | Install unlikely to complete |
-| Venues with existing Helium hotspot | Duplicate coverage |
-| Temporary/pop-up locations | No long-term value |
-| Venues closing within 6 months | Wasted hardware |
+- Based in DC with knowledge of Dupont Circle and/or 14th St/U St areas
+- Comfortable walking into businesses and starting conversations
+- Motivated by results — you like seeing direct payoff for your effort
+- Reliable and organized — you can manage a pipeline and follow through
+- Curious about crypto, wireless tech, or decentralized networks (no technical background required)
+
+**No experience required** — just hustle and communication skills. Sales, marketing, or hospitality background is a plus but not necessary.
+
+---
+
+## How to Apply
+
+Send a short email to [EMAIL] with:
+1. Your name and phone number
+2. Why you're interested (2-3 sentences is fine)
+3. Your availability (hours/week you can commit)
+
+No resume required. We'll set up a quick call to see if it's a fit.
+
+---
+
+*Help build the future of wireless in DC — and get paid well doing it.*
