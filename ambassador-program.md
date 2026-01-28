@@ -61,46 +61,37 @@ $1,000/month base salary for active ambassadors (minimum 5 installs/month to qua
 
 # Part 2: Job Description
 
-## The Opportunity
+> **Note:** The full public-facing job posting is in `ambassador-job-posting.md`. This section summarizes the role for internal reference.
 
-We're looking for a hustler to help grow the Helium Network in DC. Your job: get local businesses to host Helium Hotspots — small wireless devices that provide coverage and earn crypto rewards for the host.
+## Role Summary
 
-This is a field-based, commission-heavy role. You'll be walking into coffee shops, coworking spaces, breweries, and gyms to pitch a simple value prop: free hardware, passive income, zero effort for them. The more installs you close, the more you earn.
+**Title:** Helium Ambassador (Washington DC)
 
-**Ideal for:** Students, recent grads, or anyone with hustle who wants flexible hours and uncapped earning potential.
+**Core Responsibility:** Drive Helium Hotspot deployments by approaching and educating local businesses, property owners, and other commercial partners. Deployments create wireless coverage to benefit undercovered areas.
 
----
-
-## What You'll Do
-
-- **Source hosts:** Identify and approach businesses in target neighborhoods (Dupont Circle, 14th St, U St)
-- **Pitch & educate:** Explain the Helium Network and why hosting a hotspot is a no-brainer for local businesses
-- **Close installs:** Guide prospects from first conversation to signed agreement to live deployment
-- **Hit your targets:** Stay active and meet monthly install goals
+**Type:** Short-term contract with potential to grow into something more.
 
 ---
 
-## Who You Are
+## Key Responsibilities
 
-- Based in DC with knowledge of Dupont Circle and/or 14th St/U St areas
-- Comfortable walking into businesses and starting conversations
-- Motivated by results — you like seeing direct payoff for your effort
-- Reliable and organized — you can manage a pipeline and follow through
-- Curious about crypto, wireless tech, or decentralized networks (no technical background required)
+### Drive Helium Hotspot Deployments
+- Target neighborhoods (Dupont Circle, 14th St, U St) and build a pipeline of hosts
+- Own the full funnel — outreach, education, onboarding, deployment follow-through
+- Work closely with builders and technical operators for quality installations
+- Leverage existing channels (chambers of commerce, real estate networks, MSPs)
 
-**No experience required** — just hustle and communication skills. Sales, marketing, or hospitality background is a plus but not necessary.
-
----
-
-## How to Apply
-
-Send a short email to [EMAIL] with:
-1. Your name and phone number
-2. Why you're interested (2-3 sentences is fine)
-3. Your availability (hours/week you can commit)
-
-No resume required. We'll set up a quick call to see if it's a fit.
+### Educate The Community
+- Evangelize Helium and the social impact of decentralized wireless
+- Educate non-technical stakeholders on the benefits of providing coverage
+- Create feedback loops with local partners and report to Helium Foundation
 
 ---
 
-*Help build the future of wireless in DC — and get paid well doing it.*
+## Ideal Candidate
+
+- 1+ years in partnerships, business development, sales, or field marketing — or equivalent hustle
+- Strong local network and street-level knowledge of D.C. neighborhoods
+- Clear communicator, motivated by outcomes
+- Experience with small businesses or local organizations is a plus
+- Crypto-native or curious — passion for innovative technology essential
