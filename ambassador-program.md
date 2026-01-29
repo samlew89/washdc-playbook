@@ -6,56 +6,53 @@
 
 ---
 
-# Part 1: Commission Structure Options
+# Part 1: Compensation Plan — Salary + Commission
 
-## Option A: Simple Flat Rate
+## Overview
 
-**Best for:** Pilot program, simple tracking, predictable costs
+Ambassadors are the primary sourcing channel for venue leads in Washington DC. The role combines a stable monthly base with per-install commissions, and gives ambassadors the flexibility to either self-install or route leads to our deployer network.
+
+Hardware is **free for hosts** — no cost to the venue, which significantly reduces friction in closing leads.
+
+---
+
+## Monthly Base Salary
+
+**$3,000/month** for active ambassadors (minimum 5 verified installs per month to qualify).
+
+---
+
+## Commission Per Install
 
 | Install Type | Commission |
 |--------------|------------|
 | Indoor hotspot installed + verified | $75 |
 | Outdoor hotspot installed + verified | $50 |
 
-**Pros:** Easy to understand, easy to track
-**Cons:** No incentive for high-value venues
+---
+
+## Install Routing Options
+
+Once an ambassador sources a qualified venue lead, they choose one of two paths:
+
+### Option A: Self-Install
+
+The ambassador installs the hardware themselves using a provided welcome pack (hotspot + mounting kit). The ambassador earns a **25% cut of the welcome pack value** on top of their per-install commission.
+
+### Option B: Route to Deployer Network
+
+The ambassador hands the lead off to a verified deployer for installation. The ambassador earns the standard per-install commission above.
 
 ---
 
-## Option B: Tiered Performance
+## Earnings Examples
 
-**Best for:** Motivating high performers, scaling effort
-
-| Monthly Installs | Indoor Rate | Outdoor Rate |
-|------------------|-------------|--------------|
-| 1-5 installs | $60 | $40 |
-| 6-15 installs | $75 | $50 |
-| 16-30 installs | $90 | $60 |
-| 31+ installs | $100 | $75 |
-
-**Tier resets monthly.** Ambassadors climb tiers as they close more installs.
-
-**Pros:** Rewards consistent performers, encourages volume
-**Cons:** May incentivize quantity over quality
-
----
-
-## Option C: Salary + Commission (RECOMMENDED)
-
-**Best for:** Providing income stability while rewarding performance
-
-### Monthly Base Salary
-
-$1,000/month base salary for active ambassadors (minimum 5 installs/month to qualify)
-
-### Base Commission
-
-| Install Type | Base Commission |
-|--------------|-----------------|
-| Indoor hotspot | $60 |
-| Outdoor hotspot | $40 |
-
-**Realistic earnings:** An active ambassador closing 8-10 installs/month can earn **$1,500-1,600+/month** part-time.
+| Scenario | Base Salary | Indoor Installs | Outdoor Installs | Commission | **Total Monthly** |
+|----------|-------------|-----------------|------------------|------------|-------------------|
+| Minimum threshold | $3,000 | 5 × $75 | — | $375 | **$3,375** |
+| Moderate performer | $3,000 | 8 × $75 | 2 × $50 | $700 | **$3,700** |
+| Strong performer | $3,000 | 12 × $75 | 5 × $50 | $1,150 | **$4,150** |
+| Top performer | $3,000 | 20 × $75 | 8 × $50 | $1,900 | **$4,900** |
 
 ---
 
