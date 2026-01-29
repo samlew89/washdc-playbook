@@ -128,12 +128,10 @@
 | ambassador_id | Lookup | — | Yes |
 | business_name | Lookup | — | Auto |
 | micro_zone | Lookup | — | Auto |
-| install_type | Dropdown | `Indoor`, `Outdoor`, `Combo` | Yes |
-| base_amount | Currency | — | Yes |
-| zone_multiplier | Dropdown | `1.0x`, `1.2x`, `1.5x`, `2.0x` | Yes |
-| tier_multiplier | Dropdown | `1.0x`, `1.25x` | Yes |
-| cluster_bonus | Currency | — | No |
-| speed_bonus | Currency | — | No |
+| install_type | Dropdown | `Indoor`, `Outdoor` | Yes |
+| install_route | Dropdown | `Self-Install`, `Deployer Network` | Yes |
+| base_commission | Currency | — | Yes |
+| welcome_pack_cut | Currency | — | No |
 | total_commission | Currency | — | Formula |
 | status | Dropdown | `Pending Verification`, `Approved`, `Paid`, `Clawback` | Yes |
 | payout_date | Date | — | No |
@@ -204,42 +202,37 @@
 
 ### Weekly Commission Report Template
 
-| Ambassador | Zone | Venue | Install Type | Base | Zone Mult | Tier Mult | Cluster | Speed | **Total** | Status |
-|------------|------|-------|--------------|------|-----------|-----------|---------|-------|-----------|--------|
-| @marcus_dc | D1 | Compass Coffee | Combo | $80 | 1.5x | 1.25x | — | +$15 | **$165** | Pending |
-| @marcus_dc | D1 | Kramerbooks | Indoor | $40 | 1.5x | 1.0x | +$25 | — | **$85** | Pending |
-| @marcus_dc | D1 | Teaism | Indoor | $40 | 1.5x | 1.25x | +$25 | — | **$100** | Pending |
-| @sarah_14th | U1 | Busboys & Poets | Outdoor | $60 | 1.5x | 1.25x | — | +$15 | **$127** | Approved |
-| @sarah_14th | U2 | Nellie's | Combo | $80 | 1.5x | 1.0x | — | — | **$120** | Approved |
-| @jenna_dupont | D2 | JR's Bar | Indoor | $40 | 1.5x | 1.0x | — | — | **$60** | Paid |
+| Ambassador | Zone | Venue | Install Type | Route | Commission | Welcome Pack Cut | **Total** | Status |
+|------------|------|-------|--------------|-------|------------|------------------|-----------|--------|
+| @marcus_dc | D1 | Compass Coffee | Indoor | Self-Install | $75 | +$X | **$75+** | Pending |
+| @marcus_dc | D1 | Kramerbooks | Indoor | Deployer | $75 | — | **$75** | Pending |
+| @marcus_dc | D1 | Teaism | Outdoor | Self-Install | $50 | +$X | **$50+** | Pending |
+| @sarah_14th | U1 | Busboys & Poets | Indoor | Deployer | $75 | — | **$75** | Approved |
+| @sarah_14th | U2 | Nellie's | Outdoor | Deployer | $50 | — | **$50** | Approved |
+| @jenna_dupont | D2 | JR's Bar | Indoor | Self-Install | $75 | +$X | **$75+** | Paid |
 
 ### Commission Calculation Quick Reference
 
-| Install Type | Base |
-|--------------|------|
-| Indoor | $40 |
-| Outdoor | $60 |
-| Combo | $80 |
+| Install Type | Commission |
+|--------------|------------|
+| Indoor hotspot installed + verified | $75 |
+| Outdoor hotspot installed + verified | $50 |
 
-| Multiplier | Condition | Value |
-|------------|-----------|-------|
-| Zone | Priority zone (D1, D2, U1, U2) | 1.5x |
-| Zone | Anchor node (corner + outdoor + 75+ score) | 2.0x |
-| Tier | Tier 1 venue | 1.25x |
+| Route | Additional Earnings |
+|-------|---------------------|
+| Self-Install (welcome pack) | 25% cut of welcome pack value |
+| Route to Deployer Network | Standard commission only |
 
-| Bonus | Condition | Amount |
-|-------|-----------|--------|
-| Cluster | 3+ installs within 300ft | +$25 each |
-| Speed | Install <48hrs from lead | +$15 |
+**Monthly base salary:** $3,000 (minimum 5 verified installs/month to qualify)
 
 ### Weekly Leaderboard Template
 
-| Rank | Ambassador | Installs | Earnings | Top Category |
-|------|------------|----------|----------|--------------|
-| 1 | @marcus_dc | 12 | $847 | Most Installs |
-| 2 | @sarah_14th | 9 | $612 | Outdoor Champ |
-| 3 | @jenna_dupont | 8 | $589 | Highest Density |
-| 4 | @tyrell_nw | 6 | $423 | Best Anchors |
+| Rank | Ambassador | Installs | Commission | Top Category |
+|------|------------|----------|------------|--------------|
+| 1 | @marcus_dc | 12 | $900 | Most Installs |
+| 2 | @sarah_14th | 9 | $675 | Outdoor Champ |
+| 3 | @jenna_dupont | 8 | $600 | Most Self-Installs |
+| 4 | @tyrell_nw | 6 | $450 | Best Anchors |
 
 ---
 

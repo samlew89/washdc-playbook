@@ -74,7 +74,7 @@ The dashboard should prioritize:
 
 ### Programs
 - [x] Added Deployer Bootcamp page (from PDF content)
-- [x] Ambassador Program trimmed to Parts 1-2 only (Commission Structure + Job Description)
+- [x] Ambassador Program trimmed to Parts 1-2 only (Compensation Plan + Job Description)
 - [x] Ambassador job posting formatted to match official Helium Foundation template
 - [x] Job posting adapted for Washington D.C. (experience requirement: 1+ years or equivalent hustle)
 
