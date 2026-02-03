@@ -9,10 +9,10 @@
 | Metric | Count |
 |--------|-------|
 | **Total Venues** | 2,743 |
-| **Priority (80+)** | ~130 |
-| **High (60-79)** | ~1,365 |
-| **Medium (45-59)** | ~950 |
-| **Low (<45)** | ~300 |
+| **Priority (85+)** | ~125 |
+| **High (60-84)** | ~1,685 |
+| **Medium (45-59)** | ~867 |
+| **Low (<45)** | ~66 |
 | **Neighborhoods** | 18 |
 | **Categories** | 8 |
 
@@ -82,12 +82,12 @@ Venues are scored 0-100 using five weighted categories. See [Venue Scoring Rubri
 | Operational Reliability | 10% | Medium | Category proxy (coffee shops = long hours) |
 
 **Score Tiers:**
-- **80+: Priority** - Immediate outreach, best candidates (~130 venues)
-- **60-79: High** - Good candidates, standard pipeline
+- **85+: Priority** - Immediate outreach, best candidates (~125 venues)
+- **60-84: High** - Good candidates, standard pipeline
 - **45-59: Medium** - Lower priority, pursue if capacity allows
 - **<45: Low** - Deprioritize unless situation changes
 
-*Note: Scoring uses continuous factors (log review count, rating multipliers) to create smooth distribution across the range.*
+*Note: Scoring uses continuous factors (log review count, category type) to create smooth distribution. Yelp ratings and price are NOT used in scoring.*
 
 ---
 
