@@ -79,10 +79,10 @@
 
         /* Category chips */
         .category-chips {
-            padding: 12px 20px;
+            padding: 14px 20px;
             background: #fff;
             display: flex;
-            gap: 8px;
+            gap: 12px;
             flex-wrap: wrap;
             align-items: center;
             border-bottom: 1px solid #eee;
@@ -90,10 +90,10 @@
         .category-chip {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            padding: 5px 10px;
-            border-radius: 16px;
-            font-size: 12px;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s;
@@ -111,8 +111,14 @@
             background: #e5e7eb;
         }
         .category-chip .chip-count {
-            font-size: 10px;
-            opacity: 0.8;
+            background: rgba(255,255,255,0.25);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .category-chip:not(.active) .chip-count {
+            background: rgba(0,0,0,0.08);
         }
 
         /* Venue list */
@@ -383,7 +389,7 @@
         let filteredVenues = [];
         let categories = {};
         let neighborhoods = new Set();
-        let activeCategories = new Set();
+        let selectedCategory = null; // null means "All"
 
         // Pagination
         let offset = 0;
@@ -492,34 +498,82 @@
             document.getElementById('avgScore').textContent = avg;
         }
 
+        // Get category counts for current neighborhood filter
+        function getCategoryCounts() {
+            const neighborhoodFilter = document.getElementById('neighborhoodFilter').value;
+            const counts = { all: 0 };
+
+            allVenues.forEach(v => {
+                if (neighborhoodFilter !== 'all' && v.neighborhood !== neighborhoodFilter) return;
+                counts.all++;
+                counts[v.category] = (counts[v.category] || 0) + 1;
+            });
+
+            return counts;
+        }
+
         // Build category chips
         function buildCategoryChips() {
             const container = document.getElementById('categoryChips');
             container.innerHTML = '';
 
+            const counts = getCategoryCounts();
+
+            // Add "All" chip first
+            const allChip = document.createElement('div');
+            allChip.className = 'category-chip active';
+            allChip.dataset.category = 'all';
+            allChip.innerHTML = `All <span class="chip-count">${counts.all}</span>`;
+            allChip.addEventListener('click', () => selectCategory(null));
+            container.appendChild(allChip);
+
+            // Sort categories by count
             const sortedCategories = Object.entries(categories)
                 .sort((a, b) => b[1] - a[1]);
 
-            sortedCategories.forEach(([cat, count]) => {
+            sortedCategories.forEach(([cat, _]) => {
+                const count = counts[cat] || 0;
                 const chip = document.createElement('div');
-                chip.className = 'category-chip active';
+                chip.className = 'category-chip';
                 chip.dataset.category = cat;
-                chip.innerHTML = `${cat} <span class="chip-count">(${count})</span>`;
-                chip.addEventListener('click', () => toggleCategory(cat, chip));
+                chip.innerHTML = `${cat} <span class="chip-count">${count}</span>`;
+                chip.addEventListener('click', () => selectCategory(cat));
                 container.appendChild(chip);
-                activeCategories.add(cat);
             });
         }
 
-        // Toggle category
-        function toggleCategory(category, chipElement) {
-            if (activeCategories.has(category)) {
-                activeCategories.delete(category);
-                chipElement.classList.remove('active');
-            } else {
-                activeCategories.add(category);
-                chipElement.classList.add('active');
-            }
+        // Update category chip counts (called when neighborhood changes)
+        function updateCategoryChipCounts() {
+            const counts = getCategoryCounts();
+            const chips = document.querySelectorAll('.category-chip');
+
+            chips.forEach(chip => {
+                const cat = chip.dataset.category;
+                const count = cat === 'all' ? counts.all : (counts[cat] || 0);
+                const countSpan = chip.querySelector('.chip-count');
+                if (countSpan) {
+                    countSpan.textContent = count;
+                }
+            });
+        }
+
+        // Select a single category (null = All)
+        function selectCategory(category) {
+            selectedCategory = category;
+
+            // Update chip styles
+            const chips = document.querySelectorAll('.category-chip');
+            chips.forEach(chip => {
+                const chipCat = chip.dataset.category;
+                if (category === null && chipCat === 'all') {
+                    chip.classList.add('active');
+                } else if (category === chipCat) {
+                    chip.classList.add('active');
+                } else {
+                    chip.classList.remove('active');
+                }
+            });
+
             applyFilters();
         }
 
@@ -544,7 +598,8 @@
                 if (search && !v.name.toLowerCase().includes(search) && !v.address.toLowerCase().includes(search)) return false;
                 if (neighborhood !== 'all' && v.neighborhood !== neighborhood) return false;
                 if (v.score < minScore) return false;
-                if (!activeCategories.has(v.category)) return false;
+                // Category filter: null means show all, otherwise filter by selected category
+                if (selectedCategory !== null && v.category !== selectedCategory) return false;
                 return true;
             }).sort((a, b) => b.score - a.score);
 
@@ -612,7 +667,10 @@
 
         // Event listeners
         document.getElementById('searchInput').addEventListener('input', applyFilters);
-        document.getElementById('neighborhoodFilter').addEventListener('change', applyFilters);
+        document.getElementById('neighborhoodFilter').addEventListener('change', function() {
+            updateCategoryChipCounts();
+            applyFilters();
+        });
         document.getElementById('scoreFilter').addEventListener('change', applyFilters);
 
         // Initialize

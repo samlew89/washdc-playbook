@@ -76,6 +76,50 @@
         }
         .filter-group input[type="text"] { min-width: 200px; }
 
+        /* Category chips */
+        .category-chips {
+            padding: 14px 20px;
+            background: #fff;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+        .category-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .category-chip.active {
+            background: #5e25fd;
+            color: white;
+        }
+        .category-chip:not(.active) {
+            background: #f3f4f6;
+            color: #4b5563;
+        }
+        .category-chip:not(.active):hover {
+            background: #e5e7eb;
+        }
+        .category-chip .chip-count {
+            background: rgba(255,255,255,0.25);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .category-chip:not(.active) .chip-count {
+            background: rgba(0,0,0,0.08);
+        }
+
         /* Venue list */
         .venue-section {
             background: #fff;
@@ -291,12 +335,10 @@
                         <option value="all">All Neighborhoods</option>
                     </select>
                 </div>
-                <div class="filter-group">
-                    <label>Category:</label>
-                    <select id="categoryFilter">
-                        <option value="all">All Categories</option>
-                    </select>
-                </div>
+            </div>
+
+            <div class="category-chips" id="categoryChips">
+                <!-- Populated by JS -->
             </div>
 
             <div class="results-count" id="resultsCount">Loading...</div>
@@ -313,6 +355,7 @@
         let filteredVenues = [];
         let neighborhoods = new Set();
         let categories = {};
+        let selectedCategory = null; // null means "All"
 
         // Parse CSV with quoted fields
         function parseCSV(text) {
@@ -418,26 +461,96 @@
                 option.textContent = nb;
                 nbSelect.appendChild(option);
             });
+        }
 
-            const catSelect = document.getElementById('categoryFilter');
-            Object.entries(categories).sort((a, b) => b[1] - a[1]).forEach(([cat, count]) => {
-                const option = document.createElement('option');
-                option.value = cat;
-                option.textContent = `${cat} (${count})`;
-                catSelect.appendChild(option);
+        // Get category counts for current neighborhood filter
+        function getCategoryCounts() {
+            const neighborhoodFilter = document.getElementById('neighborhoodFilter').value;
+            const counts = { all: 0 };
+
+            priorityVenues.forEach(v => {
+                if (neighborhoodFilter !== 'all' && v.neighborhood !== neighborhoodFilter) return;
+                counts.all++;
+                counts[v.category] = (counts[v.category] || 0) + 1;
             });
+
+            return counts;
+        }
+
+        // Build category chips
+        function buildCategoryChips() {
+            const container = document.getElementById('categoryChips');
+            container.innerHTML = '';
+
+            const counts = getCategoryCounts();
+
+            // Add "All" chip first
+            const allChip = document.createElement('div');
+            allChip.className = 'category-chip active';
+            allChip.dataset.category = 'all';
+            allChip.innerHTML = `All <span class="chip-count">${counts.all}</span>`;
+            allChip.addEventListener('click', () => selectCategory(null));
+            container.appendChild(allChip);
+
+            // Sort categories by count
+            const sortedCategories = Object.entries(categories)
+                .sort((a, b) => b[1] - a[1]);
+
+            sortedCategories.forEach(([cat, _]) => {
+                const count = counts[cat] || 0;
+                if (count === 0) return; // Skip categories with no venues in current filter
+                const chip = document.createElement('div');
+                chip.className = 'category-chip';
+                chip.dataset.category = cat;
+                chip.innerHTML = `${cat} <span class="chip-count">${count}</span>`;
+                chip.addEventListener('click', () => selectCategory(cat));
+                container.appendChild(chip);
+            });
+        }
+
+        // Update category chip counts
+        function updateCategoryChipCounts() {
+            const counts = getCategoryCounts();
+            const chips = document.querySelectorAll('.category-chip');
+
+            chips.forEach(chip => {
+                const cat = chip.dataset.category;
+                const count = cat === 'all' ? counts.all : (counts[cat] || 0);
+                const countSpan = chip.querySelector('.chip-count');
+                if (countSpan) {
+                    countSpan.textContent = count;
+                }
+            });
+        }
+
+        // Select a single category (null = All)
+        function selectCategory(category) {
+            selectedCategory = category;
+
+            const chips = document.querySelectorAll('.category-chip');
+            chips.forEach(chip => {
+                const chipCat = chip.dataset.category;
+                if (category === null && chipCat === 'all') {
+                    chip.classList.add('active');
+                } else if (category === chipCat) {
+                    chip.classList.add('active');
+                } else {
+                    chip.classList.remove('active');
+                }
+            });
+
+            applyFilters();
         }
 
         // Apply filters
         function applyFilters() {
             const search = document.getElementById('searchInput').value.toLowerCase();
             const neighborhood = document.getElementById('neighborhoodFilter').value;
-            const category = document.getElementById('categoryFilter').value;
 
             filteredVenues = priorityVenues.filter(v => {
                 if (search && !v.name.toLowerCase().includes(search) && !v.address.toLowerCase().includes(search)) return false;
                 if (neighborhood !== 'all' && v.neighborhood !== neighborhood) return false;
-                if (category !== 'all' && v.category !== category) return false;
+                if (selectedCategory !== null && v.category !== selectedCategory) return false;
                 return true;
             }).sort((a, b) => b.score - a.score);
 
@@ -477,6 +590,7 @@
                 // Update UI
                 updateStats();
                 buildDropdowns();
+                buildCategoryChips();
                 renderVenueList();
 
             } catch (error) {
@@ -487,8 +601,10 @@
 
         // Event listeners
         document.getElementById('searchInput').addEventListener('input', applyFilters);
-        document.getElementById('neighborhoodFilter').addEventListener('change', applyFilters);
-        document.getElementById('categoryFilter').addEventListener('change', applyFilters);
+        document.getElementById('neighborhoodFilter').addEventListener('change', function() {
+            updateCategoryChipCounts();
+            applyFilters();
+        });
 
         // Initialize
         loadData();
