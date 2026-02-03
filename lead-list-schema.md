@@ -107,6 +107,10 @@
 
 ## Scoring Rubrics
 
+> **Note:** This schema uses a **post-contact qualification scoring** system (Indoor + Outdoor = 0-100) that differs from the **lead generation scoring** in [venue-scoring-rubric.md](venue-scoring-rubric.md).
+> - **Lead generation score** (venue-scoring-rubric.md): Used by scrapers to prioritize initial outreach based on API-observable data
+> - **Qualification score** (this schema): Used after contact to score venues based on verified placement viability
+
 ### Indoor Score (0-50 points)
 
 | Factor | Points | Scoring Logic |

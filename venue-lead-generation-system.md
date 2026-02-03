@@ -9,7 +9,9 @@
 | Metric | Count |
 |--------|-------|
 | **Total Venues** | 2,743 |
-| **Priority (Score 85+)** | 583 |
+| **HOT (Score 75+)** | 1 |
+| **WARM (Score 55-74)** | 1,458 |
+| **COOL (Score <55)** | 1,284 |
 | **Neighborhoods** | 18 |
 | **Categories** | 8 |
 
@@ -68,25 +70,23 @@
 
 ## Scoring Methodology
 
-Venues are scored 70-95 based on Yelp data:
+Venues are scored 0-100 using five weighted categories. See [Venue Scoring Rubric](venue-scoring-rubric.md) for full details.
 
-| Factor | Points |
-|--------|--------|
-| Base Score | 70 |
-| Rating 4.5+ | +15 |
-| Rating 4.0-4.4 | +10 |
-| Rating 3.5-3.9 | +5 |
-| 500+ Reviews | +10 |
-| 200-499 Reviews | +7 |
-| 100-199 Reviews | +5 |
-| 50-99 Reviews | +3 |
-| Price $$$ or $$$$ | +3 |
+| Category | Weight | Confidence | Data Source |
+|----------|--------|------------|-------------|
+| Outdoor Mounting Viability | 35% | High | Category inference (rooftop bars, patios) |
+| Location & Line-of-Sight | 25% | Low | Neutral baseline (can't detect corners from API) |
+| Foot Traffic & Dwell Time | 15% | Medium | Review count + category (coffee = high dwell) |
+| Permissioning Speed | 15% | Low | Chain detection + category (independent = better) |
+| Operational Reliability | 10% | Medium | Category proxy (coffee shops = long hours) |
 
 **Score Tiers:**
-- **85-95: Priority** - High visibility, popular venues
-- **70-84: High** - Good deployment candidates
-- **50-69: Medium** - Consider for coverage
-- **<50: Low** - Lower priority
+- **75+: HOT** - Priority outreach, likely fast close
+- **55-74: WARM** - Good candidates, standard pipeline
+- **40-54: COOL** - Lower priority, pursue if capacity allows
+- **<40: SKIP** - Deprioritize unless situation changes
+
+*Note: Scores are conservative because Location (25%) uses neutral baseline — corner lot detection requires manual verification.*
 
 ---
 
@@ -118,6 +118,9 @@ python3 scrape_dc_venues_yelp.py
 # Using Google Places API (alternative)
 # Set GOOGLE_PLACES_API_KEY environment variable first
 python3 scrape_dc_venues.py
+
+# Re-score existing venues without re-scraping
+python3 rescore_venues.py
 ```
 
 Output files:

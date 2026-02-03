@@ -124,10 +124,12 @@ Dupont Circle, Logan Circle, 14th Street Corridor, U Street, Shaw, Adams Morgan,
 - CSV columns: ID, Name, Address, Category, Neighborhood, Rating, Reviews, Price, Score, Lat, Lng, Phone, YelpID
 
 ### Key Thresholds
-- Priority venue: Score >= 85
-- High: Score 70-84
-- Medium: Score 50-69
-- Min score in data: ~70 (Yelp-based scoring)
+- HOT: Score >= 75 (priority outreach)
+- WARM: Score 55-74 (good candidates)
+- COOL: Score 40-54 (lower priority)
+- SKIP: Score < 40 (deprioritize)
+
+*Note: Scores are conservative — Location category (25%) uses neutral baseline since corner lot detection requires manual verification.*
 
 ### Scoring Algorithm (Yelp-based)
 - Outdoor Mounting Viability: 35% (inferred from category)
