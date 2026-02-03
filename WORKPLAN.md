@@ -29,11 +29,16 @@ The dashboard should prioritize:
 ### Neighborhoods Now Covered
 Dupont Circle, Logan Circle, 14th Street Corridor, U Street, Shaw, Adams Morgan, Columbia Heights, Petworth, H Street NE, Capitol Hill/Barracks Row, Navy Yard/The Wharf, Penn Quarter/Chinatown, Georgetown, Glover Park, Woodley Park/Cleveland Park, Brookland, NoMa/Union Market, Mount Pleasant
 
-### Data Files Updated
+### Data Files
 - `dc-venues.csv` - 2,743 venues with Yelp data
 - `dc-venues.geojson` - Updated geographic data
 - `dc-venues-yelp-raw.json` - Raw API response backup
-- Old files preserved as `*-old.csv`
+
+### Codebase Cleanup
+- [x] Removed old data files (`*-old.csv`, duplicate CSVs)
+- [x] Removed obsolete scripts (`check_closed_venues.py`, `clean_venue_lists.py`)
+- [x] Removed intermediate JSON files
+- [x] Added missing docs to sidebar (`venue-lead-generation-system.md`, `7-day-sprint-plan.md`)
 
 ---
 
@@ -103,15 +108,11 @@ Dupont Circle, Logan Circle, 14th Street Corridor, U Street, Shaw, Adams Morgan,
 - [x] Job posting adapted for Washington D.C. (experience requirement: 1+ years or equivalent hustle)
 
 ### Venue Data Cleanup (Jan 2026)
-- [x] Used Yelp API to check all 600 venues for permanent closures
-- [x] Removed 20 permanently closed venues
-- [x] Removed 44 duplicate venues (same name+address in both files)
-- [x] New totals: dupont-leads.csv (290), 14thu-leads.csv (246), Total: 536 venues
-- [x] Scripts saved for future re-verification:
-  - `check_closed_venues.py` - Check venues against Yelp API
-  - `clean_venue_lists.py` - Remove closed venues by ID
-  - `venue_check_results.json` - Full results from Yelp check
-  - `venue_cleanup_log.json` - Record of removals
+*Note: This work was superseded by the Feb 2026 Yelp API integration which replaced all manual venue data.*
+
+- [x] Used Yelp API to check venues for permanent closures
+- [x] Removed closed and duplicate venues
+- [x] Original totals: 536 venues across 2 neighborhoods
 
 ---
 
