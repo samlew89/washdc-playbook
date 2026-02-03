@@ -1,5 +1,7 @@
 # DC Venue Lead List — Spreadsheet Schema
 
+> **Note:** The venue data now covers 18 DC neighborhoods with 2,743 venues. See [venue-lead-generation-system.md](venue-lead-generation-system.md) for current data overview. This schema is for post-contact qualification tracking.
+
 ## Schema Overview
 
 **Total columns:** 42
@@ -33,7 +35,7 @@
 
 | # | Column Name | Allowed Values | Definition | Example |
 |---|-------------|----------------|------------|---------|
-| 9 | `neighborhood` | Dupont Circle, 14th St + U St | Target neighborhood | Dupont Circle |
+| 9 | `neighborhood` | All DC neighborhoods (see venue map) | Target neighborhood | Dupont Circle |
 | 10 | `micro_zone` | D1-Connecticut Ave, D2-17th St, D3-P St, D4-Dupont Ring, U1-14th St Main, U2-U St Corridor, U3-13th St, U4-V/W Side Streets | Specific zone within neighborhood | D1-Connecticut Ave |
 | 11 | `street_address` | Free text | Full street address | 1535 Connecticut Ave NW |
 | 12 | `cross_street` | Free text | Nearest cross street for routing | Q St NW |

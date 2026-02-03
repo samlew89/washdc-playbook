@@ -1,5 +1,7 @@
 # DC Hyper-Density Operating System
 
+> **Note:** This operating system focuses on the priority deployment corridors (Dupont Circle + 14th/U St). The full venue dataset now covers 18 DC neighborhoods with 2,743 venues — see [venue-lead-generation-system.md](venue-lead-generation-system.md). Neighborhood dropdowns can be expanded as operations scale beyond the initial corridors.
+
 ---
 
 ## 1. Spreadsheet Tabs + Columns + Dropdown Values

@@ -2,7 +2,9 @@
 
 ## Program Overview
 
-**Mission:** Recruit local ambassadors to source qualified venue installations in Dupont Circle and 14th St/U St corridors, paying commission only for verified, high-quality deployments.
+**Mission:** Recruit local ambassadors to source qualified venue installations across Washington DC neighborhoods, paying commission only for verified, high-quality deployments.
+
+> **Current coverage:** 18 neighborhoods with 2,743 mapped venues. Priority corridors: Dupont Circle, 14th St/U St. See [venue-lead-generation-system.md](venue-lead-generation-system.md) for full data.
 
 ---
 
