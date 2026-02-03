@@ -172,13 +172,12 @@ This rubric is optimized for **outdoor coverage density**, not just indoor insta
 
 ## Score Interpretation
 
-| Score Range | Priority | Action |
-|-------------|----------|--------|
-| **85-100** | CRITICAL | Anchor node — install within 48 hrs if possible |
-| **70-84** | HIGH | Priority install — schedule within 1 week |
-| **55-69** | MEDIUM | Standard pipeline — schedule within 2 weeks |
-| **40-54** | LOW | Backfill candidate — install if capacity allows |
-| **0-39** | DEPRIORITIZE | Do not pursue unless situation changes |
+| Score Range | Priority | Action | ~Count |
+|-------------|----------|--------|--------|
+| **80-100** | PRIORITY | Immediate outreach — best candidates | ~130 |
+| **60-79** | HIGH | Standard pipeline — schedule within 1 week | ~1,365 |
+| **45-59** | MEDIUM | Lower priority — pursue if capacity allows | ~950 |
+| **0-44** | LOW | Deprioritize — revisit only if situation changes | ~300 |
 
 ---
 

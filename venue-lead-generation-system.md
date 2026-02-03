@@ -9,9 +9,10 @@
 | Metric | Count |
 |--------|-------|
 | **Total Venues** | 2,743 |
-| **HOT (Score 75+)** | 1 |
-| **WARM (Score 55-74)** | 1,458 |
-| **COOL (Score <55)** | 1,284 |
+| **Priority (80+)** | ~130 |
+| **High (60-79)** | ~1,365 |
+| **Medium (45-59)** | ~950 |
+| **Low (<45)** | ~300 |
 | **Neighborhoods** | 18 |
 | **Categories** | 8 |
 
@@ -81,12 +82,12 @@ Venues are scored 0-100 using five weighted categories. See [Venue Scoring Rubri
 | Operational Reliability | 10% | Medium | Category proxy (coffee shops = long hours) |
 
 **Score Tiers:**
-- **75+: HOT** - Priority outreach, likely fast close
-- **55-74: WARM** - Good candidates, standard pipeline
-- **40-54: COOL** - Lower priority, pursue if capacity allows
-- **<40: SKIP** - Deprioritize unless situation changes
+- **80+: Priority** - Immediate outreach, best candidates (~130 venues)
+- **60-79: High** - Good candidates, standard pipeline
+- **45-59: Medium** - Lower priority, pursue if capacity allows
+- **<45: Low** - Deprioritize unless situation changes
 
-*Note: Scores are conservative because Location (25%) uses neutral baseline — corner lot detection requires manual verification.*
+*Note: Scoring uses continuous factors (log review count, rating multipliers) to create smooth distribution across the range.*
 
 ---
 

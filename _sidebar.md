@@ -3,6 +3,7 @@
 
 * **Dashboard**
   * [Lead List & Pipeline](lead-list.md)
+  * [Priority Venues](priority-venues.html ':ignore')
   * [Venue Map](density-map.html ':ignore')
   * [Venue List](venue-list.html ':ignore')
 

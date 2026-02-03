@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="robots" content="noindex, nofollow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DC Venue Pipeline</title>
+    <title>Priority Venues - DC</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -17,14 +17,13 @@
         }
 
         .header {
-            background: #fff;
-            color: #000;
+            background: linear-gradient(135deg, #5e25fd 0%, #7c4dff 100%);
+            color: #fff;
             padding: 30px 20px;
             text-align: center;
-            border-bottom: 1px solid #eee;
         }
         .header h1 { font-size: 32px; margin-bottom: 8px; font-weight: 900; }
-        .header p { color: #7d7d7d; font-size: 15px; }
+        .header p { color: rgba(255,255,255,0.8); font-size: 15px; }
 
         .stats {
             background: #f7f7f7;
@@ -40,7 +39,7 @@
         .stat-value { font-size: 28px; font-weight: 700; color: #5e25fd; }
         .stat-label { font-size: 11px; color: #7d7d7d; text-transform: uppercase; letter-spacing: 1px; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
 
         /* Filters */
         .filters {
@@ -76,44 +75,6 @@
             border-color: #5e25fd;
         }
         .filter-group input[type="text"] { min-width: 200px; }
-
-        /* Category chips */
-        .category-chips {
-            padding: 12px 20px;
-            background: #fff;
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            align-items: center;
-            border-bottom: 1px solid #eee;
-        }
-        .category-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 5px 10px;
-            border-radius: 16px;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            user-select: none;
-        }
-        .category-chip.active {
-            background: #5e25fd;
-            color: white;
-        }
-        .category-chip:not(.active) {
-            background: #f3f4f6;
-            color: #4b5563;
-        }
-        .category-chip:not(.active):hover {
-            background: #e5e7eb;
-        }
-        .category-chip .chip-count {
-            font-size: 10px;
-            opacity: 0.8;
-        }
 
         /* Venue list */
         .venue-section {
@@ -189,44 +150,15 @@
             font-weight: 700;
             font-size: 16px;
             color: white;
+            background: #5e25fd;
         }
-        .score-critical { background: #5e25fd; }
-        .score-high { background: #036afd; }
-        .score-medium { background: #f97316; }
-        .score-low { background: #ef4444; }
 
         .score-tier {
             font-size: 10px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-        }
-
-        /* Show more button */
-        .show-more {
-            padding: 15px 20px;
-            text-align: center;
-            border-top: 1px solid #eee;
-        }
-        .show-more button {
-            background: #5e25fd;
-            color: white;
-            border: none;
-            padding: 10px 30px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            font-family: 'Figtree', sans-serif;
-            transition: background 0.2s;
-        }
-        .show-more button:hover { background: #4a1dcc; }
-
-        /* Empty state */
-        .empty-state {
-            padding: 40px 20px;
-            text-align: center;
-            color: #666;
+            color: #5e25fd;
         }
 
         /* Results count */
@@ -239,6 +171,27 @@
         }
         .results-count strong {
             color: #5e25fd;
+        }
+
+        /* Empty state */
+        .empty-state {
+            padding: 40px 20px;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Back link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .back-link:hover {
+            color: #fff;
         }
 
         /* Mobile styles */
@@ -282,15 +235,6 @@
                 width: 100%;
             }
 
-            .category-chips {
-                padding: 10px 16px;
-                overflow-x: auto;
-                flex-wrap: nowrap;
-            }
-            .category-chip {
-                flex-shrink: 0;
-            }
-
             .venue-card {
                 grid-template-columns: 1fr;
                 padding: 12px 16px;
@@ -310,30 +254,27 @@
 </head>
 <body>
     <div class="header">
-        <h1>DC Venue Pipeline</h1>
-        <p>All DC Neighborhoods</p>
+        <a href="venue-list.html" class="back-link">&larr; All Venues</a>
+        <h1>Priority Venues</h1>
+        <p>Top-scoring venues for immediate outreach (Score 80+)</p>
     </div>
 
     <div class="stats">
         <div class="stat">
-            <div class="stat-value" id="totalVenues">-</div>
-            <div class="stat-label">Total Venues</div>
-        </div>
-        <div class="stat">
-            <div class="stat-value" id="priorityVenues">-</div>
-            <div class="stat-label">Priority (80+)</div>
+            <div class="stat-value" id="priorityCount">-</div>
+            <div class="stat-label">Priority Venues</div>
         </div>
         <div class="stat">
             <div class="stat-value" id="neighborhoodCount">-</div>
             <div class="stat-label">Neighborhoods</div>
         </div>
         <div class="stat">
-            <div class="stat-value" id="categoryCount">-</div>
-            <div class="stat-label">Categories</div>
-        </div>
-        <div class="stat">
             <div class="stat-value" id="avgScore">-</div>
             <div class="stat-label">Avg Score</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value" id="topCategory">-</div>
+            <div class="stat-label">Top Category</div>
         </div>
     </div>
 
@@ -351,43 +292,27 @@
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label>Min Score:</label>
-                    <select id="scoreFilter">
-                        <option value="0">Any Score</option>
-                        <option value="80">80+ (Priority)</option>
-                        <option value="60">60+ (High)</option>
-                        <option value="45">45+ (Medium+)</option>
+                    <label>Category:</label>
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
                     </select>
                 </div>
-            </div>
-
-            <div class="category-chips" id="categoryChips">
-                <!-- Populated by JS -->
             </div>
 
             <div class="results-count" id="resultsCount">Loading...</div>
 
             <div class="venue-list" id="venueList">
-                <div class="empty-state">Loading venues...</div>
-            </div>
-
-            <div class="show-more" id="showMore" style="display: none;">
-                <button onclick="showMore()">Show More</button>
+                <div class="empty-state">Loading priority venues...</div>
             </div>
         </div>
     </div>
 
     <script>
         // Data storage
-        let allVenues = [];
+        let priorityVenues = [];
         let filteredVenues = [];
-        let categories = {};
         let neighborhoods = new Set();
-        let activeCategories = new Set();
-
-        // Pagination
-        let offset = 0;
-        const PAGE_SIZE = 50;
+        let categories = {};
 
         // Parse CSV with quoted fields
         function parseCSV(text) {
@@ -431,20 +356,11 @@
                     lng: parseFloat(obj.Lng) || 0,
                     yelpId: obj.YelpID || ''
                 };
-            }).filter(v => v.lat !== 0 && v.lng !== 0);
-        }
-
-        // Get score tier
-        function getScoreTier(score) {
-            if (score >= 80) return { class: 'score-critical', label: 'Priority' };
-            if (score >= 60) return { class: 'score-high', label: 'High' };
-            if (score >= 45) return { class: 'score-medium', label: 'Medium' };
-            return { class: 'score-low', label: 'Low' };
+            }).filter(v => v.lat !== 0 && v.lng !== 0 && v.score >= 80);
         }
 
         // Render venue card
         function renderVenueCard(venue) {
-            const tier = getScoreTier(venue.score);
             const yelpUrl = venue.yelpId ? `https://www.yelp.com/biz/${venue.yelpId}` : `https://www.google.com/search?q=${encodeURIComponent(venue.name + ' ' + venue.address)}`;
 
             let ratingHtml = '';
@@ -470,8 +386,8 @@
                         </div>
                     </div>
                     <div class="venue-score">
-                        <div class="score-badge ${tier.class}">${venue.score}</div>
-                        <div class="score-tier">${tier.label}</div>
+                        <div class="score-badge">${venue.score}</div>
+                        <div class="score-tier">Priority</div>
                     </div>
                 </div>
             `;
@@ -479,58 +395,36 @@
 
         // Update stats
         function updateStats() {
-            const total = allVenues.length;
-            const priority = allVenues.filter(v => v.score >= 80).length;
+            const total = priorityVenues.length;
             const nbCount = neighborhoods.size;
-            const catCount = Object.keys(categories).length;
-            const avg = total > 0 ? Math.round(allVenues.reduce((a, b) => a + b.score, 0) / total) : 0;
+            const avg = total > 0 ? Math.round(priorityVenues.reduce((a, b) => a + b.score, 0) / total) : 0;
 
-            document.getElementById('totalVenues').textContent = total.toLocaleString();
-            document.getElementById('priorityVenues').textContent = priority.toLocaleString();
+            // Find top category
+            const sortedCats = Object.entries(categories).sort((a, b) => b[1] - a[1]);
+            const topCat = sortedCats.length > 0 ? sortedCats[0][0] : '-';
+
+            document.getElementById('priorityCount').textContent = total.toLocaleString();
             document.getElementById('neighborhoodCount').textContent = nbCount;
-            document.getElementById('categoryCount').textContent = catCount;
             document.getElementById('avgScore').textContent = avg;
+            document.getElementById('topCategory').textContent = topCat;
         }
 
-        // Build category chips
-        function buildCategoryChips() {
-            const container = document.getElementById('categoryChips');
-            container.innerHTML = '';
-
-            const sortedCategories = Object.entries(categories)
-                .sort((a, b) => b[1] - a[1]);
-
-            sortedCategories.forEach(([cat, count]) => {
-                const chip = document.createElement('div');
-                chip.className = 'category-chip active';
-                chip.dataset.category = cat;
-                chip.innerHTML = `${cat} <span class="chip-count">(${count})</span>`;
-                chip.addEventListener('click', () => toggleCategory(cat, chip));
-                container.appendChild(chip);
-                activeCategories.add(cat);
-            });
-        }
-
-        // Toggle category
-        function toggleCategory(category, chipElement) {
-            if (activeCategories.has(category)) {
-                activeCategories.delete(category);
-                chipElement.classList.remove('active');
-            } else {
-                activeCategories.add(category);
-                chipElement.classList.add('active');
-            }
-            applyFilters();
-        }
-
-        // Build neighborhood dropdown
-        function buildNeighborhoodDropdown() {
-            const select = document.getElementById('neighborhoodFilter');
+        // Build dropdowns
+        function buildDropdowns() {
+            const nbSelect = document.getElementById('neighborhoodFilter');
             Array.from(neighborhoods).sort().forEach(nb => {
                 const option = document.createElement('option');
                 option.value = nb;
                 option.textContent = nb;
-                select.appendChild(option);
+                nbSelect.appendChild(option);
+            });
+
+            const catSelect = document.getElementById('categoryFilter');
+            Object.entries(categories).sort((a, b) => b[1] - a[1]).forEach(([cat, count]) => {
+                const option = document.createElement('option');
+                option.value = cat;
+                option.textContent = `${cat} (${count})`;
+                catSelect.appendChild(option);
             });
         }
 
@@ -538,48 +432,30 @@
         function applyFilters() {
             const search = document.getElementById('searchInput').value.toLowerCase();
             const neighborhood = document.getElementById('neighborhoodFilter').value;
-            const minScore = parseInt(document.getElementById('scoreFilter').value) || 0;
+            const category = document.getElementById('categoryFilter').value;
 
-            filteredVenues = allVenues.filter(v => {
+            filteredVenues = priorityVenues.filter(v => {
                 if (search && !v.name.toLowerCase().includes(search) && !v.address.toLowerCase().includes(search)) return false;
                 if (neighborhood !== 'all' && v.neighborhood !== neighborhood) return false;
-                if (v.score < minScore) return false;
-                if (!activeCategories.has(v.category)) return false;
+                if (category !== 'all' && v.category !== category) return false;
                 return true;
             }).sort((a, b) => b.score - a.score);
 
-            offset = 0;
             renderVenueList();
         }
 
         // Render venue list
         function renderVenueList() {
             const list = document.getElementById('venueList');
-            const shown = filteredVenues.slice(0, offset + PAGE_SIZE);
 
-            document.getElementById('resultsCount').innerHTML = `Showing <strong>${shown.length}</strong> of <strong>${filteredVenues.length}</strong> venues`;
+            document.getElementById('resultsCount').innerHTML = `Showing <strong>${filteredVenues.length}</strong> priority venues`;
 
-            if (shown.length === 0) {
+            if (filteredVenues.length === 0) {
                 list.innerHTML = '<div class="empty-state">No venues match your filters</div>';
-                document.getElementById('showMore').style.display = 'none';
                 return;
             }
 
-            list.innerHTML = shown.map(v => renderVenueCard(v)).join('');
-
-            const showMoreDiv = document.getElementById('showMore');
-            if (shown.length < filteredVenues.length) {
-                showMoreDiv.style.display = 'block';
-                showMoreDiv.querySelector('button').textContent = `Show More (${filteredVenues.length - shown.length} remaining)`;
-            } else {
-                showMoreDiv.style.display = 'none';
-            }
-        }
-
-        // Show more
-        function showMore() {
-            offset += PAGE_SIZE;
-            renderVenueList();
+            list.innerHTML = filteredVenues.map(v => renderVenueCard(v)).join('');
         }
 
         // Load data
@@ -587,21 +463,20 @@
             try {
                 const response = await fetch('dc-venues.csv');
                 const text = await response.text();
-                allVenues = parseCSV(text);
+                priorityVenues = parseCSV(text);
 
                 // Build category and neighborhood lists
-                allVenues.forEach(v => {
+                priorityVenues.forEach(v => {
                     categories[v.category] = (categories[v.category] || 0) + 1;
                     neighborhoods.add(v.neighborhood);
                 });
 
                 // Initialize filtered data
-                filteredVenues = [...allVenues].sort((a, b) => b.score - a.score);
+                filteredVenues = [...priorityVenues].sort((a, b) => b.score - a.score);
 
                 // Update UI
                 updateStats();
-                buildCategoryChips();
-                buildNeighborhoodDropdown();
+                buildDropdowns();
                 renderVenueList();
 
             } catch (error) {
@@ -613,7 +488,7 @@
         // Event listeners
         document.getElementById('searchInput').addEventListener('input', applyFilters);
         document.getElementById('neighborhoodFilter').addEventListener('change', applyFilters);
-        document.getElementById('scoreFilter').addEventListener('change', applyFilters);
+        document.getElementById('categoryFilter').addEventListener('change', applyFilters);
 
         // Initialize
         loadData();

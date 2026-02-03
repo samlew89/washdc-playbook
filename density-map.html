@@ -512,13 +512,8 @@
         </div>
         <div class="control-group slider-container">
             <label>Min Score</label>
-            <input type="range" id="scoreFilter" min="40" max="80" value="40">
-            <span class="slider-value" id="scoreValue">40</span>
-        </div>
-        <div class="control-group slider-container">
-            <label>Min Rating</label>
-            <input type="range" id="ratingFilter" min="0" max="45" value="0" step="5">
-            <span class="slider-value" id="ratingValue">Any</span>
+            <input type="range" id="scoreFilter" min="30" max="90" value="30">
+            <span class="slider-value" id="scoreValue">30</span>
         </div>
     </div>
 
@@ -531,10 +526,10 @@
 
     <div class="legend">
         <h4>Score Tiers</h4>
-        <div class="legend-item"><div class="legend-dot" style="background: #5e25fd;"></div> HOT (75+)</div>
-        <div class="legend-item"><div class="legend-dot" style="background: #036afd;"></div> WARM (55-74)</div>
-        <div class="legend-item"><div class="legend-dot" style="background: #f97316;"></div> COOL (40-54)</div>
-        <div class="legend-item"><div class="legend-dot" style="background: #ef4444;"></div> SKIP (&lt;40)</div>
+        <div class="legend-item"><div class="legend-dot" style="background: #5e25fd;"></div> Priority (80+)</div>
+        <div class="legend-item"><div class="legend-dot" style="background: #036afd;"></div> High (60-79)</div>
+        <div class="legend-item"><div class="legend-dot" style="background: #f97316;"></div> Medium (45-59)</div>
+        <div class="legend-item"><div class="legend-dot" style="background: #ef4444;"></div> Low (&lt;45)</div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -613,19 +608,19 @@
             }).filter(v => v.lat !== 0 && v.lng !== 0);
         }
 
-        // Get color by score (matches new rubric tiers)
+        // Get color by score
         function getColor(score) {
-            if (score >= 75) return '#5e25fd';  // HOT
-            if (score >= 55) return '#036afd';  // WARM
-            if (score >= 40) return '#f97316';  // COOL
-            return '#ef4444';                   // SKIP
+            if (score >= 80) return '#5e25fd';  // Priority
+            if (score >= 60) return '#036afd';  // High
+            if (score >= 45) return '#f97316';  // Medium
+            return '#ef4444';                   // Low
         }
 
         // Get score class
         function getScoreClass(score) {
-            if (score >= 75) return 'high';
-            if (score >= 55) return 'medium-high';
-            if (score >= 40) return 'medium';
+            if (score >= 80) return 'high';
+            if (score >= 60) return 'medium-high';
+            if (score >= 45) return 'medium';
             return 'low';
         }
 
@@ -784,12 +779,10 @@
 
             const neighborhoodFilter = document.getElementById('neighborhoodFilter').value;
             const minScore = Number(document.getElementById('scoreFilter').value);
-            const minRating = Number(document.getElementById('ratingFilter').value) / 10;
 
             let filtered = allVenues.filter(v => {
                 if (neighborhoodFilter !== 'all' && v.neighborhood !== neighborhoodFilter) return false;
                 if (v.score < minScore) return false;
-                if (minRating > 0 && v.rating < minRating) return false;
                 // Category filter: null means show all, otherwise filter by selected category
                 if (selectedCategory !== null && v.category !== selectedCategory) return false;
                 return true;
@@ -851,9 +844,8 @@
                 buildCategoryChips();
                 buildNeighborhoodDropdown();
 
-                // Initialize sliders
+                // Initialize slider
                 updateSliderVisual(document.getElementById('scoreFilter'));
-                updateSliderVisual(document.getElementById('ratingFilter'));
 
                 // Initial render
                 renderMarkers();
@@ -867,13 +859,6 @@
         // Event listeners
         document.getElementById('scoreFilter').addEventListener('input', function() {
             document.getElementById('scoreValue').textContent = this.value;
-            updateSliderVisual(this);
-            renderMarkers();
-        });
-
-        document.getElementById('ratingFilter').addEventListener('input', function() {
-            const rating = this.value / 10;
-            document.getElementById('ratingValue').textContent = rating > 0 ? rating.toFixed(1) + '+' : 'Any';
             updateSliderVisual(this);
             renderMarkers();
         });
