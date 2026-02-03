@@ -433,7 +433,7 @@ def main():
     output_rows.sort(key=lambda x: (x["Neighborhood"], -x["Score"]))
 
     # Write CSV
-    output_file = "dc-venues-yelp.csv"
+    output_file = "dc-venues.csv"
     with open(output_file, "w", newline="", encoding="utf-8") as f:
         fieldnames = ["ID", "Name", "Address", "Category", "Neighborhood", "Rating", "Reviews", "Price", "Score", "Lat", "Lng", "Phone", "YelpID"]
         writer = csv.DictWriter(f, fieldnames=fieldnames)

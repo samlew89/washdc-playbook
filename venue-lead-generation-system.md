@@ -125,5 +125,5 @@ python3 rescore_venues.py
 ```
 
 Output files:
-- `dc-venues-yelp.csv` / `dc-venues.csv`
-- `dc-venues-yelp-raw.json`
+- `dc-venues.csv` — Main venue data file
+- `dc-venues-yelp-raw.json` — Raw API response backup

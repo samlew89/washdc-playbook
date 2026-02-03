@@ -3,6 +3,7 @@
 
 * **Dashboard**
   * [Lead List & Pipeline](lead-list.md)
+  * [Venue Data Overview](venue-lead-generation-system.md)
   * [Priority Venues](priority-venues.html ':ignore')
   * [Venue Map](density-map.html ':ignore')
   * [Venue List](venue-list.html ':ignore')
@@ -11,6 +12,7 @@
   * [Deployer Bootcamp](deployer-bootcamp.md)
   * [Ambassador Program](ambassador-program.md)
   * [QR Pamphlet System](qr-pamphlet-system.md)
+  * [7-Day Sprint Plan](7-day-sprint-plan.md)
 
 * **Reference**
   * [Operating System](operating-system.md)

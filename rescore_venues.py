@@ -207,7 +207,7 @@ def main():
     output_rows.sort(key=lambda x: -x["Score"])
 
     # Write CSV
-    output_file = "dc-venues-yelp.csv"
+    output_file = "dc-venues.csv"
     with open(output_file, "w", newline="", encoding="utf-8") as f:
         fieldnames = ["ID", "Name", "Address", "Category", "Neighborhood", "Rating", "Reviews", "Price", "Score", "Lat", "Lng", "Phone", "YelpID"]
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -215,14 +215,6 @@ def main():
         writer.writerows(output_rows)
 
     print(f"Output saved to: {output_file}")
-
-    # Also update dc-venues.csv if it exists (for the map)
-    with open("dc-venues.csv", "w", newline="", encoding="utf-8") as f:
-        fieldnames = ["ID", "Name", "Address", "Category", "Neighborhood", "Rating", "Reviews", "Price", "Score", "Lat", "Lng", "Phone", "YelpID"]
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(output_rows)
-    print(f"Also updated: dc-venues.csv")
 
     # Summary stats
     print(f"\n{'=' * 50}")
