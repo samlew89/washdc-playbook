@@ -16,16 +16,15 @@
 
 ---
 
-## Potential Hardware Requirement (Max Build-Out)
+## Coverage Summary
 
-Based on the current lead list, assuming every venue gets deployed:
+| Metric | Count |
+|--------|-------|
+| **Total Venues** | 2,743 |
+| **Priority (85+)** | 583 |
+| **Neighborhoods** | 18 |
+| **Restaurants** | 1,410 |
+| **Bars** | 605 |
+| **Coffee Shops** | 386 |
 
-| Scope | Indoor Units | Outdoor Units | Total Units |
-|-------|--------------|---------------|-------------|
-| **All Venues** | 600 | 252 | **852** |
-| **Priority Only (85+)** | 97 | 78 | **175** |
-
-**Notes:**
-- Indoor units = 1 per venue (all 600 venues)
-- Outdoor units = venues where outdoor viability score >= 4 (252 venues)
-- Priority = venues with deployment score >= 85
+**Data Source:** Yelp Fusion API (February 2026)

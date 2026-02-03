@@ -1,15 +1,39 @@
 # WORKPLAN.md — DC Playbook
 
 ## Project Goal
-Create a highly readable, operator-friendly dashboard for driving hyper-dense Helium Mobile hotspot deployments in Washington DC, focused on:
-- Dupont Circle (300 venues)
-- 14th St NW + U St Corridor (300 venues)
+Create a highly readable, operator-friendly dashboard for driving hyper-dense Helium Mobile hotspot deployments in Washington DC, covering 18 neighborhoods with comprehensive venue data.
 
 The dashboard should prioritize:
 - Venue lead generation + qualification
-- Dense clustering within defined pods/zones
+- Dense clustering across DC neighborhoods
 - Clear "what to do next" for outreach + installs
 - Hardware planning tied to venue pipeline
+
+---
+
+## Completed Work (Feb 2026)
+
+### Comprehensive Venue Data Expansion
+- [x] Replaced manually curated 536-venue list with Yelp Fusion API data
+- [x] Expanded from 2 neighborhoods to 18 neighborhoods across DC
+- [x] New venue count: **2,743 venues** (was 536)
+- [x] Created `scrape_dc_venues_yelp.py` for reproducible data pulls
+- [x] Created `scrape_dc_venues.py` for Google Places API alternative
+- [x] Updated scoring algorithm based on venue rubric weights
+
+### Updated HTML Pages
+- [x] `density-map.html` - Category filter chips, 18 neighborhoods, rating filter
+- [x] `venue-list.html` - Complete rebuild for new data format with category filters
+- [x] Both pages now load from single `dc-venues.csv` file
+
+### Neighborhoods Now Covered
+Dupont Circle, Logan Circle, 14th Street Corridor, U Street, Shaw, Adams Morgan, Columbia Heights, Petworth, H Street NE, Capitol Hill/Barracks Row, Navy Yard/The Wharf, Penn Quarter/Chinatown, Georgetown, Glover Park, Woodley Park/Cleveland Park, Brookland, NoMa/Union Market, Mount Pleasant
+
+### Data Files Updated
+- `dc-venues.csv` - 2,743 venues with Yelp data
+- `dc-venues.geojson` - Updated geographic data
+- `dc-venues-yelp-raw.json` - Raw API response backup
+- Old files preserved as `*-old.csv`
 
 ---
 
@@ -94,15 +118,23 @@ The dashboard should prioritize:
 ## Technical Notes
 
 ### Data Files
-- `dupont-leads.csv` - 290 Dupont venues (after cleanup)
-- `14thu-leads.csv` - 246 14th St/U St venues (after cleanup)
-- Total: 536 venues (originally 600, removed 20 closed + 44 duplicates)
-- Both CSVs have columns: ID, Name, Address, Category, Pod, Indoor, Outdoor, Score, Corner, Lat, Lng
+- `dc-venues.csv` - 2,743 venues across 18 neighborhoods (from Yelp API)
+- `dc-venues.geojson` - Geographic data for mapping
+- `dc-venues-yelp-raw.json` - Raw API response backup
+- CSV columns: ID, Name, Address, Category, Neighborhood, Rating, Reviews, Price, Score, Lat, Lng, Phone, YelpID
 
 ### Key Thresholds
 - Priority venue: Score >= 85
-- Outdoor viable: Outdoor viability score >= 4
-- Min score in data: 52 (slider starts at 50)
+- High: Score 70-84
+- Medium: Score 50-69
+- Min score in data: ~70 (Yelp-based scoring)
+
+### Scoring Algorithm (Yelp-based)
+- Outdoor Mounting Viability: 35% (inferred from category)
+- Location & Line-of-Sight: 25% (neutral baseline)
+- Foot Traffic & Dwell Time: 15% (reviews + category)
+- Permissioning Speed: 15% (chain detection + category)
+- Operational Reliability: 10% (category proxy)
 
 ### Libraries Used
 - Docsify 4.x - Documentation framework
@@ -114,17 +146,8 @@ The dashboard should prioritize:
 - 768px - Tablet/mobile transition
 - 480px - Small mobile adjustments
 
-### Pod/Zone Codes
-```
-D1 = Dupont - Connecticut Ave
-D2 = Dupont - 17th St Strip
-D3 = Dupont - Dupont Ring
-D4 = Dupont - P St / 20th
-U1 = 14th/U - 14th St Main
-U2 = 14th/U - U St Corridor
-U3 = 14th/U - Shaw / 9th St
-U4 = 14th/U - V/W / Columbia Heights
-```
+### Neighborhoods
+18 total: Dupont Circle, Logan Circle, 14th Street, U Street, Shaw, Adams Morgan, Columbia Heights, Petworth, H Street NE, Capitol Hill, Navy Yard/Wharf, Penn Quarter, Georgetown, Glover Park, Woodley Park, Brookland, NoMa, Mount Pleasant
 
 ---
 

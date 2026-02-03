@@ -19,7 +19,7 @@
         }
 
         #map {
-            height: calc(100vh - 140px);
+            height: calc(100vh - 180px);
             width: 100%;
             border-radius: 0;
         }
@@ -105,6 +105,63 @@
             box-shadow: 0 0 0 3px rgba(94, 37, 253, 0.1);
         }
 
+        /* Category filter chips */
+        .category-filters {
+            background: #fff;
+            padding: 12px 24px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .category-filters-label {
+            font-weight: 600;
+            font-size: 13px;
+            color: #374151;
+            margin-right: 8px;
+        }
+
+        .category-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+            user-select: none;
+        }
+
+        .category-chip.active {
+            background: #5e25fd;
+            color: white;
+        }
+
+        .category-chip:not(.active) {
+            background: #f3f4f6;
+            color: #4b5563;
+        }
+
+        .category-chip:not(.active):hover {
+            background: #e5e7eb;
+        }
+
+        .category-chip .chip-count {
+            background: rgba(255,255,255,0.2);
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+        }
+
+        .category-chip:not(.active) .chip-count {
+            background: rgba(0,0,0,0.1);
+        }
+
         .slider-container {
             display: flex;
             align-items: center;
@@ -144,19 +201,6 @@
             color: #374151;
             min-width: 36px;
             text-align: center;
-        }
-
-        .toggle-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .toggle-group input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: #5e25fd;
-            cursor: pointer;
         }
 
         /* Legend */
@@ -209,7 +253,7 @@
 
         .leaflet-popup-content {
             margin: 0;
-            min-width: 240px;
+            min-width: 260px;
         }
 
         .leaflet-popup-tip {
@@ -282,25 +326,37 @@
             flex-shrink: 0;
         }
 
-        .venue-popup-badge {
-            display: inline-flex;
+        .venue-popup-meta {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .venue-popup-rating {
+            display: flex;
             align-items: center;
             gap: 4px;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 600;
-            margin-top: 8px;
+            font-size: 13px;
+            color: #374151;
         }
 
-        .venue-popup-badge.outdoor-yes {
-            background: #d1fae5;
-            color: #065f46;
+        .venue-popup-rating svg {
+            color: #fbbf24;
+            width: 14px;
+            height: 14px;
         }
 
-        .venue-popup-badge.outdoor-no {
-            background: #f3f4f6;
+        .venue-popup-reviews {
+            font-size: 12px;
             color: #6b7280;
+        }
+
+        .venue-popup-price {
+            font-size: 13px;
+            color: #059669;
+            font-weight: 600;
         }
 
         /* Cluster styling */
@@ -367,18 +423,14 @@
             font-weight: 700;
         }
 
-        /* ========================================
-           MOBILE STYLES (max-width: 768px)
-           ======================================== */
+        /* Mobile styles */
         @media (max-width: 768px) {
-            /* Header */
             .header {
                 padding: 12px 16px;
                 gap: 10px;
             }
             .header-left h1 {
                 font-size: 18px;
-                margin-bottom: 2px;
             }
             .header-left p {
                 font-size: 12px;
@@ -386,143 +438,55 @@
             .venue-count {
                 padding: 8px 14px;
                 font-size: 12px;
-                border-radius: 8px;
             }
             .venue-count span {
                 font-size: 16px;
             }
 
-            /* Controls - horizontal scroll wrapper */
             .controls {
                 padding: 10px 16px;
                 gap: 12px;
                 overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
                 flex-wrap: nowrap;
             }
-            .control-group {
-                flex-shrink: 0;
+
+            .category-filters {
+                padding: 10px 16px;
                 gap: 6px;
+                overflow-x: auto;
+                flex-wrap: nowrap;
             }
-            .control-group label {
+
+            .category-chip {
+                padding: 5px 10px;
                 font-size: 11px;
-                white-space: nowrap;
-            }
-            .control-group select {
-                padding: 6px 10px;
-                font-size: 12px;
-                min-width: 100px;
-            }
-            .slider-container {
-                gap: 8px;
-            }
-            .slider-container input[type="range"] {
-                width: 80px;
-            }
-            .slider-value {
-                padding: 3px 8px;
-                font-size: 12px;
-                min-width: 30px;
-            }
-            .toggle-group input[type="checkbox"] {
-                width: 16px;
-                height: 16px;
+                flex-shrink: 0;
             }
 
-            /* Map height */
             #map {
-                height: calc(100vh - 110px);
+                height: calc(100vh - 160px);
             }
 
-            /* Legend - collapsible on mobile */
             .legend {
                 bottom: 12px;
                 left: 12px;
                 padding: 10px 12px;
-                border-radius: 8px;
-                font-size: 10px;
-            }
-            .legend h4 {
-                font-size: 9px;
-                margin-bottom: 6px;
-            }
-            .legend-item {
-                gap: 6px;
-                margin-bottom: 4px;
-            }
-            .legend-dot {
-                width: 10px;
-                height: 10px;
-            }
-
-            /* Popup adjustments for mobile */
-            .leaflet-popup-content {
-                min-width: 200px;
-                max-width: calc(100vw - 60px);
-            }
-            .venue-popup {
-                padding: 12px;
-            }
-            .venue-popup h3 {
-                font-size: 14px;
-            }
-            .venue-popup-score {
-                padding: 4px 8px;
-                font-size: 12px;
-            }
-            .venue-popup-row {
-                font-size: 12px;
-            }
-            .venue-popup-badge {
                 font-size: 10px;
             }
 
-            /* Tooltip - hide on mobile (touch devices) */
             .leaflet-tooltip {
                 display: none !important;
             }
         }
 
-        /* ========================================
-           SMALL MOBILE STYLES (max-width: 480px)
-           ======================================== */
         @media (max-width: 480px) {
             .header {
-                padding: 10px 12px;
                 flex-direction: column;
                 align-items: flex-start;
             }
-            .header-left h1 {
-                font-size: 16px;
-            }
-            .venue-count {
-                align-self: flex-start;
-            }
-
-            .controls {
-                padding: 8px 12px;
-                gap: 10px;
-            }
-            .control-group select {
-                min-width: 90px;
-                padding: 5px 8px;
-            }
-            .slider-container input[type="range"] {
-                width: 60px;
-            }
 
             #map {
-                height: calc(100vh - 130px);
-            }
-
-            .legend {
-                bottom: 8px;
-                left: 8px;
-                padding: 8px 10px;
-            }
-
-            .leaflet-popup-content {
-                min-width: 180px;
+                height: calc(100vh - 180px);
             }
         }
     </style>
@@ -531,10 +495,10 @@
     <div class="header">
         <div class="header-left">
             <h1>DC Venue Map</h1>
-            <p>Dupont Circle & 14th St / U St Corridor</p>
+            <p>Bars, Restaurants, Coffee & More</p>
         </div>
         <div class="venue-count">
-            Showing <span id="displayedCount">0</span> / <span id="totalCount">600</span> venues
+            Showing <span id="displayedCount">0</span> / <span id="totalCount">0</span> venues
         </div>
     </div>
 
@@ -542,42 +506,24 @@
         <div class="control-group">
             <label>Neighborhood</label>
             <select id="neighborhoodFilter">
-                <option value="all">All</option>
-                <option value="dupont">Dupont Circle</option>
-                <option value="14thu">14th St + U St</option>
-            </select>
-        </div>
-        <div class="control-group">
-            <label>Zone</label>
-            <select id="zoneFilter">
-                <option value="all">All Zones</option>
-                <optgroup label="Dupont Circle">
-                    <option value="D1">D1 - Connecticut Ave</option>
-                    <option value="D2">D2 - 17th St</option>
-                    <option value="D3">D3 - Dupont Ring</option>
-                    <option value="D4">D4 - P St</option>
-                </optgroup>
-                <optgroup label="14th St + U St">
-                    <option value="U1">U1 - 14th St Main</option>
-                    <option value="U2">U2 - U St Corridor</option>
-                    <option value="U3">U3 - Shaw / 9th St</option>
-                    <option value="U4">U4 - V/W / Columbia Hts</option>
-                </optgroup>
+                <option value="all">All Neighborhoods</option>
             </select>
         </div>
         <div class="control-group slider-container">
             <label>Min Score</label>
-            <input type="range" id="scoreFilter" min="50" max="100" value="50">
+            <input type="range" id="scoreFilter" min="50" max="95" value="50">
             <span class="slider-value" id="scoreValue">50</span>
         </div>
-        <div class="control-group toggle-group">
-            <input type="checkbox" id="showZones">
-            <label>Zones</label>
+        <div class="control-group slider-container">
+            <label>Min Rating</label>
+            <input type="range" id="ratingFilter" min="0" max="45" value="0" step="5">
+            <span class="slider-value" id="ratingValue">Any</span>
         </div>
-        <div class="control-group toggle-group">
-            <input type="checkbox" id="outdoorOnly">
-            <label>Outdoor Only</label>
-        </div>
+    </div>
+
+    <div class="category-filters">
+        <span class="category-filters-label">Categories:</span>
+        <div id="categoryChips"></div>
     </div>
 
     <div id="map"></div>
@@ -585,22 +531,22 @@
     <div class="legend">
         <h4>Score Tiers</h4>
         <div class="legend-item"><div class="legend-dot" style="background: #5e25fd;"></div> Priority (85+)</div>
-        <div class="legend-item"><div class="legend-dot" style="background: #036afd;"></div> High (70–84)</div>
-        <div class="legend-item"><div class="legend-dot" style="background: #f97316;"></div> Medium (50–69)</div>
+        <div class="legend-item"><div class="legend-dot" style="background: #036afd;"></div> High (70-84)</div>
+        <div class="legend-item"><div class="legend-dot" style="background: #f97316;"></div> Medium (50-69)</div>
         <div class="legend-item"><div class="legend-dot" style="background: #ef4444;"></div> Low (&lt;50)</div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     <script>
-        // Initialize map with cleaner style
+        // Initialize map centered on DC
         const map = L.map('map', {
             zoomControl: true,
             scrollWheelZoom: true,
             tap: true
-        }).setView([38.9125, -77.0350], 14);
+        }).setView([38.9072, -77.0369], 13);
 
-        // Carto Positron - clean modern basemap
+        // Carto Positron basemap
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
             maxZoom: 19,
@@ -609,6 +555,9 @@
 
         // Data storage
         let allVenues = [];
+        let categories = {};
+        let neighborhoods = new Set();
+        let activeCategories = new Set();
         let clusterGroup = L.markerClusterGroup({
             maxClusterRadius: 50,
             spiderfyOnMaxZoom: true,
@@ -616,43 +565,50 @@
             zoomToBoundsOnClick: true,
             disableClusteringAtZoom: 17
         });
-        let zoneLayer = L.layerGroup();
 
-        // Zone boundaries
-        const zones = {
-            D1: { color: '#5e25fd', name: 'Dupont - Connecticut Ave', coords: [[38.9065, -77.0450], [38.9150, -77.0450], [38.9150, -77.0410], [38.9065, -77.0410]] },
-            D2: { color: '#7c4dff', name: 'Dupont - 17th St', coords: [[38.9085, -77.0400], [38.9175, -77.0400], [38.9175, -77.0370], [38.9085, -77.0370]] },
-            D3: { color: '#9e7bff', name: 'Dupont - Dupont Ring', coords: [[38.9070, -77.0480], [38.9120, -77.0480], [38.9120, -77.0440], [38.9070, -77.0440]] },
-            D4: { color: '#c4acff', name: 'Dupont - P St', coords: [[38.9100, -77.0490], [38.9180, -77.0490], [38.9180, -77.0460], [38.9100, -77.0460]] },
-            U1: { color: '#036afd', name: '14th St Main', coords: [[38.9080, -77.0340], [38.9200, -77.0340], [38.9200, -77.0300], [38.9080, -77.0300]] },
-            U2: { color: '#3d8bfd', name: 'U St Corridor', coords: [[38.9160, -77.0430], [38.9190, -77.0430], [38.9190, -77.0240], [38.9160, -77.0240]] },
-            U3: { color: '#6ea8fe', name: 'Shaw / 9th St', coords: [[38.9070, -77.0280], [38.9170, -77.0280], [38.9170, -77.0220], [38.9070, -77.0220]] },
-            U4: { color: '#9ec5fe', name: 'V/W / Columbia Hts', coords: [[38.9200, -77.0350], [38.9350, -77.0350], [38.9350, -77.0250], [38.9200, -77.0250]] },
-        };
-
-        // Parse CSV
-        function parseCSV(text, neighborhood) {
+        // Parse CSV with quoted fields
+        function parseCSV(text) {
             const lines = text.trim().split('\n');
             const headers = lines[0].split(',');
+
             return lines.slice(1).map(line => {
-                const values = line.split(',');
+                // Handle quoted fields (addresses with commas)
+                const values = [];
+                let current = '';
+                let inQuotes = false;
+
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        values.push(current.trim());
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+                values.push(current.trim());
+
                 const obj = {};
                 headers.forEach((h, i) => {
-                    obj[h.trim()] = values[i] ? values[i].trim() : '';
+                    obj[h.trim()] = values[i] || '';
                 });
+
                 return {
                     id: obj.ID || '',
                     name: obj.Name || '',
                     address: obj.Address || '',
                     category: obj.Category || '',
-                    zone: obj.Pod || '',
-                    neighborhood: neighborhood,
-                    indoor: Number(obj.Indoor) || 0,
-                    outdoor: Number(obj.Outdoor) || 0,
-                    score: Number(obj.Score) || 0,
-                    corner: obj.Corner === 'Yes',
+                    neighborhood: obj.Neighborhood || '',
+                    rating: parseFloat(obj.Rating) || 0,
+                    reviews: parseInt(obj.Reviews) || 0,
+                    price: obj.Price || '',
+                    score: parseInt(obj.Score) || 0,
                     lat: parseFloat(obj.Lat) || 0,
-                    lng: parseFloat(obj.Lng) || 0
+                    lng: parseFloat(obj.Lng) || 0,
+                    phone: obj.Phone || '',
+                    yelpId: obj.YelpID || ''
                 };
             }).filter(v => v.lat !== 0 && v.lng !== 0);
         }
@@ -675,16 +631,32 @@
 
         // Create popup content
         function createPopup(v) {
-            const searchQuery = encodeURIComponent(`${v.name} ${v.address} Washington DC`);
+            const searchQuery = encodeURIComponent(`${v.name} ${v.address}`);
             const searchUrl = `https://www.google.com/search?q=${searchQuery}`;
-            const neighborhoodName = v.neighborhood === 'dupont' ? 'Dupont Circle' : '14th St + U St';
-            const zoneName = zones[v.zone]?.name || v.zone;
-            const outdoorViable = v.outdoor >= 4;
+            const yelpUrl = v.yelpId ? `https://www.yelp.com/biz/${v.yelpId}` : searchUrl;
+
+            let metaHtml = '';
+            if (v.rating > 0 || v.price) {
+                metaHtml = '<div class="venue-popup-meta">';
+                if (v.rating > 0) {
+                    metaHtml += `
+                        <div class="venue-popup-rating">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            ${v.rating.toFixed(1)}
+                            <span class="venue-popup-reviews">(${v.reviews.toLocaleString()})</span>
+                        </div>
+                    `;
+                }
+                if (v.price) {
+                    metaHtml += `<div class="venue-popup-price">${v.price}</div>`;
+                }
+                metaHtml += '</div>';
+            }
 
             return `
                 <div class="venue-popup">
                     <div class="venue-popup-header">
-                        <h3><a href="${searchUrl}" target="_blank" rel="noopener">${v.name} ↗</a></h3>
+                        <h3><a href="${yelpUrl}" target="_blank" rel="noopener">${v.name} ↗</a></h3>
                         <div class="venue-popup-score ${getScoreClass(v.score)}">${v.score}</div>
                     </div>
                     <div class="venue-popup-details">
@@ -694,16 +666,14 @@
                         </div>
                         <div class="venue-popup-row">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-                            ${neighborhoodName} · ${zoneName}
+                            ${v.neighborhood}
                         </div>
                         <div class="venue-popup-row">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
                             ${v.category}
                         </div>
                     </div>
-                    <div class="venue-popup-badge ${outdoorViable ? 'outdoor-yes' : 'outdoor-no'}">
-                        ${outdoorViable ? '✓ Outdoor Viable' : '✗ Indoor Only'}
-                    </div>
+                    ${metaHtml}
                 </div>
             `;
         }
@@ -713,28 +683,49 @@
             return `<strong>${v.name}</strong> · <span class="tooltip-score">${v.score}</span>`;
         }
 
-        // Draw zones
-        function drawZones() {
-            zoneLayer.clearLayers();
-            if (!document.getElementById('showZones').checked) {
-                zoneLayer.remove();
-                return;
-            }
+        // Build category chips
+        function buildCategoryChips() {
+            const container = document.getElementById('categoryChips');
+            container.innerHTML = '';
 
-            Object.entries(zones).forEach(([code, zone]) => {
-                L.polygon(zone.coords, {
-                    color: zone.color,
-                    fillColor: zone.color,
-                    fillOpacity: 0.1,
-                    weight: 2,
-                    dashArray: '4'
-                }).bindTooltip(zone.name, {
-                    permanent: false,
-                    direction: 'center',
-                    className: 'leaflet-tooltip'
-                }).addTo(zoneLayer);
+            // Sort categories by count
+            const sortedCategories = Object.entries(categories)
+                .sort((a, b) => b[1] - a[1]);
+
+            sortedCategories.forEach(([cat, count]) => {
+                const chip = document.createElement('div');
+                chip.className = 'category-chip active';
+                chip.dataset.category = cat;
+                chip.innerHTML = `${cat} <span class="chip-count">${count}</span>`;
+                chip.addEventListener('click', () => toggleCategory(cat, chip));
+                container.appendChild(chip);
+                activeCategories.add(cat);
             });
-            zoneLayer.addTo(map);
+        }
+
+        // Toggle category filter
+        function toggleCategory(category, chipElement) {
+            if (activeCategories.has(category)) {
+                activeCategories.delete(category);
+                chipElement.classList.remove('active');
+            } else {
+                activeCategories.add(category);
+                chipElement.classList.add('active');
+            }
+            renderMarkers();
+        }
+
+        // Build neighborhood dropdown
+        function buildNeighborhoodDropdown() {
+            const select = document.getElementById('neighborhoodFilter');
+            const sortedNeighborhoods = Array.from(neighborhoods).sort();
+
+            sortedNeighborhoods.forEach(nb => {
+                const option = document.createElement('option');
+                option.value = nb;
+                option.textContent = nb;
+                select.appendChild(option);
+            });
         }
 
         // Render markers
@@ -742,19 +733,17 @@
             clusterGroup.clearLayers();
 
             const neighborhoodFilter = document.getElementById('neighborhoodFilter').value;
-            const zoneFilter = document.getElementById('zoneFilter').value;
             const minScore = Number(document.getElementById('scoreFilter').value);
-            const outdoorOnly = document.getElementById('outdoorOnly').checked;
+            const minRating = Number(document.getElementById('ratingFilter').value) / 10;
 
             let filtered = allVenues.filter(v => {
                 if (neighborhoodFilter !== 'all' && v.neighborhood !== neighborhoodFilter) return false;
-                if (zoneFilter !== 'all' && v.zone !== zoneFilter) return false;
                 if (v.score < minScore) return false;
-                if (outdoorOnly && v.outdoor < 4) return false;
+                if (minRating > 0 && v.rating < minRating) return false;
+                if (!activeCategories.has(v.category)) return false;
                 return true;
             });
 
-            // Create markers for ALL filtered venues (no limit)
             filtered.forEach(v => {
                 const marker = L.circleMarker([v.lat, v.lng], {
                     radius: 6,
@@ -771,7 +760,7 @@
                 });
 
                 marker.bindPopup(createPopup(v), {
-                    maxWidth: 280,
+                    maxWidth: 300,
                     closeButton: true
                 });
 
@@ -779,14 +768,11 @@
             });
 
             map.addLayer(clusterGroup);
-
-            // Update count
             document.getElementById('displayedCount').textContent = filtered.length;
         }
 
-        // Update slider visual
-        function updateSliderVisual() {
-            const slider = document.getElementById('scoreFilter');
+        // Update slider visuals
+        function updateSliderVisual(slider) {
             const min = slider.min;
             const max = slider.max;
             const value = slider.value;
@@ -794,30 +780,31 @@
             slider.style.setProperty('--value', percentage + '%');
         }
 
-        // Load data from CSV files
+        // Load data
         async function loadData() {
             try {
-                const [dupontRes, thu14Res] = await Promise.all([
-                    fetch('dupont-leads.csv'),
-                    fetch('14thu-leads.csv')
-                ]);
+                const response = await fetch('dc-venues.csv');
+                const text = await response.text();
+                allVenues = parseCSV(text);
 
-                const dupontText = await dupontRes.text();
-                const thu14Text = await thu14Res.text();
-
-                const dupontVenues = parseCSV(dupontText, 'dupont');
-                const thu14Venues = parseCSV(thu14Text, '14thu');
-
-                allVenues = [...dupontVenues, ...thu14Venues];
+                // Build category and neighborhood lists
+                allVenues.forEach(v => {
+                    categories[v.category] = (categories[v.category] || 0) + 1;
+                    neighborhoods.add(v.neighborhood);
+                });
 
                 console.log(`Loaded ${allVenues.length} venues`);
-
-                // Update total count
                 document.getElementById('totalCount').textContent = allVenues.length;
 
+                // Build UI elements
+                buildCategoryChips();
+                buildNeighborhoodDropdown();
+
+                // Initialize sliders
+                updateSliderVisual(document.getElementById('scoreFilter'));
+                updateSliderVisual(document.getElementById('ratingFilter'));
+
                 // Initial render
-                updateSliderVisual();
-                drawZones();
                 renderMarkers();
 
             } catch (error) {
@@ -829,19 +816,20 @@
         // Event listeners
         document.getElementById('scoreFilter').addEventListener('input', function() {
             document.getElementById('scoreValue').textContent = this.value;
-            updateSliderVisual();
+            updateSliderVisual(this);
+            renderMarkers();
+        });
+
+        document.getElementById('ratingFilter').addEventListener('input', function() {
+            const rating = this.value / 10;
+            document.getElementById('ratingValue').textContent = rating > 0 ? rating.toFixed(1) + '+' : 'Any';
+            updateSliderVisual(this);
             renderMarkers();
         });
 
         document.getElementById('neighborhoodFilter').addEventListener('change', renderMarkers);
-        document.getElementById('zoneFilter').addEventListener('change', renderMarkers);
-        document.getElementById('showZones').addEventListener('change', drawZones);
-        document.getElementById('outdoorOnly').addEventListener('change', renderMarkers);
 
-        // Initialize slider visual
-        updateSliderVisual();
-
-        // Load data on page load
+        // Initialize
         loadData();
     </script>
 </body>

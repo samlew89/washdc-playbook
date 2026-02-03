@@ -6,8 +6,9 @@ Washington DC is a focused pilot to prove that Helium can produce overlapping, c
 
 ## Network BU Plan
 
-**1) Select and concentrate in two hyper-dense corridors**
-- Lock the two neighborhoods (Dupont Circle and the 14th St NW + U St NW corridor)
+**1) Build comprehensive coverage across DC neighborhoods**
+- Primary focus: Dupont Circle, 14th St NW, U St NW corridor
+- Expanded coverage: 18 neighborhoods, 2,743 venues mapped
 
 **2) Build a prioritized venue pipeline, not a generic lead list**
 - Generate venue targets with addresses, category, install feasibility, and outdoor potential

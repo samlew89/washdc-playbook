@@ -12,98 +12,108 @@ This rubric is optimized for **outdoor coverage density**, not just indoor insta
 
 ## Scoring Categories Overview
 
-| Category | Max Points | Weight | Why |
-|----------|------------|--------|-----|
-| **Outdoor Mounting Viability** | 30 | 30% | Core to density strategy |
-| **Permissioning Speed** | 25 | 25% | Fast closes = fast coverage |
-| **Location & Line-of-Sight** | 20 | 20% | Coverage reach per unit |
-| **Foot Traffic & Dwell Time** | 15 | 15% | Network utilization value |
-| **Operational Reliability** | 10 | 10% | Long-term uptime |
-| **TOTAL** | **100** | 100% | |
+| Category | Max Points | Weight | Confidence | Why |
+|----------|------------|--------|------------|-----|
+| **Outdoor Mounting Viability** | 35 | 35% | High | Core to density strategy; observable via Street View |
+| **Permissioning Speed** | 15 | 15% | Low | Fast closes matter, but mostly inferred from business type |
+| **Location & Line-of-Sight** | 25 | 25% | High | Coverage reach per unit; observable via maps |
+| **Foot Traffic & Dwell Time** | 15 | 15% | Medium | Network utilization; inferred from reviews/category |
+| **Operational Reliability** | 10 | 10% | Medium | Long-term uptime; partially observable |
+| **TOTAL** | **100** | 100% | | |
 
 ---
 
-## Category 1: Outdoor Mounting Viability (30 points)
+## Category 1: Outdoor Mounting Viability (35 points)
 
 *Can we mount an outdoor unit on or immediately adjacent to this building?*
 
+**Data source:** Google Street View, Yelp/Google photos, satellite imagery. **Confidence: High.**
+
 | Factor | Points | Scoring |
 |--------|--------|---------|
-| **Outdoor mount possible on same building** | 0-12 | |
-| | 12 | Yes - rooftop, awning, or exterior wall clearly viable |
-| | 8 | Probably - needs site visit to confirm |
+| **Outdoor mount possible on same building** | 0-14 | |
+| | 14 | Yes - rooftop, awning, or exterior wall clearly viable |
+| | 9 | Probably - needs site visit to confirm |
 | | 4 | Maybe - significant obstacles but possible |
 | | 0 | No - no viable mount point visible |
-| **Adjacent building mount option** | 0-6 | |
-| | 6 | Adjacent building also in our pipeline (combo install) |
-| | 3 | Adjacent building looks viable but not yet contacted |
+| **Adjacent building mount option** | 0-7 | |
+| | 7 | Adjacent building also in our pipeline (combo install) |
+| | 4 | Adjacent building looks viable but not yet contacted |
 | | 0 | No adjacent option / not applicable |
-| **Mount height advantage** | 0-6 | |
-| | 6 | 20ft+ elevation possible (rooftop, 2nd floor wall) |
-| | 4 | 10-20ft elevation (awning, high wall mount) |
+| **Mount height advantage** | 0-7 | |
+| | 7 | 20ft+ elevation possible (rooftop, 2nd floor wall) |
+| | 5 | 10-20ft elevation (awning, high wall mount) |
 | | 2 | Ground level only (<10ft) |
 | | 0 | Below grade or obstructed |
-| **Owner controls exterior** | 0-6 | |
-| | 6 | Owner owns building or has full exterior rights |
-| | 3 | Lease allows exterior modifications with notice |
-| | 1 | Landlord approval required (but likely) |
-| | 0 | Landlord approval required (unlikely or complex) |
+| **Owner controls exterior** | 0-7 | |
+| | 7 | Owner owns building or has full exterior rights (signage matches business) |
+| | 4 | Likely standard lease (street-level retail, typical setup) |
+| | 1 | Multi-tenant building or landlord approval likely required |
+| | 0 | Large commercial building, historic district, or complex ownership |
 
-**Category 1 Total: /30**
+**Category 1 Total: /35**
 
 ---
 
-## Category 2: Permissioning Speed (25 points)
+## Category 2: Permissioning Speed (15 points)
 
 *How fast can we go from "yes" to hardware on the wall?*
 
+**Note:** These factors are **inferred from observable signals** (business type, ownership structure). This category has lower weight because confidence is low until actual contact. **Confidence: Low.**
+
 | Factor | Points | Scoring |
 |--------|--------|---------|
-| **Decision-maker accessibility** | 0-10 | |
-| | 10 | Owner on-site daily and makes all decisions |
-| | 7 | Owner reachable within 24-48 hrs, responsive |
-| | 4 | Manager on-site, owner approval needed (1 week) |
-| | 2 | Corporate/franchise approval chain |
-| | 0 | Cannot identify decision-maker |
-| **Approval layers** | 0-10 | |
-| | 10 | Single decision-maker, no other approvals |
-| | 7 | Owner + spouse/partner (same day possible) |
-| | 4 | Owner + landlord (1-2 week process) |
-| | 2 | Owner + landlord + HOA/BID (3+ weeks) |
-| | 0 | Unknown or 4+ approval layers |
-| **Prior tech/telecom installs** | 0-5 | |
-| | 5 | Already has similar equipment (antennas, cameras, signage) |
-| | 3 | Has accepted tech installs before (POS, WiFi, etc.) |
-| | 1 | No visible tech but owner seems open |
-| | 0 | Owner skeptical of new equipment |
+| **Decision-maker accessibility (inferred)** | 0-6 | |
+| | 6 | Independent + owner-operated category (coffee, barber, brewery) + single location |
+| | 5 | Independent + reviews/social mention owner by name or "family-run" |
+| | 4 | Independent + typical owner-operated category |
+| | 3 | Independent + larger venue (restaurant/bar likely has manager layer) |
+| | 2 | Local chain (2-5 locations) OR unknown/can't determine |
+| | 1 | Franchise (single owner-operator, e.g., subway franchisee) |
+| | 0 | National chain (corporate-managed location) |
+| **Approval layers (inferred)** | 0-5 | |
+| | 5 | Owner-operated + likely owns building (signage matches business) |
+| | 4 | Owner-operated + likely standard lease (street-level retail) |
+| | 2 | Independent but multi-tenant building (landlord approval likely) |
+| | 1 | Chain or franchise (corporate + landlord layers) |
+| | 0 | Large commercial building, BID area, or historic district |
+| **Prior tech/telecom installs (observable)** | 0-4 | |
+| | 4 | Visible antennas, exterior cameras, digital signage on building |
+| | 2 | Modern POS visible, digital menus, tech-forward appearance |
+| | 1 | Standard setup, no visible tech resistance |
+| | 0 | Explicitly "no tech" aesthetic or anti-corporate messaging |
 
-**Category 2 Total: /25**
+**Inference sources:** Business name, Yelp/Google category, single vs multi-location, review text mentioning owner, Street View for building ownership indicators.
+
+**Category 2 Total: /15**
 
 ---
 
-## Category 3: Location & Line-of-Sight (20 points)
+## Category 3: Location & Line-of-Sight (25 points)
 
 *How much coverage can we achieve from this location?*
 
+**Data source:** Google Maps, satellite imagery, Street View. **Confidence: High.**
+
 | Factor | Points | Scoring |
 |--------|--------|---------|
-| **Corner lot / intersection position** | 0-8 | |
-| | 8 | Corner lot at major intersection |
-| | 6 | Corner lot at minor intersection |
-| | 3 | Mid-block but near intersection (<100ft) |
+| **Corner lot / intersection position** | 0-10 | |
+| | 10 | Corner lot at major intersection |
+| | 7 | Corner lot at minor intersection |
+| | 4 | Mid-block but near intersection (<100ft) |
 | | 0 | Mid-block, far from intersections |
-| **Street-facing sightline** | 0-6 | |
-| | 6 | Unobstructed view down 2+ street directions |
-| | 4 | Clear view down 1 street direction |
+| **Street-facing sightline** | 0-8 | |
+| | 8 | Unobstructed view down 2+ street directions |
+| | 5 | Clear view down 1 street direction |
 | | 2 | Partial view (trees, awnings, but workable) |
 | | 0 | Blocked (tall buildings, heavy tree cover) |
-| **Cluster potential** | 0-6 | |
-| | 6 | 3+ Tier 1/2 venues within 200ft (anchor node) |
-| | 4 | 2 Tier 1/2 venues within 200ft |
+| **Cluster potential** | 0-7 | |
+| | 7 | 3+ other viable venues within 200ft (anchor node) |
+| | 5 | 2 other viable venues within 200ft |
 | | 2 | 1 other venue nearby or residential density |
 | | 0 | Isolated location, sparse surroundings |
 
-**Category 3 Total: /20**
+**Category 3 Total: /25**
 
 ---
 
@@ -111,21 +121,23 @@ This rubric is optimized for **outdoor coverage density**, not just indoor insta
 
 *How many users will connect to this coverage?*
 
+**Data source:** Yelp/Google category, review count as popularity proxy, photos showing outdoor seating. **Confidence: Medium.**
+
 | Factor | Points | Scoring |
 |--------|--------|---------|
-| **Peak foot traffic** | 0-6 | |
-| | 6 | High traffic all day (coffee shop, fast-casual on main drag) |
-| | 4 | Moderate traffic or strong peaks (lunch rush, evening bar) |
-| | 2 | Low-moderate traffic (boutique, salon, side street) |
-| | 0 | Very low traffic (appointment-only, back alley) |
-| **Dwell time** | 0-5 | |
-| | 5 | High dwell (60+ min avg): co-working, coffee, gym, bar |
-| | 3 | Medium dwell (15-60 min): restaurant, salon, laundromat |
-| | 1 | Low dwell (<15 min): dry cleaner, convenience, retail |
-| **Outdoor seating / gathering area** | 0-4 | |
-| | 4 | Patio, sidewalk seating, or adjacent public space |
+| **Peak foot traffic (inferred from category + reviews)** | 0-6 | |
+| | 6 | High traffic category (coffee, fast-casual) + 200+ reviews |
+| | 4 | Moderate traffic category or strong review count |
+| | 2 | Low-moderate traffic (boutique, salon, side street location) |
+| | 0 | Very low traffic (appointment-only, back alley, few reviews) |
+| **Dwell time (inferred from category)** | 0-5 | |
+| | 5 | High dwell category: co-working, coffee, gym, bar |
+| | 3 | Medium dwell category: restaurant, salon, laundromat |
+| | 1 | Low dwell category: dry cleaner, convenience, retail |
+| **Outdoor seating / gathering area (observable)** | 0-4 | |
+| | 4 | Patio, sidewalk seating visible in photos/Street View |
 | | 2 | Standing area or occasional outdoor use |
-| | 0 | No outdoor customer presence |
+| | 0 | No outdoor customer presence visible |
 
 **Category 4 Total: /15**
 
@@ -135,19 +147,21 @@ This rubric is optimized for **outdoor coverage density**, not just indoor insta
 
 *Will this install stay online and accessible?*
 
+**Data source:** Google/Yelp hours, Street View for visible infrastructure, business category norms. **Confidence: Medium.**
+
 | Factor | Points | Scoring |
 |--------|--------|---------|
-| **Power access** | 0-4 | |
-| | 4 | Dedicated outlet available or easy run |
-| | 2 | Power available but may need extension/adapter |
-| | 0 | No clear power source / major electrical work needed |
-| **Internet backhaul** | 0-3 | |
-| | 3 | Venue has reliable WiFi, willing to share |
-| | 2 | Venue has WiFi but may need cellular backup |
-| | 1 | Cellular-only backhaul required |
-| | 0 | No backhaul option identified |
-| **Access hours** | 0-3 | |
-| | 3 | Open 12+ hrs/day, 7 days/week |
+| **Power access (inferred)** | 0-4 | |
+| | 4 | Standard retail/restaurant (assume power available) |
+| | 2 | Older building or unusual setup |
+| | 0 | Outdoor-only venue or kiosk |
+| **Internet backhaul (inferred from category)** | 0-3 | |
+| | 3 | Tech-forward category (co-working, coffee shop) — assume WiFi |
+| | 2 | Standard retail/restaurant — likely has WiFi |
+| | 1 | Basic service business — cellular backup likely needed |
+| | 0 | Outdoor venue or no clear backhaul |
+| **Access hours (observable)** | 0-3 | |
+| | 3 | Open 12+ hrs/day, 7 days/week (per Google/Yelp) |
 | | 2 | Open 8+ hrs/day, 5+ days/week |
 | | 1 | Limited hours or seasonal |
 | | 0 | Irregular hours or frequently closed |
@@ -172,16 +186,19 @@ This rubric is optimized for **outdoor coverage density**, not just indoor insta
 
 **Immediately disqualify a venue if ANY of the following are true:**
 
+*Note: These are hard blockers discovered during research or outreach — not applied at initial lead generation.*
+
 | Rule # | Auto-Reject Condition | Why |
 |--------|----------------------|-----|
 | AR-1 | No decision-maker identifiable after 2 contact attempts | Will never close |
-| AR-2 | Corporate/franchise HQ approval required (national chain) | 4+ week cycle minimum |
-| AR-3 | Landlord explicitly declined exterior modifications | Dead end |
-| AR-4 | No power within 50ft of viable mount point | Install cost prohibitive |
-| AR-5 | Basement-only or below-grade location | Zero coverage value |
-| AR-6 | Venue closing/relocating within 6 months | Wasted hardware |
-| AR-7 | Owner hostile or explicitly anti-tech | Will not close |
-| AR-8 | Located in zone already at density target (3+ outdoor units within 400ft) | Diminishing returns |
+| AR-2 | Landlord explicitly declined exterior modifications | Dead end |
+| AR-3 | No power within 50ft of viable mount point | Install cost prohibitive |
+| AR-4 | Basement-only or below-grade location | Zero coverage value |
+| AR-5 | Venue closing/relocating within 6 months | Wasted hardware |
+| AR-6 | Owner hostile or explicitly anti-tech | Will not close |
+| AR-7 | Located in zone already at density target (3+ outdoor units within 400ft) | Diminishing returns |
+
+*Note: National chains are NOT auto-rejected — they receive lower permissioning scores but may still be worth pursuing if location/mounting scores are exceptional.*
 
 **If auto-reject triggered:** Mark lead as "Rejected - [Rule #]" and do not pursue further.
 
@@ -195,36 +212,38 @@ These venue profiles consistently score 75+ and should be prioritized in prospec
 
 | Archetype | Why | Expected Score |
 |-----------|-----|----------------|
-| **Coffee shop on a corner with patio** | High traffic, long dwell, corner sightline, owner-operated, outdoor seating = outdoor mount | 88-95 |
-| **Brewery/taproom with rooftop or patio** | Evening crowds, rooftop access, owner-operated, high dwell | 85-92 |
-| **Co-working space in multi-story building** | All-day traffic, rooftop access likely, tech-forward owner | 82-90 |
-| **Gym/fitness studio on corner lot** | Morning + evening peaks, owner decides, often has exterior signage = mount viable | 80-88 |
+| **Coffee shop on a corner with patio** | Corner = high location score, patio = outdoor mount, independent = good permissioning, high dwell | 85-95 |
+| **Brewery/taproom with rooftop or patio** | Rooftop = high mount score, independent, high dwell category | 82-92 |
+| **Co-working space in multi-story building** | Rooftop access likely, tech-forward category, all-day traffic | 80-90 |
+| **Gym/fitness studio on corner lot** | Corner location, often has exterior signage = mount viable, independent | 78-88 |
 
 ### Tier A: High-Value Targets (Target: 70-84 points)
 
 | Archetype | Why | Expected Score |
 |-----------|-----|----------------|
-| **Fast-casual restaurant with sidewalk seating** | Lunch/dinner traffic, awning mount, patio presence | 72-82 |
-| **Wine bar / cocktail bar with outdoor area** | Evening density, often owner-operated, patio | 70-80 |
-| **Barber shop / salon on main drag** | Neighborhood anchor, owner on-site daily, simple approval | 68-78 |
-| **Boutique retail on corner** | Corner lot advantage, owner-operated, street visibility | 65-75 |
+| **Fast-casual restaurant with sidewalk seating** | Awning mount, patio = outdoor score, moderate traffic | 70-82 |
+| **Wine bar / cocktail bar with outdoor area** | Patio visibility, independent, evening density | 68-80 |
+| **Barber shop / salon on main drag** | Independent owner-operated category, but often mid-block | 65-75 |
+| **Boutique retail on corner** | Corner location advantage, independent | 62-72 |
 
 ### Tier B: Solid Pipeline (Target: 55-69 points)
 
 | Archetype | Why | Expected Score |
 |-----------|-----|----------------|
-| **Laundromat** | High dwell, but often mid-block, limited outdoor | 58-68 |
-| **Phone repair / tech shop** | Tech-friendly owner, but small footprint | 55-65 |
-| **Nail salon on main corridor** | Dwell time, but often no outdoor option | 52-62 |
+| **Laundromat** | High dwell, but often mid-block, limited outdoor mount options | 55-65 |
+| **Phone repair / tech shop** | Tech-forward, but small footprint, often mid-block | 52-62 |
+| **Nail salon on main corridor** | Medium dwell, but often no outdoor option | 48-58 |
 
-### Avoid / Deprioritize
+### Lower Priority (but not rejected)
 
 | Archetype | Why | Expected Score |
 |-----------|-----|----------------|
-| **National chain fast food** | Corporate approval = 4+ weeks, no outdoor control | 25-40 |
-| **Bank branch** | Corporate HQ, no outdoor mount rights | 20-35 |
-| **Large restaurant (full-service, not owner-operated)** | Manager-only on-site, complex approval | 30-45 |
-| **Medical office / clinic** | Compliance concerns, limited hours | 25-40 |
+| **National chain fast food** | Low permissioning score (corporate), but may have good locations | 40-55 |
+| **Bank branch** | Corporate = low permissioning, but often corner lots | 35-50 |
+| **Large restaurant (full-service, chain)** | Manager layer, corporate approval | 35-50 |
+| **Medical office / clinic** | Limited hours, compliance concerns | 30-45 |
+
+*Note: Chains with exceptional locations (corner, clear mount options) may still be worth pursuing — just expect longer timelines.*
 
 ---
 
@@ -241,40 +260,36 @@ These venue profiles consistently score 75+ and should be prioritized in prospec
 │  ADDRESS: __________________________  TIME: ____               │
 │                                                                 │
 ├─────────────────────────────────────────────────────────────────┤
-│  1. OUTDOOR MOUNT? (look up)                     /30           │
+│  1. OUTDOOR MOUNT? (look up)                     /35           │
 │     □ Rooftop visible?        □ Yes □ No □ Maybe               │
 │     □ Awning/overhang?        □ Yes □ No                       │
 │     □ Exterior wall viable?   □ Yes □ No                       │
 │     □ Owner controls exterior? □ Yes □ No □ Ask                │
 │     □ Corner lot?             □ Yes □ No                       │
-│     Quick score: ____/30                                       │
+│     Quick score: ____/35                                       │
 │                                                                 │
 ├─────────────────────────────────────────────────────────────────┤
-│  2. PERMISSIONING (ask or observe)              /25            │
-│     □ Owner on-site?          □ Yes □ No □ Ask                 │
-│     □ Who decides? _____________ (name/title)                  │
-│     □ Chain/franchise?        □ Yes □ No                       │
-│     □ Landlord needed?        □ Yes □ No □ Unknown             │
-│     Quick score: ____/25                                       │
-│                                                                 │
-├─────────────────────────────────────────────────────────────────┤
-│  3. LOCATION VALUE (observe)                    /20            │
+│  2. LOCATION VALUE (observe)                    /25            │
 │     □ Corner/intersection?    □ Yes □ No                       │
 │     □ Clear sightline?        □ 2+ streets □ 1 street □ None  │
 │     □ Other good venues within 200ft? □ 3+ □ 2 □ 1 □ 0        │
-│     Quick score: ____/20                                       │
+│     Quick score: ____/25                                       │
 │                                                                 │
 ├─────────────────────────────────────────────────────────────────┤
-│  4. TRAFFIC & DWELL (observe)                   /15            │
+│  3. TRAFFIC & DWELL (observe)                   /15            │
 │     □ Busy right now?         □ High □ Med □ Low               │
 │     □ Avg time customers stay? □ 60+ □ 15-60 □ <15 min        │
 │     □ Outdoor seating/patio?  □ Yes □ No                       │
 │     Quick score: ____/15                                       │
 │                                                                 │
 ├─────────────────────────────────────────────────────────────────┤
+│  4. PERMISSIONING (observe)                     /15            │
+│     □ Independent or chain?   □ Indep □ Local □ National       │
+│     □ Visible tech installs?  □ Yes □ No                       │
+│     Quick score: ____/15                                       │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
 │  5. RELIABILITY (observe or ask)                /10            │
-│     □ Outlet visible near window/door? □ Yes □ No              │
-│     □ WiFi available?         □ Yes □ No □ Ask                 │
 │     □ Hours: Open ____am - ____pm, ____ days/wk                │
 │     Quick score: ____/10                                       │
 │                                                                 │
@@ -282,8 +297,7 @@ These venue profiles consistently score 75+ and should be prioritized in prospec
 │  TOTAL SCORE: ____/100                                         │
 │                                                                 │
 │  □ AUTO-REJECT? (check if any apply)                           │
-│    □ Can't find decision-maker                                 │
-│    □ National chain / corporate                                │
+│    □ Can't find decision-maker (after 2 attempts)              │
 │    □ Landlord already said no                                  │
 │    □ No power anywhere                                         │
 │    □ Below grade / basement                                    │
@@ -309,17 +323,17 @@ These venue profiles consistently score 75+ and should be prioritized in prospec
 
 ## Score Calculator (Quick Math)
 
-For field use, use this simplified scoring:
+For field use, use this simplified scoring (reflects reweighted categories):
 
 | Category | Quick Question | Fast Score |
 |----------|----------------|------------|
-| Outdoor Mount | Can I see where we'd mount outside? | Yes = 25, Maybe = 15, No = 5 |
-| Permissioning | Is owner here and in charge? | Yes = 20, Manager = 12, Corporate = 5 |
-| Location | Corner lot with clear sightline? | Corner = 18, Near corner = 12, Mid-block = 6 |
-| Traffic | Busy with people staying a while? | High+dwell = 13, Medium = 8, Low = 4 |
-| Reliability | Power + WiFi + good hours? | All 3 = 10, 2 of 3 = 6, 1 or less = 3 |
+| Outdoor Mount (35%) | Can I see where we'd mount outside? | Yes = 30, Maybe = 18, No = 5 |
+| Location (25%) | Corner lot with clear sightline? | Corner = 22, Near corner = 14, Mid-block = 6 |
+| Traffic (15%) | Busy with people staying a while? | High+dwell = 13, Medium = 8, Low = 4 |
+| Permissioning (15%) | Independent or chain? | Independent = 12, Local chain = 7, National = 3 |
+| Reliability (10%) | Good hours visible? | 12+ hrs/day = 10, 8+ hrs = 6, Limited = 3 |
 
-**Quick total = Outdoor + Permission + Location + Traffic + Reliability**
+**Quick total = Outdoor + Location + Traffic + Permissioning + Reliability**
 
 | Quick Total | Verdict |
 |-------------|---------|
@@ -336,14 +350,14 @@ For field use, use this simplified scoring:
 
 | Category | Factor | Score |
 |----------|--------|-------|
-| Outdoor Mount | Rooftop possible, owner controls, corner | 26/30 |
-| Permissioning | Owner on-site, single decision-maker | 22/25 |
-| Location | Corner lot, clear 2-street sightline, 4 venues nearby | 18/20 |
-| Traffic | High all-day, 60+ min dwell, patio seating | 15/15 |
-| Reliability | Outlet visible, WiFi available, 6am-8pm 7 days | 10/10 |
+| Outdoor Mount | Rooftop likely, signage matches business (owner controls), corner | 30/35 |
+| Permissioning | Independent coffee shop, single location, owner-operated category | 13/15 |
+| Location | Corner lot at major intersection, clear 2-street sightline, 4 venues nearby | 23/25 |
+| Traffic | High-traffic category, 200+ reviews, high dwell, patio visible | 15/15 |
+| Reliability | Standard retail (power assumed), tech-forward (WiFi assumed), long hours | 10/10 |
 | **TOTAL** | | **91/100** |
 
-**Verdict:** CRITICAL — Anchor node. Install immediately.
+**Verdict:** CRITICAL — Anchor node. Prioritize outreach.
 
 ---
 
@@ -351,12 +365,12 @@ For field use, use this simplified scoring:
 
 | Category | Factor | Score |
 |----------|--------|-------|
-| Outdoor Mount | No rooftop access, small awning only, landlord needed | 10/30 |
-| Permissioning | Owner on-site, but landlord approval for exterior | 15/25 |
-| Location | Mid-block, partial sightline, 2 venues nearby | 10/20 |
-| Traffic | Moderate, 45-min avg appointments | 9/15 |
-| Reliability | Power available, WiFi, 10am-7pm 6 days | 8/10 |
-| **TOTAL** | | **52/100** |
+| Outdoor Mount | No rooftop visible, small awning only, multi-tenant building | 12/35 |
+| Permissioning | Independent, owner-operated category, but multi-tenant building | 8/15 |
+| Location | Mid-block, partial sightline, 2 venues nearby | 11/25 |
+| Traffic | Medium dwell category, moderate reviews | 8/15 |
+| Reliability | Standard retail, likely WiFi, 10am-7pm 6 days | 8/10 |
+| **TOTAL** | | **47/100** |
 
 **Verdict:** LOW — Indoor-only candidate, backfill if capacity allows.
 
@@ -366,11 +380,11 @@ For field use, use this simplified scoring:
 
 | Category | Factor | Score |
 |----------|--------|-------|
-| Outdoor Mount | Wall space exists, but corporate controls all | 8/30 |
-| Permissioning | Manager on-site, corporate HQ approval needed | 4/25 |
-| Location | Corner lot, good sightline | 16/20 |
-| Traffic | High traffic, low dwell (<5 min) | 7/15 |
-| Reliability | Power, WiFi, long hours | 9/10 |
-| **TOTAL** | | **44/100** |
+| Outdoor Mount | Wall space visible, but corporate branding suggests limited control | 15/35 |
+| Permissioning | National chain = 0 DM accessibility, corporate layers | 2/15 |
+| Location | Corner lot, good sightline, cluster potential | 20/25 |
+| Traffic | High traffic (reviews), but low dwell category | 5/15 |
+| Reliability | Long hours, assume power/WiFi | 10/10 |
+| **TOTAL** | | **52/100** |
 
-**Verdict:** AUTO-REJECT (AR-2: Corporate approval required). Do not pursue.
+**Verdict:** LOW — Exceptional location but permissioning drag. May be worth pursuing if no better options in area, but expect slow close.
