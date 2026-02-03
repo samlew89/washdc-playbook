@@ -53,11 +53,11 @@ def categorize_from_yelp(categories):
 def score_venue(biz):
     """
     Generate priority score using updated rubric weights with SMOOTH distribution.
-    Uses continuous scoring to create ~100 priority venues (75+) and even spread.
+    Uses continuous scoring based on review count and category - NO rating/price factors.
 
     Categories:
     - Outdoor Mounting Viability: 35% (inferred from category)
-    - Location & Line-of-Sight: 25% (rating as proxy for desirable location)
+    - Location & Line-of-Sight: 25% (review count as traffic proxy)
     - Foot Traffic & Dwell Time: 15% (review count + category)
     - Permissioning Speed: 15% (chain detection + category)
     - Operational Reliability: 10% (category proxy)
@@ -67,52 +67,43 @@ def score_venue(biz):
     categories = [c.get("alias", "") for c in biz.get("categories", [])]
     name = biz.get("name", "").lower()
     reviews = biz.get("review_count", 0)
-    rating = biz.get("rating", 0) or 3.5  # Default if missing
 
     score = 0.0
 
     # --- OUTDOOR MOUNTING VIABILITY (0-35) ---
-    # Base by category + rating boost for quality venues
+    # Base by category (places likely to have patios, rooftops, outdoor areas)
     if any(c in categories for c in ["rooftopbars", "beergardens"]):
-        outdoor_base = 28
+        outdoor_score = 35
     elif any(c in categories for c in ["breweries", "brewpubs"]):
-        outdoor_base = 26
+        outdoor_score = 32
     elif any(c in categories for c in ["coffee", "coffeeroasteries"]):
-        outdoor_base = 24
+        outdoor_score = 30
     elif any(c in categories for c in ["wine_bars", "cocktailbars", "cafes"]):
-        outdoor_base = 22
+        outdoor_score = 28
     elif any(c in categories for c in ["bars"]):
-        outdoor_base = 20
+        outdoor_score = 25
     elif any(c in categories for c in ["nightlife", "danceclubs"]):
-        outdoor_base = 14
+        outdoor_score = 18
     else:
-        outdoor_base = 18  # Restaurants and others
+        outdoor_score = 22  # Restaurants and others
 
-    # Rating boost (0-7): higher rated = likely better maintained building
-    outdoor_rating_boost = ((rating - 3.0) / 2.0) * 7  # 3.0 rating = 0, 5.0 rating = 7
-    outdoor_rating_boost = max(0, min(7, outdoor_rating_boost))
-
-    score += outdoor_base + outdoor_rating_boost
+    score += outdoor_score
 
     # --- LOCATION & LINE-OF-SIGHT (0-25) ---
-    # Use log(reviews) as proxy for prime location (more reviews = busier area)
-    # Plus rating as quality indicator
+    # Use log(reviews) as proxy for prime location (more reviews = busier area = better location)
     if reviews > 0:
-        review_location_score = min(15, math.log10(reviews + 1) * 5)  # 0-15 based on reviews
+        location_score = min(25, math.log10(reviews + 1) * 8)
     else:
-        review_location_score = 5
+        location_score = 8  # Neutral for new/unknown venues
 
-    rating_location_boost = ((rating - 3.0) / 2.0) * 10  # 0-10 based on rating
-    rating_location_boost = max(0, min(10, rating_location_boost))
-
-    score += review_location_score + rating_location_boost
+    score += location_score
 
     # --- FOOT TRAFFIC & DWELL TIME (0-15) ---
-    # Continuous review count scoring (log scale)
+    # Review count as traffic indicator (log scale)
     if reviews > 0:
         review_traffic = min(8, math.log10(reviews + 1) * 2.5)
     else:
-        review_traffic = 1
+        review_traffic = 2
 
     # Dwell time by category (0-7)
     if any(c in categories for c in ["coffee", "coffeeroasteries", "cafes"]):
@@ -131,47 +122,36 @@ def score_venue(biz):
     # --- PERMISSIONING SPEED (0-15) ---
     chain_keywords = ["starbucks", "dunkin", "mcdonald", "subway", "chipotle",
                       "sweetgreen", "cava", "shake shack", "five guys", "panera",
-                      "wawa", "7-eleven", "cvs", "walgreens", "peet's", "philz"]
+                      "wawa", "7-eleven", "cvs", "walgreens", "peet's", "philz",
+                      "joe & the juice", "le pain quotidien", "pret a manger"]
     is_chain = any(kw in name for kw in chain_keywords)
 
     if is_chain:
-        perm_base = 2
+        perm_score = 3
     elif any(c in categories for c in ["coffee", "coffeeroasteries", "cafes"]):
-        perm_base = 13
+        perm_score = 15
     elif any(c in categories for c in ["breweries", "brewpubs"]):
-        perm_base = 12
+        perm_score = 14
     elif any(c in categories for c in ["wine_bars"]):
-        perm_base = 11
+        perm_score = 13
     elif any(c in categories for c in ["cocktailbars", "bars"]):
-        perm_base = 10
+        perm_score = 12
     else:
-        perm_base = 8
+        perm_score = 10
 
-    # Small boost for highly rated (owner cares about business)
-    if rating >= 4.5:
-        perm_base = min(15, perm_base + 2)
-    elif rating >= 4.0:
-        perm_base = min(15, perm_base + 1)
-
-    score += perm_base
+    score += perm_score
 
     # --- OPERATIONAL RELIABILITY (0-10) ---
     if any(c in categories for c in ["coffee", "coffeeroasteries", "cafes"]):
-        reliability_base = 8
+        reliability_score = 10
     elif any(c in categories for c in ["breweries", "brewpubs"]):
-        reliability_base = 7
+        reliability_score = 9
     elif any(c in categories for c in ["bars", "cocktailbars", "wine_bars"]):
-        reliability_base = 6
+        reliability_score = 7
     else:
-        reliability_base = 5
+        reliability_score = 6
 
-    # Rating boost for reliability
-    if rating >= 4.5:
-        reliability_base = min(10, reliability_base + 2)
-    elif rating >= 4.0:
-        reliability_base = min(10, reliability_base + 1)
-
-    score += reliability_base
+    score += reliability_score
 
     return round(min(100, max(0, score)))
 
@@ -248,12 +228,12 @@ def main():
     print(f"\n{'=' * 50}")
     print("SCORE DISTRIBUTION")
     print("=" * 50)
-    priority = len([r for r in output_rows if r["Score"] >= 80])
-    high = len([r for r in output_rows if 60 <= r["Score"] < 80])
+    priority = len([r for r in output_rows if r["Score"] >= 85])
+    high = len([r for r in output_rows if 60 <= r["Score"] < 85])
     medium = len([r for r in output_rows if 45 <= r["Score"] < 60])
     low = len([r for r in output_rows if r["Score"] < 45])
-    print(f"  Priority (80+): {priority}")
-    print(f"  High (60-79): {high}")
+    print(f"  Priority (85+): {priority}")
+    print(f"  High (60-84): {high}")
     print(f"  Medium (45-59): {medium}")
     print(f"  Low (<45): {low}")
 

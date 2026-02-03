@@ -167,17 +167,6 @@
         }
         .venue-meta span { display: flex; align-items: center; gap: 4px; }
 
-        .venue-rating {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            color: #f59e0b;
-        }
-        .venue-rating svg {
-            width: 14px;
-            height: 14px;
-        }
-
         .venue-score {
             display: flex;
             flex-direction: column;
@@ -300,7 +289,7 @@
     <div class="header">
         <a href="venue-list.html" class="back-link">&larr; All Venues</a>
         <h1>Priority Venues</h1>
-        <p>Top-scoring venues for immediate outreach (Score 80+)</p>
+        <p>Top-scoring venues for immediate outreach (Score 85+)</p>
     </div>
 
     <div class="stats">
@@ -399,22 +388,12 @@
                     lng: parseFloat(obj.Lng) || 0,
                     yelpId: obj.YelpID || ''
                 };
-            }).filter(v => v.lat !== 0 && v.lng !== 0 && v.score >= 80);
+            }).filter(v => v.lat !== 0 && v.lng !== 0 && v.score >= 85);
         }
 
         // Render venue card
         function renderVenueCard(venue) {
             const yelpUrl = venue.yelpId ? `https://www.yelp.com/biz/${venue.yelpId}` : `https://www.google.com/search?q=${encodeURIComponent(venue.name + ' ' + venue.address)}`;
-
-            let ratingHtml = '';
-            if (venue.rating > 0) {
-                ratingHtml = `
-                    <span class="venue-rating">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        ${venue.rating.toFixed(1)} (${venue.reviews.toLocaleString()})
-                    </span>
-                `;
-            }
 
             return `
                 <div class="venue-card">
@@ -424,8 +403,6 @@
                             <span>${venue.address}</span>
                             <span>${venue.category}</span>
                             <span>${venue.neighborhood}</span>
-                            ${ratingHtml}
-                            ${venue.price ? `<span style="color: #059669; font-weight: 600;">${venue.price}</span>` : ''}
                         </div>
                     </div>
                     <div class="venue-score">
