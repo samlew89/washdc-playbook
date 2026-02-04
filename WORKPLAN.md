@@ -122,7 +122,37 @@ Dupont Circle, Logan Circle, 14th Street Corridor, U Street, Shaw, Adams Morgan,
 - `dc-venues.csv` - 2,743 venues across 18 neighborhoods (from Yelp API)
 - `dc-venues.geojson` - Geographic data for mapping
 - `dc-venues-yelp-raw.json` - Raw API response backup
+- `venues.db` - SQLite database for external tools (Superset, etc.)
 - CSV columns: ID, Name, Address, Category, Neighborhood, Rating, Reviews, Price, Score, Lat, Lng, Phone, YelpID
+
+### External Integrations (Superset, BI Tools)
+
+The venue data can be shared with external platforms via SQLite database:
+
+**Database:** `venues.db`
+**Table:** `venues`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| id | TEXT | Venue ID (e.g., DUP-001) |
+| name | TEXT | Venue name |
+| address | TEXT | Full address |
+| category | TEXT | Coffee, Bar, Brewery, etc. |
+| neighborhood | TEXT | One of 18 DC neighborhoods |
+| score | INTEGER | Priority score (0-100) |
+| priority_tier | TEXT | Priority, High, Medium, Low |
+| rating | REAL | Yelp rating |
+| reviews | INTEGER | Review count |
+| lat, lng | REAL | Coordinates |
+| phone, yelp_id | TEXT | Contact info |
+
+**To regenerate the database after updating venue data:**
+```bash
+python3 create_venue_db.py
+```
+
+**To connect from Superset:**
+Add database connection: `sqlite:////path/to/venues.db`
 
 ### Key Thresholds
 - Priority: Score >= 85 (~125 venues)
