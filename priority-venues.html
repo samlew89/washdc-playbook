@@ -38,6 +38,10 @@
         .stat { text-align: center; }
         .stat-value { font-size: 28px; font-weight: 700; color: #5e25fd; }
         .stat-label { font-size: 11px; color: #7d7d7d; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-value.contacted { color: #3b82f6; }
+        .stat-value.meeting { color: #8b5cf6; }
+        .stat-value.installed { color: #10b981; }
+        .stat-value.rejected { color: #ef4444; }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
 
@@ -136,13 +140,18 @@
         .venue-card {
             padding: 15px 20px;
             border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+        .venue-card:last-child { border-bottom: none; }
+        .venue-card:hover { background: #fafafa; }
+
+        .venue-card-main {
             display: grid;
             grid-template-columns: 1fr auto;
             gap: 15px;
             align-items: center;
         }
-        .venue-card:last-child { border-bottom: none; }
-        .venue-card:hover { background: #fafafa; }
+
         .venue-info h3 a {
             color: #000;
             text-decoration: none;
@@ -194,6 +203,117 @@
             color: #5e25fd;
         }
 
+        /* Stage selector */
+        .stage-row {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .stage-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: background 0.2s;
+            user-select: none;
+        }
+        .stage-trigger:hover {
+            background: #f3f4f6;
+        }
+
+        .stage-trigger .arrow {
+            font-size: 10px;
+            transition: transform 0.2s;
+        }
+        .stage-trigger.expanded .arrow {
+            transform: rotate(90deg);
+        }
+
+        .stage-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .stage-pill.not-started { background: #f3f4f6; color: #6b7280; }
+        .stage-pill.contacted { background: #dbeafe; color: #1d4ed8; }
+        .stage-pill.meeting-set { background: #ede9fe; color: #6d28d9; }
+        .stage-pill.negotiating { background: #fef3c7; color: #b45309; }
+        .stage-pill.installed { background: #d1fae5; color: #047857; }
+        .stage-pill.rejected { background: #fee2e2; color: #b91c1c; }
+
+        .stage-options {
+            display: none;
+            margin-top: 10px;
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        .stage-options.visible {
+            display: block;
+        }
+
+        .stage-options-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .stage-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .stage-option:hover {
+            background: #fff;
+            border-color: #e5e7eb;
+        }
+        .stage-option.selected {
+            background: #fff;
+            border-color: #5e25fd;
+        }
+        .stage-option .radio {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #d1d5db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .stage-option.selected .radio {
+            border-color: #5e25fd;
+        }
+        .stage-option.selected .radio::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #5e25fd;
+        }
+
+        .stage-saving {
+            font-size: 11px;
+            color: #6b7280;
+            margin-top: 8px;
+            display: none;
+        }
+        .stage-saving.visible {
+            display: block;
+        }
+
         /* Results count */
         .results-count {
             padding: 10px 20px;
@@ -225,6 +345,59 @@
         }
         .back-link:hover {
             color: #fff;
+        }
+
+        /* Loading and error states */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9998;
+        }
+        .loading-overlay.hidden {
+            display: none;
+        }
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid #5e25fd;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-banner {
+            background: #fef2f2;
+            color: #b91c1c;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 14px;
+            display: none;
+        }
+        .error-banner.visible {
+            display: block;
+        }
+
+        .offline-banner {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 8px 20px;
+            text-align: center;
+            font-size: 13px;
+            display: none;
+        }
+        .offline-banner.visible {
+            display: block;
         }
 
         /* Mobile styles */
@@ -269,8 +442,10 @@
             }
 
             .venue-card {
-                grid-template-columns: 1fr;
                 padding: 12px 16px;
+            }
+            .venue-card-main {
+                grid-template-columns: 1fr;
             }
             .venue-score {
                 flex-direction: row;
@@ -281,6 +456,10 @@
                 width: 40px;
                 height: 40px;
                 font-size: 14px;
+            }
+
+            .stage-options-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -417,6 +596,19 @@
         })();
     </script>
 
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Error banner -->
+    <div class="error-banner" id="errorBanner"></div>
+
+    <!-- Offline mode banner -->
+    <div class="offline-banner" id="offlineBanner">
+        Running in offline mode. Stage changes won't be saved.
+    </div>
+
     <div class="header">
         <a href="venue-list.html" class="back-link">&larr; All Venues</a>
         <h1>Priority Venues</h1>
@@ -426,19 +618,23 @@
     <div class="stats">
         <div class="stat">
             <div class="stat-value" id="priorityCount">-</div>
-            <div class="stat-label">Priority Venues</div>
+            <div class="stat-label">Priority</div>
         </div>
         <div class="stat">
-            <div class="stat-value" id="neighborhoodCount">-</div>
-            <div class="stat-label">Neighborhoods</div>
+            <div class="stat-value contacted" id="contactedVenues">-</div>
+            <div class="stat-label">Contacted</div>
         </div>
         <div class="stat">
-            <div class="stat-value" id="avgScore">-</div>
-            <div class="stat-label">Avg Score</div>
+            <div class="stat-value meeting" id="meetingVenues">-</div>
+            <div class="stat-label">Meeting Set</div>
         </div>
         <div class="stat">
-            <div class="stat-value" id="topCategory">-</div>
-            <div class="stat-label">Top Category</div>
+            <div class="stat-value installed" id="installedVenues">-</div>
+            <div class="stat-label">Installed</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value rejected" id="rejectedVenues">-</div>
+            <div class="stat-label">Rejected</div>
         </div>
     </div>
 
@@ -453,6 +649,18 @@
                     <label>Neighborhood:</label>
                     <select id="neighborhoodFilter">
                         <option value="all">All Neighborhoods</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Stage:</label>
+                    <select id="stageFilter">
+                        <option value="all">All Stages</option>
+                        <option value="Not Started">Not Started</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Meeting Set">Meeting Set</option>
+                        <option value="Negotiating">Negotiating</option>
+                        <option value="Installed">Installed</option>
+                        <option value="Rejected">Rejected</option>
                     </select>
                 </div>
             </div>
@@ -470,14 +678,41 @@
     </div>
 
     <script>
-        // Data storage
+        // ============================================
+        // CONFIGURATION
+        // ============================================
+
+        // Google Apps Script URL - REPLACE THIS with your deployed web app URL
+        // Leave empty to use local CSV (offline mode)
+        const APPS_SCRIPT_URL = '';
+
+        // Pipeline stages
+        const STAGES = [
+            { id: 'Not Started', label: 'Not Started', class: 'not-started' },
+            { id: 'Contacted', label: 'Contacted', class: 'contacted' },
+            { id: 'Meeting Set', label: 'Meeting Set', class: 'meeting-set' },
+            { id: 'Negotiating', label: 'Negotiating', class: 'negotiating' },
+            { id: 'Installed', label: 'Installed', class: 'installed' },
+            { id: 'Rejected', label: 'Rejected', class: 'rejected' }
+        ];
+
+        // ============================================
+        // DATA STORAGE
+        // ============================================
+
+        let allVenues = [];
         let priorityVenues = [];
         let filteredVenues = [];
         let neighborhoods = new Set();
         let categories = {};
-        let selectedCategory = null; // null means "All"
+        let selectedCategory = null;
+        let isOnlineMode = false;
+        let expandedVenueId = null;
 
-        // Parse CSV with quoted fields
+        // ============================================
+        // UTILITY FUNCTIONS
+        // ============================================
+
         function parseCSV(text) {
             const lines = text.trim().split('\n');
             const headers = lines[0].split(',');
@@ -517,174 +752,75 @@
                     score: parseInt(obj.Score) || 0,
                     lat: parseFloat(obj.Lat) || 0,
                     lng: parseFloat(obj.Lng) || 0,
-                    yelpId: obj.YelpID || ''
+                    yelpId: obj.YelpID || '',
+                    stage: obj.Stage || 'Not Started',
+                    lastUpdated: obj.LastUpdated || ''
                 };
             }).filter(v => v.lat !== 0 && v.lng !== 0 && v.score >= 85);
         }
 
-        // Render venue card
-        function renderVenueCard(venue) {
-            const yelpUrl = venue.yelpId ? `https://www.yelp.com/biz/${venue.yelpId}` : `https://www.google.com/search?q=${encodeURIComponent(venue.name + ' ' + venue.address)}`;
-
-            return `
-                <div class="venue-card">
-                    <div class="venue-info">
-                        <h3><a href="${yelpUrl}" target="_blank" rel="noopener">${venue.name}</a></h3>
-                        <div class="venue-meta">
-                            <span>${venue.address}</span>
-                            <span>${venue.category}</span>
-                            <span>${venue.neighborhood}</span>
-                        </div>
-                    </div>
-                    <div class="venue-score">
-                        <div class="score-badge">${venue.score}</div>
-                        <div class="score-tier">Priority</div>
-                    </div>
-                </div>
-            `;
+        function getStageInfo(stageId) {
+            return STAGES.find(s => s.id === stageId) || STAGES[0];
         }
 
-        // Update stats
-        function updateStats() {
-            const total = priorityVenues.length;
-            const nbCount = neighborhoods.size;
-            const avg = total > 0 ? Math.round(priorityVenues.reduce((a, b) => a + b.score, 0) / total) : 0;
-
-            // Find top category
-            const sortedCats = Object.entries(categories).sort((a, b) => b[1] - a[1]);
-            const topCat = sortedCats.length > 0 ? sortedCats[0][0] : '-';
-
-            document.getElementById('priorityCount').textContent = total.toLocaleString();
-            document.getElementById('neighborhoodCount').textContent = nbCount;
-            document.getElementById('avgScore').textContent = avg;
-            document.getElementById('topCategory').textContent = topCat;
+        function showLoading(show) {
+            document.getElementById('loadingOverlay').classList.toggle('hidden', !show);
         }
 
-        // Build dropdowns
-        function buildDropdowns() {
-            const nbSelect = document.getElementById('neighborhoodFilter');
-            Array.from(neighborhoods).sort().forEach(nb => {
-                const option = document.createElement('option');
-                option.value = nb;
-                option.textContent = nb;
-                nbSelect.appendChild(option);
-            });
+        function showError(message) {
+            const banner = document.getElementById('errorBanner');
+            banner.textContent = message;
+            banner.classList.add('visible');
         }
 
-        // Get category counts for current neighborhood filter
-        function getCategoryCounts() {
-            const neighborhoodFilter = document.getElementById('neighborhoodFilter').value;
-            const counts = { all: 0 };
-
-            priorityVenues.forEach(v => {
-                if (neighborhoodFilter !== 'all' && v.neighborhood !== neighborhoodFilter) return;
-                counts.all++;
-                counts[v.category] = (counts[v.category] || 0) + 1;
-            });
-
-            return counts;
+        function hideError() {
+            document.getElementById('errorBanner').classList.remove('visible');
         }
 
-        // Build category chips
-        function buildCategoryChips() {
-            const container = document.getElementById('categoryChips');
-            container.innerHTML = '';
+        // ============================================
+        // DATA LOADING
+        // ============================================
 
-            const counts = getCategoryCounts();
-
-            // Add "All" chip first
-            const allChip = document.createElement('div');
-            allChip.className = 'category-chip active';
-            allChip.dataset.category = 'all';
-            allChip.innerHTML = `All <span class="chip-count">${counts.all}</span>`;
-            allChip.addEventListener('click', () => selectCategory(null));
-            container.appendChild(allChip);
-
-            // Sort categories by count
-            const sortedCategories = Object.entries(categories)
-                .sort((a, b) => b[1] - a[1]);
-
-            sortedCategories.forEach(([cat, _]) => {
-                const count = counts[cat] || 0;
-                if (count === 0) return; // Skip categories with no venues in current filter
-                const chip = document.createElement('div');
-                chip.className = 'category-chip';
-                chip.dataset.category = cat;
-                chip.innerHTML = `${cat} <span class="chip-count">${count}</span>`;
-                chip.addEventListener('click', () => selectCategory(cat));
-                container.appendChild(chip);
-            });
-        }
-
-        // Update category chip counts
-        function updateCategoryChipCounts() {
-            const counts = getCategoryCounts();
-            const chips = document.querySelectorAll('.category-chip');
-
-            chips.forEach(chip => {
-                const cat = chip.dataset.category;
-                const count = cat === 'all' ? counts.all : (counts[cat] || 0);
-                const countSpan = chip.querySelector('.chip-count');
-                if (countSpan) {
-                    countSpan.textContent = count;
-                }
-            });
-        }
-
-        // Select a single category (null = All)
-        function selectCategory(category) {
-            selectedCategory = category;
-
-            const chips = document.querySelectorAll('.category-chip');
-            chips.forEach(chip => {
-                const chipCat = chip.dataset.category;
-                if (category === null && chipCat === 'all') {
-                    chip.classList.add('active');
-                } else if (category === chipCat) {
-                    chip.classList.add('active');
-                } else {
-                    chip.classList.remove('active');
-                }
-            });
-
-            applyFilters();
-        }
-
-        // Apply filters
-        function applyFilters() {
-            const search = document.getElementById('searchInput').value.toLowerCase();
-            const neighborhood = document.getElementById('neighborhoodFilter').value;
-
-            filteredVenues = priorityVenues.filter(v => {
-                if (search && !v.name.toLowerCase().includes(search) && !v.address.toLowerCase().includes(search)) return false;
-                if (neighborhood !== 'all' && v.neighborhood !== neighborhood) return false;
-                if (selectedCategory !== null && v.category !== selectedCategory) return false;
-                return true;
-            }).sort((a, b) => b.score - a.score);
-
-            renderVenueList();
-        }
-
-        // Render venue list
-        function renderVenueList() {
-            const list = document.getElementById('venueList');
-
-            document.getElementById('resultsCount').innerHTML = `Showing <strong>${filteredVenues.length}</strong> priority venues`;
-
-            if (filteredVenues.length === 0) {
-                list.innerHTML = '<div class="empty-state">No venues match your filters</div>';
-                return;
-            }
-
-            list.innerHTML = filteredVenues.map(v => renderVenueCard(v)).join('');
-        }
-
-        // Load data
         async function loadData() {
+            showLoading(true);
+            hideError();
+
             try {
-                const response = await fetch('dc-venues.csv');
-                const text = await response.text();
-                priorityVenues = parseCSV(text);
+                if (APPS_SCRIPT_URL) {
+                    const response = await fetch(APPS_SCRIPT_URL);
+                    const data = await response.json();
+
+                    if (data.success) {
+                        allVenues = data.venues.map(v => ({
+                            id: v.ID || '',
+                            name: v.Name || '',
+                            address: v.Address || '',
+                            category: v.Category || '',
+                            neighborhood: v.Neighborhood || '',
+                            rating: parseFloat(v.Rating) || 0,
+                            reviews: parseInt(v.Reviews) || 0,
+                            price: v.Price || '',
+                            score: parseInt(v.Score) || 0,
+                            lat: parseFloat(v.Lat) || 0,
+                            lng: parseFloat(v.Lng) || 0,
+                            yelpId: v.YelpID || '',
+                            stage: v.Stage || 'Not Started',
+                            lastUpdated: v.LastUpdated || ''
+                        })).filter(v => v.lat !== 0 && v.lng !== 0);
+
+                        priorityVenues = allVenues.filter(v => v.score >= 85);
+                        isOnlineMode = true;
+                    } else {
+                        throw new Error(data.error || 'Failed to load from Google Sheets');
+                    }
+                } else {
+                    const response = await fetch('dc-venues.csv');
+                    const text = await response.text();
+                    priorityVenues = parseCSV(text);
+                    allVenues = priorityVenues;
+                    isOnlineMode = false;
+                    document.getElementById('offlineBanner').classList.add('visible');
+                }
 
                 // Build category and neighborhood lists
                 priorityVenues.forEach(v => {
@@ -703,18 +839,306 @@
 
             } catch (error) {
                 console.error('Error loading data:', error);
-                document.getElementById('venueList').innerHTML = '<div class="empty-state">Error loading venue data</div>';
+
+                try {
+                    const response = await fetch('dc-venues.csv');
+                    const text = await response.text();
+                    priorityVenues = parseCSV(text);
+                    allVenues = priorityVenues;
+                    isOnlineMode = false;
+                    document.getElementById('offlineBanner').classList.add('visible');
+
+                    priorityVenues.forEach(v => {
+                        categories[v.category] = (categories[v.category] || 0) + 1;
+                        neighborhoods.add(v.neighborhood);
+                    });
+
+                    filteredVenues = [...priorityVenues].sort((a, b) => b.score - a.score);
+                    updateStats();
+                    buildDropdowns();
+                    buildCategoryChips();
+                    renderVenueList();
+                } catch (csvError) {
+                    showError('Failed to load venue data. Please refresh the page.');
+                    document.getElementById('venueList').innerHTML = '<div class="empty-state">Error loading venue data</div>';
+                }
+            } finally {
+                showLoading(false);
             }
         }
 
-        // Event listeners
+        // ============================================
+        // STAGE UPDATE
+        // ============================================
+
+        async function updateStage(venueId, newStage) {
+            const venue = priorityVenues.find(v => v.id === venueId);
+            if (!venue) return;
+
+            const oldStage = venue.stage;
+            venue.stage = newStage;
+            venue.lastUpdated = new Date().toISOString();
+
+            // Also update in allVenues if different array
+            const allVenue = allVenues.find(v => v.id === venueId);
+            if (allVenue && allVenue !== venue) {
+                allVenue.stage = newStage;
+                allVenue.lastUpdated = venue.lastUpdated;
+            }
+
+            updateStats();
+            renderVenueList();
+
+            if (isOnlineMode && APPS_SCRIPT_URL) {
+                try {
+                    const response = await fetch(APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        body: JSON.stringify({ venueId, stage: newStage })
+                    });
+
+                    const result = await response.json();
+                    if (!result.success) {
+                        throw new Error(result.error);
+                    }
+                } catch (error) {
+                    console.error('Failed to save stage:', error);
+                    venue.stage = oldStage;
+                    if (allVenue && allVenue !== venue) {
+                        allVenue.stage = oldStage;
+                    }
+                    updateStats();
+                    renderVenueList();
+                    showError('Failed to save stage change. Please try again.');
+                }
+            }
+        }
+
+        // ============================================
+        // STATS
+        // ============================================
+
+        function updateStats() {
+            const total = priorityVenues.length;
+            const contacted = priorityVenues.filter(v => v.stage === 'Contacted').length;
+            const meeting = priorityVenues.filter(v => v.stage === 'Meeting Set').length;
+            const installed = priorityVenues.filter(v => v.stage === 'Installed').length;
+            const rejected = priorityVenues.filter(v => v.stage === 'Rejected').length;
+
+            document.getElementById('priorityCount').textContent = total.toLocaleString();
+            document.getElementById('contactedVenues').textContent = contacted.toLocaleString();
+            document.getElementById('meetingVenues').textContent = meeting.toLocaleString();
+            document.getElementById('installedVenues').textContent = installed.toLocaleString();
+            document.getElementById('rejectedVenues').textContent = rejected.toLocaleString();
+        }
+
+        // ============================================
+        // DROPDOWNS & CHIPS
+        // ============================================
+
+        function buildDropdowns() {
+            const nbSelect = document.getElementById('neighborhoodFilter');
+            Array.from(neighborhoods).sort().forEach(nb => {
+                const option = document.createElement('option');
+                option.value = nb;
+                option.textContent = nb;
+                nbSelect.appendChild(option);
+            });
+        }
+
+        function getCategoryCounts() {
+            const neighborhoodFilter = document.getElementById('neighborhoodFilter').value;
+            const stageFilter = document.getElementById('stageFilter').value;
+            const counts = { all: 0 };
+
+            priorityVenues.forEach(v => {
+                if (neighborhoodFilter !== 'all' && v.neighborhood !== neighborhoodFilter) return;
+                if (stageFilter !== 'all' && v.stage !== stageFilter) return;
+                counts.all++;
+                counts[v.category] = (counts[v.category] || 0) + 1;
+            });
+
+            return counts;
+        }
+
+        function buildCategoryChips() {
+            const container = document.getElementById('categoryChips');
+            container.innerHTML = '';
+
+            const counts = getCategoryCounts();
+
+            const allChip = document.createElement('div');
+            allChip.className = 'category-chip active';
+            allChip.dataset.category = 'all';
+            allChip.innerHTML = `All <span class="chip-count">${counts.all}</span>`;
+            allChip.addEventListener('click', () => selectCategory(null));
+            container.appendChild(allChip);
+
+            const sortedCategories = Object.entries(categories).sort((a, b) => b[1] - a[1]);
+
+            sortedCategories.forEach(([cat, _]) => {
+                const count = counts[cat] || 0;
+                if (count === 0) return;
+                const chip = document.createElement('div');
+                chip.className = 'category-chip';
+                chip.dataset.category = cat;
+                chip.innerHTML = `${cat} <span class="chip-count">${count}</span>`;
+                chip.addEventListener('click', () => selectCategory(cat));
+                container.appendChild(chip);
+            });
+        }
+
+        function updateCategoryChipCounts() {
+            const counts = getCategoryCounts();
+            const chips = document.querySelectorAll('.category-chip');
+
+            chips.forEach(chip => {
+                const cat = chip.dataset.category;
+                const count = cat === 'all' ? counts.all : (counts[cat] || 0);
+                const countSpan = chip.querySelector('.chip-count');
+                if (countSpan) {
+                    countSpan.textContent = count;
+                }
+            });
+        }
+
+        function selectCategory(category) {
+            selectedCategory = category;
+
+            const chips = document.querySelectorAll('.category-chip');
+            chips.forEach(chip => {
+                const chipCat = chip.dataset.category;
+                if (category === null && chipCat === 'all') {
+                    chip.classList.add('active');
+                } else if (category === chipCat) {
+                    chip.classList.add('active');
+                } else {
+                    chip.classList.remove('active');
+                }
+            });
+
+            applyFilters();
+        }
+
+        // ============================================
+        // FILTERS
+        // ============================================
+
+        function applyFilters() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const neighborhood = document.getElementById('neighborhoodFilter').value;
+            const stageFilter = document.getElementById('stageFilter').value;
+
+            filteredVenues = priorityVenues.filter(v => {
+                if (search && !v.name.toLowerCase().includes(search) && !v.address.toLowerCase().includes(search)) return false;
+                if (neighborhood !== 'all' && v.neighborhood !== neighborhood) return false;
+                if (stageFilter !== 'all' && v.stage !== stageFilter) return false;
+                if (selectedCategory !== null && v.category !== selectedCategory) return false;
+                return true;
+            }).sort((a, b) => b.score - a.score);
+
+            renderVenueList();
+        }
+
+        // ============================================
+        // VENUE CARD RENDERING
+        // ============================================
+
+        function renderVenueCard(venue) {
+            const stageInfo = getStageInfo(venue.stage);
+            const yelpUrl = venue.yelpId ? `https://www.yelp.com/biz/${venue.yelpId}` : `https://www.google.com/search?q=${encodeURIComponent(venue.name + ' ' + venue.address)}`;
+            const isExpanded = expandedVenueId === venue.id;
+
+            const stageOptionsHtml = STAGES.map(s => `
+                <div class="stage-option ${s.id === venue.stage ? 'selected' : ''}"
+                     onclick="handleStageSelect('${venue.id}', '${s.id}')">
+                    <div class="radio"></div>
+                    ${s.label}
+                </div>
+            `).join('');
+
+            return `
+                <div class="venue-card" data-venue-id="${venue.id}">
+                    <div class="venue-card-main">
+                        <div class="venue-info">
+                            <h3><a href="${yelpUrl}" target="_blank" rel="noopener">${venue.name}</a></h3>
+                            <div class="venue-meta">
+                                <span>${venue.address}</span>
+                                <span>${venue.category}</span>
+                                <span>${venue.neighborhood}</span>
+                            </div>
+                        </div>
+                        <div class="venue-score">
+                            <div class="score-badge">${venue.score}</div>
+                            <div class="score-tier">Priority</div>
+                        </div>
+                    </div>
+                    <div class="stage-row">
+                        <div class="stage-trigger ${isExpanded ? 'expanded' : ''}" onclick="toggleStageSelector('${venue.id}')">
+                            <span class="arrow">&#9654;</span>
+                            <span class="stage-pill ${stageInfo.class}">${stageInfo.label}</span>
+                        </div>
+                        <div class="stage-options ${isExpanded ? 'visible' : ''}" id="stage-options-${venue.id}">
+                            <div class="stage-options-grid">
+                                ${stageOptionsHtml}
+                            </div>
+                            <div class="stage-saving" id="stage-saving-${venue.id}">Saving...</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function toggleStageSelector(venueId) {
+            if (expandedVenueId === venueId) {
+                expandedVenueId = null;
+            } else {
+                expandedVenueId = venueId;
+            }
+            renderVenueList();
+        }
+
+        async function handleStageSelect(venueId, stageId) {
+            const venue = priorityVenues.find(v => v.id === venueId);
+            if (!venue || venue.stage === stageId) return;
+
+            const savingEl = document.getElementById(`stage-saving-${venueId}`);
+            if (savingEl) savingEl.classList.add('visible');
+
+            await updateStage(venueId, stageId);
+            expandedVenueId = null;
+        }
+
+        function renderVenueList() {
+            const list = document.getElementById('venueList');
+
+            document.getElementById('resultsCount').innerHTML = `Showing <strong>${filteredVenues.length}</strong> priority venues`;
+
+            if (filteredVenues.length === 0) {
+                list.innerHTML = '<div class="empty-state">No venues match your filters</div>';
+                return;
+            }
+
+            list.innerHTML = filteredVenues.map(v => renderVenueCard(v)).join('');
+        }
+
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+
         document.getElementById('searchInput').addEventListener('input', applyFilters);
         document.getElementById('neighborhoodFilter').addEventListener('change', function() {
             updateCategoryChipCounts();
             applyFilters();
         });
+        document.getElementById('stageFilter').addEventListener('change', function() {
+            updateCategoryChipCounts();
+            applyFilters();
+        });
 
-        // Initialize
+        // ============================================
+        // INITIALIZE
+        // ============================================
+
         loadData();
     </script>
 </body>

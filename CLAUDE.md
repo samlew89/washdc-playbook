@@ -40,6 +40,17 @@ Dupont Circle, Logan Circle, 14th Street Corridor, U Street, Shaw, Adams Morgan,
 - `dc-venues.geojson` - Updated geographic data
 - `dc-venues-yelp-raw.json` - Raw API response backup
 
+### Venue Pipeline Tracking
+- [x] Added 6-stage outreach pipeline: Not Started → Contacted → Meeting Set → Negotiating → Installed/Rejected
+- [x] Created Google Apps Script API for reading/writing to Google Sheets backend
+- [x] Updated `venue-list.html` with expandable stage selector on each venue card
+- [x] Updated `priority-venues.html` with same stage tracking functionality
+- [x] Updated `density-map.html` to show stage in venue popups (read-only)
+- [x] Added pipeline stats to venue list pages (Contacted, Meeting Set, Installed, Rejected counts)
+- [x] Added stage filter dropdown to venue list pages
+- [x] Created `migrate-to-sheets.py` script to populate Google Sheet from CSV
+- [x] Offline mode fallback when Google Sheets is not configured
+
 ### Codebase Cleanup
 - [x] Removed old data files (`*-old.csv`, duplicate CSVs)
 - [x] Removed obsolete scripts (`check_closed_venues.py`, `clean_venue_lists.py`)
@@ -134,10 +145,13 @@ Dupont Circle, Logan Circle, 14th Street Corridor, U Street, Shaw, Adams Morgan,
 
 ### Data Files
 - `dc-venues.csv` - 2,743 venues across 18 neighborhoods (from Yelp API)
+- `dc-venues-for-sheets.csv` - CSV with Stage and LastUpdated columns for Google Sheets import
 - `dc-venues.geojson` - Geographic data for mapping
 - `dc-venues-yelp-raw.json` - Raw API response backup
 - `venues.db` - SQLite database for external tools (Superset, etc.)
-- CSV columns: ID, Name, Address, Category, Neighborhood, Rating, Reviews, Price, Score, Lat, Lng, Phone, YelpID
+- `google-apps-script.js` - Google Apps Script code for Sheets API
+- `migrate-to-sheets.py` - Script to generate Sheets-ready CSV from venue data
+- CSV columns: ID, Name, Address, Category, Neighborhood, Rating, Reviews, Price, Score, Lat, Lng, Phone, YelpID, Stage, LastUpdated
 
 ### External Integrations (Superset, BI Tools)
 
@@ -196,11 +210,43 @@ Add database connection: `sqlite:////path/to/venues.db`
 ### Neighborhoods
 18 total: Dupont Circle, Logan Circle, 14th Street, U Street, Shaw, Adams Morgan, Columbia Heights, Petworth, H Street NE, Capitol Hill, Navy Yard/Wharf, Penn Quarter, Georgetown, Glover Park, Woodley Park, Brookland, NoMa, Mount Pleasant
 
+### Pipeline Tracking (Google Sheets Backend)
+
+**Architecture:**
+```
+venue-list.html ←→ Google Apps Script ←→ Google Sheet
+(website UI)       (API proxy)           (database)
+```
+
+**Pipeline Stages:**
+1. Not Started (default - gray)
+2. Contacted (blue)
+3. Meeting Set (purple)
+4. Negotiating (amber)
+5. Installed (green)
+6. Rejected (red)
+
+**Setup Instructions:**
+1. Run `python3 migrate-to-sheets.py` to generate `dc-venues-for-sheets.csv`
+2. Create a new Google Sheet named "DC Venue Pipeline"
+3. Import the CSV via File > Import
+4. Open Extensions > Apps Script
+5. Paste contents of `google-apps-script.js`
+6. Deploy as web app (Execute as: Me, Access: Anyone)
+7. Copy the deployed web app URL
+8. Update `APPS_SCRIPT_URL` in venue-list.html and priority-venues.html
+
+**Offline Mode:**
+If `APPS_SCRIPT_URL` is empty, pages fall back to local CSV (read-only, stage changes not saved).
+
+**Sheet Columns:**
+ID, Name, Address, Category, Neighborhood, Rating, Reviews, Price, Score, Lat, Lng, Phone, YelpID, Stage, LastUpdated
+
 ---
 
 ## Future Improvements (Ideas)
 
-- [ ] Add venue status tracking (Not Started → Contacted → Closed → Installed)
+- [x] Add venue status tracking (Not Started → Contacted → Closed → Installed) - **DONE: Feb 2026**
 - [ ] Export filtered venue lists to CSV
 - [ ] Add "Copy to clipboard" for venue addresses
 - [ ] Dark mode support

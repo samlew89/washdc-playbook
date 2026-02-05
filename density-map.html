@@ -327,6 +327,24 @@
             flex-shrink: 0;
         }
 
+        /* Stage pill in popup */
+        .venue-popup-stage {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 22px;
+            margin-top: 4px;
+        }
+        .venue-popup-stage.not-started { background: #f3f4f6; color: #6b7280; }
+        .venue-popup-stage.contacted { background: #dbeafe; color: #1d4ed8; }
+        .venue-popup-stage.meeting-set { background: #ede9fe; color: #6d28d9; }
+        .venue-popup-stage.negotiating { background: #fef3c7; color: #b45309; }
+        .venue-popup-stage.installed { background: #d1fae5; color: #047857; }
+        .venue-popup-stage.rejected { background: #fee2e2; color: #b91c1c; }
+
         /* Cluster styling */
         .marker-cluster {
             background: rgba(94, 37, 253, 0.2);
@@ -701,7 +719,9 @@
                     lat: parseFloat(obj.Lat) || 0,
                     lng: parseFloat(obj.Lng) || 0,
                     phone: obj.Phone || '',
-                    yelpId: obj.YelpID || ''
+                    yelpId: obj.YelpID || '',
+                    stage: obj.Stage || 'Not Started',
+                    lastUpdated: obj.LastUpdated || ''
                 };
             }).filter(v => v.lat !== 0 && v.lng !== 0);
         }
@@ -722,11 +742,25 @@
             return 'low';
         }
 
+        // Get stage CSS class
+        function getStageClass(stage) {
+            const stageMap = {
+                'Not Started': 'not-started',
+                'Contacted': 'contacted',
+                'Meeting Set': 'meeting-set',
+                'Negotiating': 'negotiating',
+                'Installed': 'installed',
+                'Rejected': 'rejected'
+            };
+            return stageMap[stage] || 'not-started';
+        }
+
         // Create popup content
         function createPopup(v) {
             const searchQuery = encodeURIComponent(`${v.name} ${v.address}`);
             const searchUrl = `https://www.google.com/search?q=${searchQuery}`;
             const yelpUrl = v.yelpId ? `https://www.yelp.com/biz/${v.yelpId}` : searchUrl;
+            const stageClass = getStageClass(v.stage);
 
             return `
                 <div class="venue-popup">
@@ -747,6 +781,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
                             ${v.category}
                         </div>
+                        <div class="venue-popup-stage ${stageClass}">${v.stage}</div>
                     </div>
                 </div>
             `;
