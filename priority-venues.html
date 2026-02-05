@@ -314,6 +314,47 @@
             display: block;
         }
 
+        /* Notes */
+        .notes-section {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e5e7eb;
+        }
+        .notes-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #6b7280;
+            margin-bottom: 6px;
+        }
+        .notes-input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+            font-family: 'Figtree', sans-serif;
+            resize: vertical;
+            min-height: 60px;
+        }
+        .notes-input:focus {
+            outline: none;
+            border-color: #5e25fd;
+        }
+        .notes-input::placeholder {
+            color: #9ca3af;
+        }
+        .notes-indicator {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 8px;
+            color: #9ca3af;
+            font-size: 12px;
+        }
+        .notes-indicator svg {
+            width: 14px;
+            height: 14px;
+        }
+
         /* Results count */
         .results-count {
             padding: 10px 20px;
@@ -1043,10 +1084,37 @@
         // VENUE CARD RENDERING
         // ============================================
 
+        // Notes storage (localStorage)
+        function getNote(venueId) {
+            const notes = JSON.parse(localStorage.getItem('venue_notes') || '{}');
+            return notes[venueId] || '';
+        }
+
+        function saveNote(venueId, note) {
+            const notes = JSON.parse(localStorage.getItem('venue_notes') || '{}');
+            if (note.trim()) {
+                notes[venueId] = note;
+            } else {
+                delete notes[venueId];
+            }
+            localStorage.setItem('venue_notes', JSON.stringify(notes));
+        }
+
+        function handleNoteChange(venueId, textarea) {
+            saveNote(venueId, textarea.value);
+            const card = document.querySelector(`[data-venue-id="${venueId}"]`);
+            const indicator = card.querySelector('.notes-indicator');
+            if (indicator) {
+                indicator.style.display = textarea.value.trim() ? 'inline-flex' : 'none';
+            }
+        }
+
         function renderVenueCard(venue) {
             const stageInfo = getStageInfo(venue.stage);
             const yelpUrl = venue.yelpId ? `https://www.yelp.com/biz/${venue.yelpId}` : `https://www.google.com/search?q=${encodeURIComponent(venue.name + ' ' + venue.address)}`;
             const isExpanded = expandedVenueId === venue.id;
+            const note = getNote(venue.id);
+            const hasNote = note.trim().length > 0;
 
             const stageOptionsHtml = STAGES.map(s => `
                 <div class="stage-option ${s.id === venue.stage ? 'selected' : ''}"
@@ -1076,12 +1144,24 @@
                         <div class="stage-trigger ${isExpanded ? 'expanded' : ''}" onclick="toggleStageSelector('${venue.id}')">
                             <span class="arrow">&#9654;</span>
                             <span class="stage-pill ${stageInfo.class}">${stageInfo.label}</span>
+                            <span class="notes-indicator" style="display: ${hasNote ? 'inline-flex' : 'none'}">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                            </span>
                         </div>
                         <div class="stage-options ${isExpanded ? 'visible' : ''}" id="stage-options-${venue.id}">
                             <div class="stage-options-grid">
                                 ${stageOptionsHtml}
                             </div>
                             <div class="stage-saving" id="stage-saving-${venue.id}">Saving...</div>
+                            <div class="notes-section">
+                                <div class="notes-label">Notes</div>
+                                <textarea class="notes-input"
+                                    placeholder="Add notes about this venue..."
+                                    onchange="handleNoteChange('${venue.id}', this)"
+                                    onclick="event.stopPropagation()">${note}</textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
