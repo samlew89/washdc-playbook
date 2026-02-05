@@ -52,6 +52,7 @@ Dupont Circle, Logan Circle, 14th Street Corridor, U Street, Shaw, Adams Morgan,
 - [x] Offline mode fallback when Google Sheets is not configured
 - [x] Added local notes feature for sales reps (saved in browser localStorage)
 - [x] Notes display as bubble with edit icon, Save Note button inside textarea
+- [x] Added Contact Info dropdown showing phone, Yelp page, and Google search links (display-only, not synced to Sheet)
 
 ### Codebase Cleanup
 - [x] Removed old data files (`*-old.csv`, duplicate CSVs)
