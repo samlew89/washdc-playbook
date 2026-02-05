@@ -1,4 +1,4 @@
-# WORKPLAN.md — DC Playbook
+# CLAUDE.md — DC Playbook
 
 ## Project Goal
 Create a highly readable, operator-friendly dashboard for driving hyper-dense Helium Mobile hotspot deployments in Washington DC, covering 18 neighborhoods with comprehensive venue data.
@@ -12,6 +12,12 @@ The dashboard should prioritize:
 ---
 
 ## Completed Work (Feb 2026)
+
+### Password Protection
+- [x] Added client-side password gate to all HTML pages (index, venue-list, density-map, priority-venues)
+- [x] SHA-256 hashed password comparison (not plaintext in source)
+- [x] Authentication persists in localStorage (one-time entry per browser)
+- [x] Styled overlay with blur effect, shake animation on wrong password
 
 ### Comprehensive Venue Data Expansion
 - [x] Replaced manually curated 536-venue list with Yelp Fusion API data
@@ -117,6 +123,14 @@ Dupont Circle, Logan Circle, 14th Street Corridor, U Street, Shaw, Adams Morgan,
 ---
 
 ## Technical Notes
+
+### Password Protection
+- All HTML pages require password on first visit
+- Password: `Heliumdc2026`
+- Hash stored in code: `e740f59c469759dff1f87cfbfef8f055d6c8c3477c3e23f838182829675c078c`
+- localStorage key: `dc_playbook_auth`
+- To reset auth (for testing): `localStorage.removeItem('dc_playbook_auth')`
+- Note: This is "screen door" security - stops casual visitors, not determined attackers
 
 ### Data Files
 - `dc-venues.csv` - 2,743 venues across 18 neighborhoods (from Yelp API)
