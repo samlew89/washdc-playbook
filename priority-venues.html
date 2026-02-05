@@ -343,14 +343,14 @@
         }
         .notes-save-btn {
             position: absolute;
-            bottom: 6px;
-            right: 6px;
-            padding: 4px 12px;
+            bottom: 10px;
+            right: 10px;
+            padding: 6px 14px;
             background: #5e25fd;
             color: white;
             border: none;
-            border-radius: 4px;
-            font-size: 11px;
+            border-radius: 6px;
+            font-size: 12px;
             font-weight: 600;
             font-family: 'Figtree', sans-serif;
             cursor: pointer;
@@ -1244,7 +1244,7 @@
                                             placeholder="Add a note..."
                                             onkeydown="handleNoteKeydown(event, '${venue.id}')"
                                             onclick="event.stopPropagation()">${note}</textarea>
-                                        <button class="notes-save-btn" onclick="event.stopPropagation(); handleNoteSave('${venue.id}')">${hasNote ? 'Update' : 'Add Note'}</button>
+                                        <button class="notes-save-btn" onclick="event.stopPropagation(); handleNoteSave('${venue.id}')">Save Note</button>
                                     </div>
                                 `}
                             </div>
