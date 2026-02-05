@@ -302,9 +302,140 @@
                 font-size: 14px;
             }
         }
+
+        /* Password Gate Styles */
+        .password-gate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        .password-gate.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .password-box {
+            background: #fff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 360px;
+            width: 90%;
+        }
+        .password-box h2 {
+            font-family: 'Figtree', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: #000;
+            margin-bottom: 8px;
+        }
+        .password-box p {
+            font-family: 'Figtree', sans-serif;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        .password-box input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: 'Figtree', sans-serif;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+        .password-box input:focus {
+            outline: none;
+            border-color: #5e25fd;
+        }
+        .password-box input.error {
+            border-color: #ef4444;
+            animation: shake 0.4s ease;
+        }
+        .password-box button {
+            width: 100%;
+            padding: 14px 24px;
+            background: #5e25fd;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Figtree', sans-serif;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .password-box button:hover {
+            background: #4a1dcc;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
     </style>
 </head>
 <body>
+    <!-- Password Gate -->
+    <div class="password-gate" id="passwordGate">
+        <div class="password-box">
+            <h2>DC Playbook</h2>
+            <p>Enter password to continue</p>
+            <input type="password" id="passwordInput" placeholder="Password" autocomplete="off">
+            <button id="passwordSubmit">Enter</button>
+        </div>
+    </div>
+    <script>
+        (function() {
+            const HASH = 'e740f59c469759dff1f87cfbfef8f055d6c8c3477c3e23f838182829675c078c';
+            const AUTH_KEY = 'dc_playbook_auth';
+
+            async function sha256(str) {
+                const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+                return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+            }
+
+            function hideGate() {
+                const gate = document.getElementById('passwordGate');
+                gate.classList.add('hidden');
+                setTimeout(() => gate.style.display = 'none', 300);
+            }
+
+            if (localStorage.getItem(AUTH_KEY) === 'true') {
+                hideGate();
+            }
+
+            document.getElementById('passwordSubmit').addEventListener('click', async function() {
+                const input = document.getElementById('passwordInput');
+                const hash = await sha256(input.value);
+                if (hash === HASH) {
+                    localStorage.setItem(AUTH_KEY, 'true');
+                    hideGate();
+                } else {
+                    input.classList.add('error');
+                    input.value = '';
+                    setTimeout(() => input.classList.remove('error'), 400);
+                }
+            });
+
+            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') document.getElementById('passwordSubmit').click();
+            });
+        })();
+    </script>
+
     <div class="header">
         <h1>DC Venue Pipeline</h1>
         <p>All DC Neighborhoods</p>
