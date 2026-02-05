@@ -1156,10 +1156,10 @@
                             </div>
                             <div class="stage-saving" id="stage-saving-${venue.id}">Saving...</div>
                             <div class="notes-section">
-                                <div class="notes-label">Notes</div>
+                                <div class="notes-label">Notes (saved locally)</div>
                                 <textarea class="notes-input"
                                     placeholder="Add notes about this venue..."
-                                    onchange="handleNoteChange('${venue.id}', this)"
+                                    oninput="handleNoteChange('${venue.id}', this)"
                                     onclick="event.stopPropagation()">${note}</textarea>
                             </div>
                         </div>
