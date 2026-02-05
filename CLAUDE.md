@@ -50,6 +50,8 @@ Dupont Circle, Logan Circle, 14th Street Corridor, U Street, Shaw, Adams Morgan,
 - [x] Added stage filter dropdown to venue list pages
 - [x] Created `migrate-to-sheets.py` script to populate Google Sheet from CSV
 - [x] Offline mode fallback when Google Sheets is not configured
+- [x] Added local notes feature for sales reps (saved in browser localStorage)
+- [x] Notes display as bubble with edit icon, Save Note button inside textarea
 
 ### Codebase Cleanup
 - [x] Removed old data files (`*-old.csv`, duplicate CSVs)
@@ -241,6 +243,12 @@ If `APPS_SCRIPT_URL` is empty, pages fall back to local CSV (read-only, stage ch
 
 **Sheet Columns:**
 ID, Name, Address, Category, Neighborhood, Rating, Reviews, Price, Score, Lat, Lng, Phone, YelpID, Stage, LastUpdated
+
+**Sales Rep Notes:**
+- Stored in browser localStorage (not synced to Google Sheets)
+- localStorage key: `venue_notes`
+- Notes persist per-browser, per-device
+- Press Enter to save, Shift+Enter for newlines
 
 ---
 
